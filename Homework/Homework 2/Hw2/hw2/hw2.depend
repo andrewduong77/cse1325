@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1517204107 source:/home/student/Documents/Classes/CSE 1325/Homework/Homework 2/Hw2/hw2/and7697_Secret_Code_1.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+
