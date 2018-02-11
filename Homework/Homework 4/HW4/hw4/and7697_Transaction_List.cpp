@@ -2,7 +2,7 @@
 
 bool Transaction_List::add_transaction(Date date, Transaction transaction)
 {
-    return
+
 }
 
 void Transaction_List::list_transactions()
