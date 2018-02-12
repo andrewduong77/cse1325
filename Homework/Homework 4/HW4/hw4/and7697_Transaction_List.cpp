@@ -25,7 +25,7 @@ string Transaction_List::to_string() const
 
 }
 
-ostream& Transaction_List::operator<< (ostream& ost, const Transaction_List& trans_list_two)
+ostream& Transaction_List::operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
 
 }

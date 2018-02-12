@@ -15,8 +15,8 @@ class Date
             second = s;
         }
         string to_string() const;
-        bool operator< (const Date& date_two) const;
-        friend ostream& operator<< (ostream& ost, const Date& date_two);
+        bool operator<(const Date& date_two) const;
+        friend ostream& operator<<(ostream& ost, const Date& date_two);
     private:
         int year, month, day, hour, minute, second;
 }
