@@ -12,7 +12,7 @@ void Transaction_List::list_transactions()
         cout << "nothing in transactions" << endl;
         return;
     }
-    map<Date,string>::iterator it = transactions.begin();
+    map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != planner.end();it++)
         cout << it->first << " - " << it->second << endl;
 }
@@ -32,9 +32,10 @@ string Transaction_List::to_string() const
 
 }
 
-ostream& Transaction_List::operator<< (ostream& ost, const Transaction_List& trans_list_two)
+ostream& Transaction_List::operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
-
+    ost << trans_list_two.to_string();
+    return ost;
 }
 
 void Transaction_List::delete_transaction_by_date(Date d)
