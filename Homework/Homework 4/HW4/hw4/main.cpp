@@ -32,7 +32,7 @@ int main()
     Transaction_List transactions {};
     int select, select1;
     cin >> select;
-    int year, month, day, hour, minute, second;
+    int year, month, day, hour, min, second;
     Date date {0, 0, 0, 0, 0, 0};
     double price;
     string name;
@@ -53,9 +53,9 @@ int main()
             cin >> month;
             cin >> day;
             cin >> hour;
-            cin >> minute;
+            cin >> min;
             cin >> second;
-            date = {year, month, day, hour, minute, second};
+            date = {year, month, day, hour, min, second};
             cout << "Please enter a price: ";
             cin >> price;
             cout << "Please enter a name: ";
@@ -90,7 +90,7 @@ int main()
                 cin >> hour;
                 cin >> min;
                 cin >> second;
-                date {year, month, day, hour, min, second};
+                date = {year, month, day, hour, min, second};
                 transactions.delete_transaction_by_date(date);
             }
             else
