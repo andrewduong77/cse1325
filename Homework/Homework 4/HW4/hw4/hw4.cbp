@@ -37,7 +37,7 @@
 		<Unit filename="and7697_Transaction.h" />
 		<Unit filename="and7697_Transaction_List.cpp" />
 		<Unit filename="and7697_Transaction_List.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="and7697_main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
