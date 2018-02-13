@@ -1,21 +1,4 @@
-//#include "and7697_Transaction_List.h"
-//
-//int main()
-//{
-//    Transaction_List transactions {};
-//    Date d1 {2014,10,28,16,30,0};
-//    Transaction t1 {439.87,"iPhone_5s"};
-//    cout << a << end;
-//    if(transactions.add_transaction(d1, t1))
-//        cout << "Event added" << endl;
-//    if(!transactions.add_transaction(d1, t1))
-//        cout << "Event not added" << endl;
-//    return 0;
-//}
-
 #include "and7697_Transaction_List.h"
-//#include <iostream>
-// Syntax errors with Class declarations
 
 using namespace std;
 
@@ -48,7 +31,6 @@ int main()
             transactions.list_transactions();
             break;
         case 2:
-            // Have to fix. Can't declare variables in switch cases!
             cout << "Please enter a date: ";
             cin >> year;
             cin >> month;
@@ -84,7 +66,6 @@ int main()
             if(select1 == 1)
             {
                 cout << "Please enter a date to be deleted: ";
-//                int year1, month1, day1, hour1, min1, second1;
                 cin >> year;
                 cin >> month;
                 cin >> day;
@@ -97,7 +78,6 @@ int main()
             else
             {
                 cout << "Please enter the name of the transaction(s) to be deleted: ";
-//                string name1;
                 cin >> name;
                 transactions.delete_transactions_by_name(name);
             }
@@ -111,6 +91,7 @@ int main()
             cout << "The bonus winner is " + the_bonus + "." << endl;
             break;
         case 6:
+            cout << "Thank You!" << endl;
             break;
         default:
             cout << "Invalid selection. Try again!" << endl;
@@ -118,3 +99,18 @@ int main()
         }
     }while(select != 6);
 }
+
+//#include "and7697_Transaction_List.h"
+//
+//int main()
+//{
+//    Transaction_List transactions {};
+//    Date d1 {2014,10,28,16,30,0};
+//    Transaction t1 {439.87,"iPhone_5s"};
+//    cout << a << end;
+//    if(transactions.add_transaction(d1, t1))
+//        cout << "Event added" << endl;
+//    if(!transactions.add_transaction(d1, t1))
+//        cout << "Event not added" << endl;
+//    return 0;
+//}
