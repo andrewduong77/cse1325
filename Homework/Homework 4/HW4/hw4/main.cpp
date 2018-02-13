@@ -32,7 +32,7 @@ int main()
     double avg;
     string the_bonus;
     do
-        {
+    {
         cout << "Please make a selection from the following menu:" << endl;
         cout << "1: Print all transactions" << endl;
         cout << "2: Add a transaction" << endl;
@@ -40,6 +40,7 @@ int main()
         cout << "4: Average transaction value" << endl;
         cout << "5: Bonus winner" << endl;
         cout << "6: Exit" << endl;
+        cout << "--> ";
         cin >> select;
         switch(select)
         {
