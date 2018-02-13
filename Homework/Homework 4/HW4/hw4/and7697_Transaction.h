@@ -17,4 +17,4 @@ class Transaction
     private:
         double price;
         string name;
-}
+};

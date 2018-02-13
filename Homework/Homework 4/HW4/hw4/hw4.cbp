@@ -31,27 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="and7697_Date.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Date.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Transaction.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Transaction.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Transaction_List.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Transaction_List.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="main.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="and7697_Date.cpp" />
+		<Unit filename="and7697_Date.h" />
+		<Unit filename="and7697_Transaction.cpp" />
+		<Unit filename="and7697_Transaction.h" />
+		<Unit filename="and7697_Transaction_List.cpp" />
+		<Unit filename="and7697_Transaction_List.h" />
+		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

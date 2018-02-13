@@ -22,4 +22,4 @@ class Transaction_List
         void delete_transactions_by_name(string n);
     private:
         map<Date, Transaction> transactions;
-}
+};
