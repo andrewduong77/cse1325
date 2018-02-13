@@ -49,9 +49,13 @@
 		<Unit filename="and7697_Transaction_List.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="main.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
