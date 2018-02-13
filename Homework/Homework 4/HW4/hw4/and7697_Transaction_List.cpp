@@ -13,14 +13,16 @@ void Transaction_List::list_transactions()
         return;
     }
     map<Date,Transaction>::iterator it = transactions.begin();
-    for(;it != planner.end();it++)
+    for(;it != transactions.end();it++)
         cout << it->first << " - " << it->second << endl;
 }
 
 double Transaction_List::get_average_transaction()
 {
-
-}
+    double sum = count = 0;
+    map<Date,Transaction>::iterator it = transactions.begin();
+    for(; it != transactions.end(); it++)
+        sum += (it->second).get_price();
 
 string Transaction_List::bonus()
 {
