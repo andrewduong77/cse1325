@@ -15,6 +15,7 @@
 
 #include "and7697_Transaction_List.h"
 //#include <iostream>
+// Syntax errors with Class declarations
 
 using namespace std;
 
@@ -29,8 +30,15 @@ int main()
     cout << "5: Bonus winner" << endl;
     cout << "6: Exit" << endl;
     Transaction_List transactions {};
-    int select;
+    int select, select1;
     cin >> select;
+    int year, month, day, hour, minute, second;
+    Date date {0, 0, 0, 0, 0, 0};
+    double price;
+    string name;
+    Transaction transaction {0, ""};
+    double avg;
+    string the_bonus;
     while(select != 6)
     {
         switch(select)
@@ -41,26 +49,18 @@ int main()
         case 2:
             // Have to fix. Can't declare variables in switch cases!
             cout << "Please enter a date: ";
-            int year;
             cin >> year;
-            int month;
             cin >> month;
-            int day;
             cin >> day;
-            int hour;
             cin >> hour;
-            int minute;
             cin >> minute;
-            int second;
             cin >> second;
-            Date date {year, month, day, hour, minute, second};
+            date = {year, month, day, hour, minute, second};
             cout << "Please enter a price: ";
-            double price;
             cin >> price;
             cout << "Please enter a name: ";
-            string name;
             cin >> name;
-            Transaction transaction {price, name};
+            transaction = {price, name};
             if(transactions.add_transaction(date,transaction))
                 cout << "transaction added" << endl;
             if(!transactions.add_transaction(date,transaction))
@@ -76,37 +76,37 @@ int main()
             {
                 cout << "Invalid selection. Try Again: " << endl;
                 cout << "What would you like to delete by?" << endl;
-                cout << "1 Date" >> endl;
-                cout << "2 Name" >> endl;
+                cout << "1 Date" << endl;
+                cout << "2 Name" << endl;
                 cin >> select1;
             }
             if(select1 == 1)
             {
                 cout << "Please enter a date to be deleted: ";
-                int year1, month1, day1, hour1, min1, second1;
-                cin >> year1;
-                cin >> month1;
-                cin >> day1;
-                cin >> hour1;
-                cin >> min1;
-                cin >> second1;
-                Date date1 {year1, month1, day1, hour1, min1, second1};
-                transactions.delete_transaction_by_date(date1);
+//                int year1, month1, day1, hour1, min1, second1;
+                cin >> year;
+                cin >> month;
+                cin >> day;
+                cin >> hour;
+                cin >> min;
+                cin >> second;
+                date {year, month, day, hour, min, second};
+                transactions.delete_transaction_by_date(date);
             }
             else
             {
                 cout << "Please enter the name of the transaction(s) to be deleted: ";
-                string name1;
-                cin >> name1;
-                transactions.delete_transactions_by_name(name1);
+//                string name1;
+                cin >> name;
+                transactions.delete_transactions_by_name(name);
             }
             break;
         case 4:
-            double avg = transactions.get_average_transaction();
-            cout << "The average transaction is " + avg + "." << endl;
+            avg = transactions.get_average_transaction();
+            cout << "The average transaction is " + std::to_string(avg) + "." << endl;
             break;
         case 5:
-            string the_bonus = transactions.bonus();
+            the_bonus = transactions.bonus();
             cout << "The bonus winner is " + the_bonus + "." << endl;
             break;
         case 6:
