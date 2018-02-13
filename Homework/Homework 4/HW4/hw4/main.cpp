@@ -90,7 +90,7 @@ int main()
                 cin >> min1;
                 cin >> second1;
                 Date date1 {year1, month1, day1, hour1, min1, second1};
-                transactions.delete_transaction_by_date(date1)
+                transactions.delete_transaction_by_date(date1);
             }
             else
             {
