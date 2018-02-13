@@ -7,14 +7,14 @@ bool Transaction_List::add_transaction(Date date, Transaction transaction)
 
 void Transaction_List::list_transactions()
 {
-//    if(transactions.size() == 0)
-//    {
-//        cout << "nothing in transactions" << endl;
-//        return;
-//    }
-//    map<Date,Transaction>::iterator it = transactions.begin();
-//    for(;it != transactions.end();it++)
-//        cout << it->first << " - " << it->second << endl;
+    if(transactions.size() == 0)
+    {
+        cout << "nothing in transactions" << endl;
+        return;
+    }
+    map<Date,Transaction>::iterator it = transactions.begin();
+    for(;it != transactions.end();it++)
+        cout << it->first << " - " << it->second << endl;
 }
 
 double Transaction_List::get_average_transaction()

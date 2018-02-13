@@ -39,6 +39,7 @@ int main()
             transactions.list_transactions();
             break;
         case 2:
+            // Have to fix. Can't declare variables in switch cases!
             cout << "Please enter a date: ";
             int year;
             cin >> year;
