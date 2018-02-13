@@ -10,7 +10,6 @@ string Transaction::get_name()
     return name;
 }
 
-// Ain't no work
 string Transaction::to_string() const
 {
     return std::to_string(price) + " " + name;

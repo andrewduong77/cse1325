@@ -22,16 +22,8 @@ using namespace std;
 int main()
 {
     cout << "Welcome to the Transaction List Management Solution." << endl;
-    cout << "Please make a selection from the following menu:" << endl;
-    cout << "1: Print all transactions" << endl;
-    cout << "2: Add a transaction" << endl;
-    cout << "3: Delete a transaction(s)" << endl;
-    cout << "4: Average transaction value" << endl;
-    cout << "5: Bonus winner" << endl;
-    cout << "6: Exit" << endl;
     Transaction_List transactions {};
     int select, select1;
-    cin >> select;
     int year, month, day, hour, min, second;
     Date date {0, 0, 0, 0, 0, 0};
     double price;
@@ -39,8 +31,16 @@ int main()
     Transaction transaction {0, ""};
     double avg;
     string the_bonus;
-    while(select != 6)
-    {
+    do
+        {
+        cout << "Please make a selection from the following menu:" << endl;
+        cout << "1: Print all transactions" << endl;
+        cout << "2: Add a transaction" << endl;
+        cout << "3: Delete a transaction(s)" << endl;
+        cout << "4: Average transaction value" << endl;
+        cout << "5: Bonus winner" << endl;
+        cout << "6: Exit" << endl;
+        cin >> select;
         switch(select)
         {
         case 1:
@@ -113,6 +113,7 @@ int main()
             break;
         default:
             cout << "Invalid selection. Try again!" << endl;
+            break;
         }
-    }
+    }while(select != 6);
 }
