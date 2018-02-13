@@ -2,7 +2,7 @@
 
 bool Transaction_List::add_transaction(Date date, Transaction transaction)
 {
-    return transactions.insert(make_pair(date,event)).second;
+    return transactions.insert(make_pair(date,transaction)).second;
 }
 
 void Transaction_List::list_transactions()
@@ -19,10 +19,12 @@ void Transaction_List::list_transactions()
 
 double Transaction_List::get_average_transaction()
 {
-    double sum = count = 0;
+    double sum, count;
+    sum = count = 0;
     map<Date,Transaction>::iterator it = transactions.begin();
     for(; it != transactions.end(); it++)
         sum += (it->second).get_price();
+}
 
 string Transaction_List::bonus()
 {
@@ -34,7 +36,7 @@ string Transaction_List::to_string() const
 
 }
 
-ostream& Transaction_List::operator<<(ostream& ost, const Transaction_List& trans_list_two)
+ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
     ost << trans_list_two.to_string();
     return ost;

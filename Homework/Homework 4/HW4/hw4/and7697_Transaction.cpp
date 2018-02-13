@@ -10,11 +10,11 @@ string Transaction::get_name()
     return name;
 }
 
-// Ain't no work!
-//string Transaction::to_string() const
-//{
-//    return std::to_string(price) + " " + std::to_string(name);
-//}
+// Ain't no work
+string Transaction::to_string() const
+{
+    return std::to_string(price) + " " + std::to_string(name);
+}
 
 ostream& operator<<(ostream& ost, const Transaction& trans_two)
 {
