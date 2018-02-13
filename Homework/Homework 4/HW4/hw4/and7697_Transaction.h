@@ -13,7 +13,7 @@ class Transaction
             name = n;
         }
         string to_string() const;
-        friend ostream& operator<<(ostream& ost, const Transaction& trans_two)
+        friend ostream& operator<<(ostream& ost, const Transaction& trans_two);
     private:
         double price;
         string name;
