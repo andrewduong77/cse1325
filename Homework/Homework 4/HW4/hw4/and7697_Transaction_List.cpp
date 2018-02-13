@@ -28,12 +28,12 @@ double Transaction_List::get_average_transaction()
 
 string Transaction_List::bonus()
 {
-
+    cout << "bonus() has not work yet" << endl; // Temporary message
 }
 
 string Transaction_List::to_string() const
 {
-
+    cout << "to_string has not work yet" << endl; // Temporary message
 }
 
 ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
@@ -44,10 +44,10 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 
 void Transaction_List::delete_transaction_by_date(Date d)
 {
-
+    cout << "delete_transaction_by_date(d) has not work yet" << endl; // Temporary message
 }
 
 void Transaction_List::delete_transactions_by_name(string n)
 {
-
+    cout << "delete_transactions_by_name(n) has not work yet" << endl; // Temporary message
 }
