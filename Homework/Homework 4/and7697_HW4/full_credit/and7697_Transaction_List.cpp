@@ -44,7 +44,6 @@ string Transaction_List::bonus()
     return name;
 }
 
-
 string Transaction_List::to_string() const
 {
     // No use...
