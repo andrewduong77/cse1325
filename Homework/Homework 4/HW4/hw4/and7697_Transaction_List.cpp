@@ -45,20 +45,24 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 
 bool Transaction_List::delete_transaction_by_date(Date d)
 {
-    map<Date,Transaction>::iterator it = transactions.begin();
-    for(;it != transactions.end(); it++)
-        if(it->first == d)
-        {
-            planner.erase(it->second);
-            return true;
-        }
-        return false;
+    int result = transactions.erase(d);
+    if(result == 1)
+        return true;
+    return false;
+//    map<Date,Transaction>::iterator it = transactions.begin();
+//    for(;it != transactions.end(); it++)
+//        if(it->first == d)
+//        {
+//            planner.erase(it->second);
+//            return true;
+//        }
+//    return false;
 }
 
 void Transaction_List::delete_transactions_by_name(string n)
 {
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end(); it++)
-        if((it->second).get_name() == n)
+        if(it->second == n)
             transactions.erase(it->second);
 }

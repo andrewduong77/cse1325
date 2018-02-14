@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1518523642 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Date.cpp
+1518579213 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Date.cpp
 	"and7697_Date.h"
 
-1518523642 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Date.h
+1518579213 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Date.h
 	<iostream>
 
 1518547362 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction.cpp
@@ -11,20 +11,20 @@
 1518523711 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction.h
 	<iostream>
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> c0d01779dc86504b397ad9fa1bc68ba2245b3e4b
+1518523406 D
+
+1518523406 01779dc86504b397ad9fa1bc68ba2245b3e4b
+
 1518548525 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction_List.cpp
 	"and7697_Transaction_List.h"
 
-1518523406 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction_List.h
+1518576713 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction_List.h
 	"and7697_Date.h"
 	"and7697_Transaction.h"
 	<map>
 
-<<<<<<< HEAD
-=======
->>>>>>> aca893d68f9dc9e1dc7172eb1e2026dc94fd11d2
->>>>>>> c0d01779dc86504b397ad9fa1bc68ba2245b3e4b
+1518523406 893d68f9dc9e1dc7172eb1e2026dc94fd11d2
+
+1518570217 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_main.cpp
+	"and7697_Transaction_List.h"
+
