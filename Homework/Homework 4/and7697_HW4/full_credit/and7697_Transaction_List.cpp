@@ -51,14 +51,6 @@ bool Transaction_List::delete_transaction_by_date(Date d)
     if(result == 1)
         return true;
     return false;
-//    map<Date,Transaction>::iterator it = transactions.begin();
-//    for(;it != transactions.end(); it++)
-//        if(it->first == d)
-//        {
-//            planner.erase(it->second);
-//            return true;
-//        }
-//    return false;
 }
 
 void Transaction_List::delete_transactions_by_name(string n)
