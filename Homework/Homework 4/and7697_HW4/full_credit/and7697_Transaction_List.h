@@ -18,7 +18,7 @@ class Transaction_List
         string bonus();
         string to_string() const;
         friend ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two);
-        void delete_transaction_by_date(Date d);
+        bool delete_transaction_by_date(Date d);
         void delete_transactions_by_name(string n);
     private:
         map<Date, Transaction> transactions;

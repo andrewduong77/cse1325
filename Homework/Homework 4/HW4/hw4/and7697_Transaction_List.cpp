@@ -64,5 +64,5 @@ void Transaction_List::delete_transactions_by_name(string n)
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end(); it++)
         if(it->second.Transaction::get_name() == n)
-            transactions.erase(it->second);
+            transactions.erase(it);
 }
