@@ -11,3 +11,14 @@
 1518523711 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction.h
 	<iostream>
 
+<<<<<<< HEAD
+=======
+1518548525 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction_List.cpp
+	"and7697_Transaction_List.h"
+
+1518523406 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 4/HW4/hw4/and7697_Transaction_List.h
+	"and7697_Date.h"
+	"and7697_Transaction.h"
+	<map>
+
+>>>>>>> aca893d68f9dc9e1dc7172eb1e2026dc94fd11d2
