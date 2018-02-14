@@ -53,6 +53,7 @@ int main()
             cout << "What would you like to delete by?" << endl;
             cout << "1 Date" << endl;
             cout << "2 Name" << endl;
+            cout << "--> ";
             int select1;
             cin >> select1;
             while(select1 < 1 && select1 > 2)
@@ -61,6 +62,7 @@ int main()
                 cout << "What would you like to delete by?" << endl;
                 cout << "1 Date" << endl;
                 cout << "2 Name" << endl;
+                cout << "--> ";
                 cin >> select1;
             }
             if(select1 == 1)

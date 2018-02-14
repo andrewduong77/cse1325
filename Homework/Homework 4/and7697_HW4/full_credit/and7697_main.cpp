@@ -53,6 +53,7 @@ int main()
             cout << "What would you like to delete by?" << endl;
             cout << "1 Date" << endl;
             cout << "2 Name" << endl;
+            cout << "--> ";
             int select1;
             cin >> select1;
             while(select1 < 1 && select1 > 2)
@@ -61,6 +62,7 @@ int main()
                 cout << "What would you like to delete by?" << endl;
                 cout << "1 Date" << endl;
                 cout << "2 Name" << endl;
+                cout << "--> ";
                 cin >> select1;
             }
             if(select1 == 1)
@@ -84,11 +86,11 @@ int main()
             break;
         case 4:
             avg = transactions.get_average_transaction();
-            cout << "The average transaction is " + std::to_string(avg) + "." << endl;
+            cout << "The average transaction is " << avg << "." << endl;
             break;
         case 5:
             the_bonus = transactions.bonus();
-            cout << "The bonus winner is " + the_bonus + "." << endl;
+            cout << "The bonus winner is " << the_bonus << "." << endl;
             break;
         case 6:
             cout << "Thank You!" << endl;

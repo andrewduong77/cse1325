@@ -32,13 +32,15 @@ string Transaction_List::bonus()
     cout << "bonus() has not work yet" << endl; // Temporary message
 }
 
+
 string Transaction_List::to_string() const
 {
-
+    // No use...
 }
 
 ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
+    // No use...
     ost << trans_list_two.to_string();
     return ost;
 }
