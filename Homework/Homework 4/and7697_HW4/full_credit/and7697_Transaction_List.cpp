@@ -29,7 +29,19 @@ double Transaction_List::get_average_transaction()
 
 string Transaction_List::bonus()
 {
-    cout << "bonus() has not work yet" << endl; // Temporary message
+    string name;
+    double max;
+    max = 0;
+    map<Date,Transaction>::iterator it = transactions.begin();
+    for(; it != transactions.end(); it++)
+    {
+        if(it->second.Transaction::get_price() > max)
+        {
+            max = it->second.Transaction::get_price();
+            name = it->second.Transaction::get_name();
+        }
+    }
+    return name;
 }
 
 

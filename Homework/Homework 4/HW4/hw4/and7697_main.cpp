@@ -86,11 +86,11 @@ int main()
             break;
         case 4:
             avg = transactions.get_average_transaction();
-            cout << "The average transaction is " + std::to_string(avg) + "." << endl;
+            cout << "The average transaction is " << avg << "." << endl;
             break;
         case 5:
             the_bonus = transactions.bonus();
-            cout << "The bonus winner is " + the_bonus + "." << endl;
+            cout << "The bonus winner is " << the_bonus << "." << endl;
             break;
         case 6:
             cout << "Thank You!" << endl;
