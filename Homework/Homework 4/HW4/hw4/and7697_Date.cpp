@@ -32,11 +32,6 @@ bool Date::operator<(const Date& date_two) const
     return false;
 }
 
-//bool Date::operator==(const Date& date_two)
-//{
-//    return ((this->year == date_two.year) && (this->month == date_two.month) && (this->day == date_two.day) && (this->hour == date_two.hour) && (this->minute == date_two.minute) && (this->second == date_two.second));
-//}
-
 ostream& operator<<(ostream& ost, const Date& date_two)
 {
     ost << date_two.to_string();
