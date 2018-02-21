@@ -6,7 +6,7 @@ int main()
 {
     cout << "Welcome to the Transaction List Management Solution." << endl;
     Transaction_List transactions {};
-    int select, select1;
+    int select;
     int year, month, day, hour, min, second;
     Date date {0, 0, 0, 0, 0, 0};
     double price;

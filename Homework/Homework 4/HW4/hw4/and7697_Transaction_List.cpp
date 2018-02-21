@@ -29,21 +29,38 @@ double Transaction_List::get_average_transaction()
 
 string Transaction_List::bonus()
 {
-    string name;
-    double max;
-    max = 0;
-    map<Date,Transaction>::iterator it = transactions.begin();
-    for(; it != transactions.end(); it++)
+    map<string,double> people;
+    map<Date,Transaction>::iterator itt = transactions.begin();
+    for(; itt != transactions.end(); itt++)
     {
-        if(it->second.Transaction::get_price() > max)
+        bool exist = false;
+        string name = itt->second.get_name();
+        double total = itt->second.get_price();
+        map<string,double>::iterator itp = people.begin();
+        for(; itp != people.end(); itp++)
         {
-            max = it->second.Transaction::get_price();
-            name = it->second.Transaction::get_name();
+            if(itp->first == name)
+            {
+                itp->second += total;
+                exist = true;
+            }
+        }
+        if(!exist)
+            people.insert(make_pair(name, total)).second;
+    }
+    map<string,double>::iterator itp = people.begin();
+    string name = itp->first;
+    double max = itp->second;
+    for(; itp != people.end(); itp++)
+    {
+        if(itp->second > max)
+        {
+            max = itp->second;
+            name = itp->first;
         }
     }
     return name;
 }
-
 
 string Transaction_List::to_string()
 {
