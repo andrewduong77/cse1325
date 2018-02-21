@@ -44,15 +44,30 @@ string Transaction_List::bonus()
     return name;
 }
 
-string Transaction_List::to_string() const
+
+string Transaction_List::to_string()
 {
-    // No use...
+    string out;
+    if(transactions.size() == 0)
+    {
+        out = "nothing in transactions\n";
+        return out;
+    }
+    map<Date,Transaction>::iterator it = transactions.begin();
+    for(;it != transactions.end();it++)
+        out += it->first.to_string() + " - " + it->second.to_string() + "\n";
+    return out;
 }
 
 ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
-    // No use...
-    ost << trans_list_two.to_string();
+    if(trans_list_two.transactions.size() == 0)
+    {
+        ost << "no transactions" << endl;
+        return ost;
+    }
+    for(pair<Date,Transaction> it : trans_list_two.transactions)
+        ost << it.first << " - " << it.second << endl;
     return ost;
 }
 

@@ -7,7 +7,14 @@ bool Transaction_List::add_transaction(Date date, Transaction transaction)
 
 void Transaction_List::list_transactions()
 {
-//    cout << transactions;
+    if(transactions.size() == 0)
+    {
+        cout << "nothing in transactions" << endl;
+        return;
+    }
+    map<Date,Transaction>::iterator it = transactions.begin();
+    for(;it != transactions.end();it++)
+        cout << it->first << " - " << it->second << endl;
 }
 
 double Transaction_List::get_average_transaction()
@@ -38,7 +45,7 @@ string Transaction_List::bonus()
 }
 
 
-string Transaction_List::to_string() const
+string Transaction_List::to_string()
 {
     string out;
     if(transactions.size() == 0)
@@ -48,14 +55,19 @@ string Transaction_List::to_string() const
     }
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end();it++)
-        out += it->first + " - " + it->second + "\n";
+        out += it->first.to_string() + " - " + it->second.to_string() + "\n";
     return out;
 }
 
 ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
-    // No use...
-    ost << trans_list_two.to_string();
+    if(trans_list_two.transactions.size() == 0)
+    {
+        ost << "no transactions" << endl;
+        return ost;
+    }
+    for(pair<Date,Transaction> it : trans_list_two.transactions)
+        ost << it.first << " - " << it.second << endl;
     return ost;
 }
 
