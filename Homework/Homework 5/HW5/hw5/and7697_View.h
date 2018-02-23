@@ -5,7 +5,7 @@ class View
 public:
     View(Transaction_List& t) : transactions(t) {};
     string get_menu();
-    string print_all_transcations();
+    string print_all_transactions();
     string prompt_for_date();
     string prompt_for_transaction();
 private:

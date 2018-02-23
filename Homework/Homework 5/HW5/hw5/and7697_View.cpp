@@ -13,13 +13,13 @@ Transaction Management System
 (4) Average transaction value/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code
 (5) Bonus winner
 (6) Exit
--->
-)";
+_> )";
+return menu;
 }
 
-string View::print_all_transcations()
+string View::print_all_transactions()
 {
-    return transactions.to_string();
+    return transactions.Transaction_List::to_string(); // Does not work!
 }
 
 string View::prompt_for_date()
