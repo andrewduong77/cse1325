@@ -1,12 +1,12 @@
-#include "and7697_Transaction_List.h"
+#include "and7697_Controller.h"
 
 using namespace std;
 
 int main()
 {
-    Planner planner {};
-    View view (planner);
-    Controller controller (planner, view);
+    Transaction_List transactions {};
+    View view (transactions);
+    Controller controller (transactions, view);
 
     controller.cli();
 

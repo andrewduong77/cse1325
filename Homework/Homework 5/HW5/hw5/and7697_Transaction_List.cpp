@@ -24,7 +24,7 @@ double Transaction_List::get_average_transaction()
     map<Date,Transaction>::iterator it = transactions.begin();
     for(; it != transactions.end(); it++, count++)
         sum += (it->second).get_price();
-        return sum / count;
+    return sum / count;
 }
 
 string Transaction_List::bonus()

@@ -1,6 +1,6 @@
+#include "and7697_Transaction_List.h"
 
-
-Class View
+class View
 {
 public:
     View(Transaction_List& t) : transactions(t) {};

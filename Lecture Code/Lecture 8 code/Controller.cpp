@@ -21,9 +21,9 @@ void Controller::execute_cmd(int cmd)
         case 1:
             cout << view.view_all_events();
             planner.get_all_events();
-            test();
+//            test();
             break;
-        case 2: 
+        case 2:
             cout << view.prompt_for_date();
             //int y, m, d, h, min, s;
             cin >> y >> m >> d >> h >> min >> s;
@@ -56,4 +56,4 @@ void Controller::delete_event_by_date()
     cin.ignore();
     Date date {y, m, d, h, min, s};
     planner.delete_date(date);
-} 
+}
