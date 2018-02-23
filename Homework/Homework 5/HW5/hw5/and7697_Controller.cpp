@@ -24,8 +24,7 @@ void Controller::execute_cmd(int cmd)
     switch(cmd)
     {
     case 1:
-//        transactions.list_transactions();
-        cout << transactions.to_string(); // Does not work!
+        cout << view.print_all_transactions();
         break;
     case 2:
         cout << "Please enter a date: ";
@@ -83,17 +82,17 @@ void Controller::execute_cmd(int cmd)
         break;
     case 4:
         avg = transactions.get_average_transaction();
-        cout << "The average transaction is " << avg << "." << endl;
+        cout << endl << "The average transaction is " << avg << ".";
         break;
     case 5:
         the_bonus = transactions.bonus();
-        cout << "The bonus winner is " << the_bonus << "." << endl;
+        cout << endl << "The bonus winner is " << the_bonus << ".";
         break;
     case 6:
-        cout << "Thank You!" << endl;
+        cout << endl << "Thank You!";
         break;
     default:
-        cout << "Invalid selection. Try again!" << endl;
+        cout << endl << "Invalid selection. Try again!";
         break;
     }
 }

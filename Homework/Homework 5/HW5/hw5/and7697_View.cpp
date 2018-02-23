@@ -10,7 +10,7 @@ Transaction Management System
 (1) Print all transactions
 (2) Add a transaction
 (3) Delete a transaction(s)
-(4) Average transaction value/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code
+(4) Average transaction
 (5) Bonus winner
 (6) Exit
 _> )";
@@ -19,7 +19,7 @@ return menu;
 
 string View::print_all_transactions()
 {
-    return transactions.Transaction_List::to_string(); // Does not work!
+    return transactions.to_string();
 }
 
 string View::prompt_for_date()

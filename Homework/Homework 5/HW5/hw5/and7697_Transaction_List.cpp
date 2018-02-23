@@ -65,6 +65,7 @@ string Transaction_List::bonus()
 string Transaction_List::to_string()
 {
     string out;
+    cout << endl;
     if(transactions.size() == 0)
     {
         out = "nothing in transactions\n";
