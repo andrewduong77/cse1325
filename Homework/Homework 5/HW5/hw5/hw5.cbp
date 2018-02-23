@@ -31,6 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="and7697_Controller.cpp" />
+		<Unit filename="and7697_Controller.h" />
+		<Unit filename="and7697_Date.cpp" />
+		<Unit filename="and7697_Date.h" />
+		<Unit filename="and7697_Transaction.cpp" />
+		<Unit filename="and7697_Transaction.h" />
+		<Unit filename="and7697_Transaction_List.cpp" />
+		<Unit filename="and7697_Transaction_List.h" />
+		<Unit filename="and7697_View.cpp" />
+		<Unit filename="and7697_View.h" />
+		<Unit filename="and7697_main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

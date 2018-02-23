@@ -65,6 +65,7 @@ string Transaction_List::bonus()
 string Transaction_List::to_string()
 {
     string out;
+    ostringstream fmtStr;
     cout << endl;
     if(transactions.size() == 0)
     {
@@ -73,7 +74,11 @@ string Transaction_List::to_string()
     }
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end();it++)
+    {
+//        fmtStr << it.first << " - " << fixed << setprecision(2) it.second << endl; // Doesn't work
+//        out = fmtStr.str();
         out += it->first.to_string() + " - " + it->second.to_string() + "\n";
+    }
     return out;
 }
 
