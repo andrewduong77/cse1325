@@ -75,9 +75,10 @@ string Transaction_List::to_string()
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end();it++)
     {
-//        fmtStr << it.first << " - " << fixed << setprecision(2) it.second << endl; // Doesn't work
+        printf("%s - %s %.2f\n", it->first.to_string(), it->second.get_name(), it->second.get_price()); // I gave up, prints weird characters *char to string does not work
+//        fmtStr << it.first << " - " << it.second.get_name << fixed << setprecision(2) it.second.get_price() << "\n"; // Does not wanna work
 //        out = fmtStr.str();
-        out += it->first.to_string() + " - " + it->second.to_string() + "\n";
+//        out += it->first.to_string() + " - " + it->second.to_string() + "\n";
     }
     return out;
 }
