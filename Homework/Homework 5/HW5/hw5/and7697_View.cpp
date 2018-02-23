@@ -2,7 +2,7 @@
 
 string View::get_menu()
 {
-    string menu = R"(
+    return R"(
 =============================
 Transaction Management System
 =============================
@@ -14,7 +14,6 @@ Transaction Management System
 (5) Bonus winner
 (6) Exit
 _> )";
-return menu;
 }
 
 string View::print_all_transactions()
@@ -35,4 +34,19 @@ string View::prompt_for_name()
 string View::prompt_for_price()
 {
     return "Please enter a price: ";
+}
+
+string View::get_delete_transaction_menu()
+{
+    return R"(
+What would you like to delete by?
+(1) Date
+(2) Name
+(3) Cancel
+_> )";
+}
+
+string View::print_try_again_message()
+{
+    return "Invalid selection. Try again!";
 }

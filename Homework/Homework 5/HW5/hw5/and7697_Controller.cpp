@@ -46,19 +46,13 @@ void Controller::execute_cmd(int cmd)
             cout << "transaction not added" << endl;
         break;
     case 3:
-        cout << "What would you like to delete by?" << endl;
-        cout << "1 Date" << endl;
-        cout << "2 Name" << endl;
-        cout << "--> ";
+        cout << view.get_delete_transaction_menu();
         int cmd1;
         cin >> cmd1;
-        while(cmd1 < 1 && cmd1 > 2)
+        while(cmd1 < 1 || cmd1 > 3)
         {
-            cout << "Invalid selection. Try Again: " << endl;
-            cout << "What would you like to delete by?" << endl;
-            cout << "1 Date" << endl;
-            cout << "2 Name" << endl;
-            cout << "--> ";
+            cout << view.print_try_again_message();
+            cout << view.get_delete_transaction_menu();
             cin >> cmd1;
         }
         if(cmd1 == 1)
@@ -73,7 +67,7 @@ void Controller::execute_cmd(int cmd)
             date = {year, month, day, hour, min, second};
             transactions.delete_transaction_by_date(date);
         }
-        else
+        else if(cmd1 == 2)
         {
             cout << "Please enter the name of the transaction(s) to be deleted: ";
             cin >> name;
@@ -92,7 +86,7 @@ void Controller::execute_cmd(int cmd)
         cout << endl << "Thank You!";
         break;
     default:
-        cout << endl << "Invalid selection. Try again!";
+        cout << endl << view.get_delete_transaction_menu();
         break;
     }
 }
