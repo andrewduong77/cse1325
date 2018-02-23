@@ -7,7 +7,8 @@ public:
     string get_menu();
     string print_all_transactions();
     string prompt_for_date();
-    string prompt_for_transaction();
+    string prompt_for_name();
+    string prompt_for_price();
 private:
     Transaction_List& transactions;
 };

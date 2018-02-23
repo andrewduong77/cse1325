@@ -24,10 +24,15 @@ string View::print_all_transactions()
 
 string View::prompt_for_date()
 {
-
+    return "Please enter a date: ";
 }
 
-string View::prompt_for_transaction()
+string View::prompt_for_name()
 {
+    return "Please enter a name: ";
+}
 
+string View::prompt_for_price()
+{
+    return "Please enter a price: ";
 }

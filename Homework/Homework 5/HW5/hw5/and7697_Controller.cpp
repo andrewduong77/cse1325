@@ -27,7 +27,7 @@ void Controller::execute_cmd(int cmd)
         cout << view.print_all_transactions();
         break;
     case 2:
-        cout << "Please enter a date: ";
+        cout << view.prompt_for_date();
         cin >> year;
         cin >> month;
         cin >> day;
@@ -35,9 +35,9 @@ void Controller::execute_cmd(int cmd)
         cin >> min;
         cin >> second;
         date = {year, month, day, hour, min, second};
-        cout << "Please enter a price: ";
+        cout << view.prompt_for_price();
         cin >> price;
-        cout << "Please enter a name: ";
+        cout << view.prompt_for_name();
         cin >> name;
         transaction = {price, name};
         if(transactions.add_transaction(date,transaction))
