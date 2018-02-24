@@ -14,7 +14,7 @@ void Transaction_List::list_transactions()
     }
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end();it++)
-        cout << it->first << " - " << it->second << endl;
+        cout << it->first << " - " << it->second.get_name() << fixed << setprecision(2) << it->second.get_price() << endl;
 }
 
 double Transaction_List::get_average_transaction()
@@ -75,7 +75,7 @@ string Transaction_List::to_string()
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end();it++)
     {
-        fmtStr << it->first << " - " << it->second.get_name() << " " << fixed << setprecision(2) << it->second.get_price() << "\n";
+        fmtStr << it->first << " - " << it->second.get_name() << " " << fixed << setprecision(2) << it->second.get_price() << endl;
         out = fmtStr.str();
     }
     return out;
@@ -89,7 +89,7 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
         return ost;
     }
     for(pair<Date,Transaction> it : trans_list_two.transactions)
-        ost << it.first << " - " << it.second << endl;
+        ost << it.first << " - " << it.second.get_name() << " " << fixed << setprecision(2) << it.second.get_price() << endl;
     return ost;
 }
 

@@ -14,7 +14,7 @@ void Controller::cli()
 
 void Controller::execute_cmd(int cmd)
 {
-    int year, month, day, hour, min, second;
+    int year, month, day, hour, minute, second;
     Date date {0, 0, 0, 0, 0, 0};
     double price;
     string name;
@@ -28,13 +28,8 @@ void Controller::execute_cmd(int cmd)
         break;
     case 2:
         cout << view.prompt_for_date();
-        cin >> year;
-        cin >> month;
-        cin >> day;
-        cin >> hour;
-        cin >> min;
-        cin >> second;
-        date = {year, month, day, hour, min, second};
+        cin >> year >> month >> day >> hour >> minute >> second;
+        date = {year, month, day, hour, minute, second};
         cout << view.prompt_for_price();
         cin >> price;
         cout << view.prompt_for_name();
@@ -58,13 +53,8 @@ void Controller::execute_cmd(int cmd)
         if(cmd1 == 1)
         {
             cout << "Please enter a date to be deleted: ";
-            cin >> year;
-            cin >> month;
-            cin >> day;
-            cin >> hour;
-            cin >> min;
-            cin >> second;
-            date = {year, month, day, hour, min, second};
+            cin >> year >> month >> day >> hour >> minute >> second;
+            date = {year, month, day, hour, minute, second};
             transactions.delete_transaction_by_date(date);
         }
         else if(cmd1 == 2)
@@ -86,7 +76,7 @@ void Controller::execute_cmd(int cmd)
         cout << endl << "Thank You!";
         break;
     default:
-        cout << endl << view.get_delete_transaction_menu();
+        cout << endl << view.print_try_again_message();
         break;
     }
 }
