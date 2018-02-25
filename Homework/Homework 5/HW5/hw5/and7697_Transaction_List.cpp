@@ -1,4 +1,6 @@
 #include "and7697_Transaction_List.h"
+#include <sstream>
+#include <iomanip>
 
 bool Transaction_List::add_transaction(Date date, Transaction transaction)
 {
@@ -101,10 +103,17 @@ bool Transaction_List::delete_transaction_by_date(Date d)
     return false;
 }
 
-void Transaction_List::delete_transactions_by_name(string n)
+bool Transaction_List::delete_transactions_by_name(string n)
 {
+    bool result = false;
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end(); it++)
         if(it->second.Transaction::get_name() == n)
+        {
             transactions.erase(it);
+            result = true;
+        }
+    if(result)
+        return true;
+    return false;
 }

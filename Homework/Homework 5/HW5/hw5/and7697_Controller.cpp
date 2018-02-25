@@ -85,12 +85,18 @@ void Controller::delete_transaction()
         cout << "Please enter a date to be deleted: ";
         cin >> year >> month >> day >> hour >> minute >> second;
         date = {year, month, day, hour, minute, second};
-        transactions.delete_transaction_by_date(date);
+        if(transactions.delete_transaction_by_date(date))
+            cout << endl << "Transaction with date " << date << " deleted.";
+        else
+            cout << endl << "No transactions match the given date.";
     }
     else if(cmd1 == 2)
     {
         cout << "Please enter the name of the transaction(s) to be deleted: ";
         cin >> name;
-        transactions.delete_transactions_by_name(name);
+        if(transactions.delete_transactions_by_name(name))
+            cout << endl << "Transaction(s) with name \"" << name << "\" deleted.";
+        else
+            cout << endl << "No transactions match the given name.";
     }
 }
