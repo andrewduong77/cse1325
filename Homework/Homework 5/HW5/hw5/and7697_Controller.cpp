@@ -19,27 +19,27 @@ void Controller::execute_cmd(int cmd)
     string the_bonus;
     switch(cmd)
     {
-    case 1:
+    case 1: // print all transactions
         cout << view.print_all_transactions();
         break;
-    case 2:
+    case 2: // add a transaction
         add_transaction();
         break;
-    case 3:
+    case 3: // delete a transaction
         delete_transaction();
         break;
-    case 4:
+    case 4: // get average transaction
         avg = transactions.get_average_transaction();
         cout << endl << "The average transaction is " << avg << ".";
         break;
-    case 5:
+    case 5: // get the bonus winner
         the_bonus = transactions.bonus();
         cout << endl << "The bonus winner is " << the_bonus << ".";
         break;
-    case 6:
+    case 6: // exit
         cout << endl << "Thank You!";
         break;
-    default:
+    default: // invalid input
         cout << endl << view.print_try_again_message();
         break;
     }
