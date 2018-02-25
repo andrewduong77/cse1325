@@ -3,7 +3,7 @@
 void Controller::cli()
 {
     int cmd = -1;
-    while(cmd != 6)
+    while(cmd != 8)
     {
         cout << view.get_menu();
         cin >> cmd;
@@ -19,24 +19,30 @@ void Controller::execute_cmd(int cmd)
     string the_bonus;
     switch(cmd)
     {
-    case 1: // print all transactions
+    case 1:
+        load_file();
+        break;
+    case 2:
+        save_file();
+        break;
+    case 3: // print all transactions
         cout << view.print_all_transactions();
         break;
-    case 2: // add a transaction
+    case 4: // add a transaction
         add_transaction();
         break;
-    case 3: // delete a transaction
+    case 5: // delete a transaction
         delete_transaction();
         break;
-    case 4: // get average transaction
+    case 6: // get average transaction
         avg = transactions.get_average_transaction();
         cout << endl << "The average transaction is " << avg << ".";
         break;
-    case 5: // get the bonus winner
+    case 7: // get the bonus winner
         the_bonus = transactions.bonus();
         cout << endl << "The bonus winner is " << the_bonus << ".";
         break;
-    case 6: // exit
+    case 8: // exit
         cout << endl << "Thank You!";
         break;
     default: // invalid input
@@ -99,4 +105,35 @@ void Controller::delete_transaction()
         else
             cout << endl << "No transactions match the given name.";
     }
+}
+
+void Controller::load_file()
+{
+    char* file = "and7697_save_file.txt";
+    ifstream my_file(file);
+//    string line;
+//    string name;
+//    double price;
+//    int year, month, day, hour, minute, second;
+//    Date date {0, 0, 0, 0, 0, 0};
+//    Transaction transaction {"", 0};
+//    while(my_file >> line)
+//    {
+//        line >> year >> month >> day >> hour >> minute >> second;
+//        line >> name;
+//        line >> price;
+//    }
+}
+
+void Controller::save_file()
+{
+    char* file = "and7697_save_file.txt";
+    ofstream my_file(file);
+    if(my_file.is_open())
+    {
+        my_file << transactions.to_string();
+        cout << "File saved successfully." << endl;
+    }
+    else
+        cout << "Unable to save file." << endl;
 }

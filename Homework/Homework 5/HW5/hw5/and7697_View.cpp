@@ -7,12 +7,14 @@ string View::get_menu()
 Transaction Management System
 =============================
 
-(1) Print all transactions
-(2) Add a transaction
-(3) Delete a transaction(s)
-(4) Average transaction
-(5) Bonus winner
-(6) Exit
+(1) Load transactions to file
+(2) Save transactions to file
+(3) Print all transactions
+(4) Add a transaction
+(5) Delete a transaction(s)
+(6) Average transaction
+(7) Bonus winner
+(8) Exit
 _> )";
 }
 

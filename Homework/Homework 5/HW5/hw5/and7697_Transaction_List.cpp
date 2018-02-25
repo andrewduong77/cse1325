@@ -1,8 +1,4 @@
 #include "and7697_Transaction_List.h"
-#include <sstream>
-#include <iomanip>
-#include <string>
-#include <algorithm>
 
 bool Transaction_List::add_transaction(Date date, Transaction transaction)
 {
@@ -95,6 +91,27 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
     for(pair<Date,Transaction> it : trans_list_two.transactions)
         ost << it.first << " - " << it.second.get_name() << " " << fixed << setprecision(2) << it.second.get_price() << endl;
     return ost;
+}
+
+istream& operator>>(istream& ist, const Transaction_List& trans_list_two)
+{
+//    string line;
+//    string name;
+//    double price;
+//    int year, month, day, hour, minute, second;
+//    Date date {0, 0, 0, 0, 0, 0};
+//    Transaction transaction {"", 0};
+//    while(ist >> line)
+//    {
+//        line >> year >> month >> day >> hour >> minute >> second;
+//        date {year, month, day, hour, minute, second};
+//        line >> NULL;
+//        line >> name;
+//        line >> price;
+//        transaction {name, price};
+//        trans_list_two.transactions.add_transaction(date, transaction);
+//    }
+    return ist;
 }
 
 bool Transaction_List::delete_transaction_by_date(Date d)
