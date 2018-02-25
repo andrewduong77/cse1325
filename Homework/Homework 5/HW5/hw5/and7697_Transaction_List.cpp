@@ -1,6 +1,8 @@
 #include "and7697_Transaction_List.h"
 #include <sstream>
 #include <iomanip>
+#include <string>
+#include <algorithm>
 
 bool Transaction_List::add_transaction(Date date, Transaction transaction)
 {
@@ -108,7 +110,7 @@ bool Transaction_List::delete_transactions_by_name(string n)
     bool result = false;
     map<Date,Transaction>::iterator it = transactions.begin();
     for(;it != transactions.end(); it++)
-        if(it->second.Transaction::get_name() == n)
+        if(to_lower_case(it->second.Transaction::get_name()) == to_lower_case(n))
         {
             transactions.erase(it);
             result = true;
@@ -116,4 +118,18 @@ bool Transaction_List::delete_transactions_by_name(string n)
     if(result)
         return true;
     return false;
+}
+
+string Transaction_List::to_lower_case(string s)
+{
+    for(int i = 0; i < s.size(); i++)
+        s[i] = easy_to_lower(s[i]);
+    return s;
+}
+
+char Transaction_List::easy_to_lower(char a)
+{
+    if(a <= 'Z' && a >= 'A')
+        return a - ('Z' - 'z');
+    return a;
 }

@@ -19,6 +19,8 @@ class Transaction_List
         friend ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two);
         bool delete_transaction_by_date(Date d);
         bool delete_transactions_by_name(string n);
+        string to_lower_case(string s);
+        char easy_to_lower(char a);
     private:
         map<Date, Transaction> transactions;
 };
