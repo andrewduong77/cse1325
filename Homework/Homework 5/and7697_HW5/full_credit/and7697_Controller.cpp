@@ -74,9 +74,9 @@ void Controller::add_transaction()
     cin >> name;
     transaction = {price, name};
     if(transactions.add_transaction(date,transaction))
-        cout << endl << "Transaction added.";
-    else
-        cout << endl << "Transaction not added.";
+        cout << "transaction added" << endl;
+    if(!transactions.add_transaction(date,transaction))
+        cout << "transaction not added" << endl;
 }
 
 void Controller::delete_transaction()
