@@ -118,16 +118,22 @@ void Controller::load_file()
     Date date {0, 0, 0, 0, 0, 0};
     char ignore;
     Transaction transaction {0, ""};
-    while(my_file)
+    if(my_file.is_open())
     {
-        my_file >> year >> month >> day >> hour >> minute >> second;
-        date = {year, month, day, hour, minute, second};
-        my_file >> ignore;
-        my_file >> name;
-        my_file >> price;
-        transaction = {price, name};
-        transactions.add_transaction(date, transaction);
+        while(my_file)
+        {
+            my_file >> year >> month >> day >> hour >> minute >> second;
+            date = {year, month, day, hour, minute, second};
+            my_file >> ignore;
+            my_file >> name;
+            my_file >> price;
+            transaction = {price, name};
+            transactions.add_transaction(date, transaction);
+        }
+        cout << "File loaded successfully." << endl;
     }
+    else
+        cout << "Unable to open file." << endl;
 }
 
 void Controller::save_file()
@@ -136,9 +142,11 @@ void Controller::save_file()
     ofstream my_file(file);
     if(my_file.is_open())
     {
-        my_file << transactions.to_string();
-        cout << "File saved successfully." << endl;
+        if(my_file << transactions.to_string())
+            cout << "File saved successfully." << endl;
+        else
+            cout << "Unable to save file." << endl;
     }
     else
-        cout << "Unable to save file." << endl;
+        cout << "Unable to open file." << endl;
 }
