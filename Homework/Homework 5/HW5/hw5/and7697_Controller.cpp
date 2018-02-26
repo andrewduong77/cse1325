@@ -3,7 +3,7 @@
 void Controller::cli()
 {
     int cmd = -1;
-    while(cmd != 8)
+    while(cmd != 9)
     {
         cout << view.get_menu();
         cin >> cmd;
@@ -19,10 +19,10 @@ void Controller::execute_cmd(int cmd)
     string the_bonus;
     switch(cmd)
     {
-    case 1:
+    case 1: // load file
         load_file();
         break;
-    case 2:
+    case 2: // save file
         save_file();
         break;
     case 3: // print all transactions
@@ -42,7 +42,14 @@ void Controller::execute_cmd(int cmd)
         the_bonus = transactions.bonus();
         cout << endl << "The bonus winner is " << the_bonus << ".";
         break;
-    case 8: // exit
+    case 8: // delete all transactions
+        transactions.delete_all_transactions();
+        if(transactions.get_size() == 0)
+            cout << endl << "All transactions successfully deleted.";
+        else
+            cout << endl << "All transactions unsuccessfully deleted.";
+        break;
+    case 9: // exit
         cout << endl << "Thank You!";
         break;
     default: // invalid input
@@ -107,6 +114,26 @@ void Controller::delete_transaction()
     }
 }
 
+//void Controller::load_file()
+//{
+//    string file = "and7697_save_file.txt";
+//    ifstream my_file(file);
+//    string line;
+//    string name;
+//    double price;
+//    int year, month, day, hour, minute, second;
+//    Date date {0, 0, 0, 0, 0, 0};
+//    char ignore;
+//    Transaction transaction {0, ""};
+//    if(my_file.is_open())
+//    {
+//        my_file >> transactions;
+//        cout << "File loaded successfully." << endl;
+//    }
+//    else
+//        cout << "Unable to open file." << endl;
+//}
+
 void Controller::load_file()
 {
     string file = "and7697_save_file.txt";
@@ -118,6 +145,7 @@ void Controller::load_file()
     Date date {0, 0, 0, 0, 0, 0};
     char ignore;
     Transaction transaction {0, ""};
+    transactions.delete_all_transactions();
     if(my_file.is_open())
     {
         while(my_file)
@@ -130,10 +158,10 @@ void Controller::load_file()
             transaction = {price, name};
             transactions.add_transaction(date, transaction);
         }
-        cout << "File loaded successfully." << endl;
+        cout << endl << "File loaded successfully.";
     }
     else
-        cout << "Unable to open file." << endl;
+        cout << endl << "Unable to open file.";
 }
 
 void Controller::save_file()
@@ -143,10 +171,10 @@ void Controller::save_file()
     if(my_file.is_open())
     {
         if(my_file << transactions.to_string())
-            cout << "File saved successfully." << endl;
+            cout << endl << "File saved successfully.";
         else
-            cout << "Unable to save file." << endl;
+            cout << endl << "Unable to save file.";
     }
     else
-        cout << "Unable to open file." << endl;
+        cout << endl << "Unable to open file.";
 }

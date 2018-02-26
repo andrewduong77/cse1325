@@ -14,7 +14,8 @@ Transaction Management System
 (5) Delete a transaction(s)
 (6) Average transaction
 (7) Bonus winner
-(8) Exit
+(8) Delete all transactions
+(9) Exit
 _> )";
 }
 

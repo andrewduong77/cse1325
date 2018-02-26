@@ -9,7 +9,7 @@ void Transaction_List::list_transactions()
 {
     if(transactions.size() == 0)
     {
-        cout << "nothing in transactions" << endl;
+        cout << endl << "Nothing in transactions.";
         return;
     }
     map<Date,Transaction>::iterator it = transactions.begin();
@@ -69,7 +69,7 @@ string Transaction_List::to_string()
     cout << endl;
     if(transactions.size() == 0)
     {
-        out = "nothing in transactions\n";
+        out = "Nothing in transactions.";
         return out;
     }
     map<Date,Transaction>::iterator it = transactions.begin();
@@ -85,7 +85,7 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
 {
     if(trans_list_two.transactions.size() == 0)
     {
-        ost << "no transactions" << endl;
+        ost << endl << "Nothing in transactions.";
         return ost;
     }
     for(pair<Date,Transaction> it : trans_list_two.transactions)
@@ -93,26 +93,27 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
     return ost;
 }
 
-//istream& operator>>(istream& ist, const Transaction_List& trans_list_two)
-//{
-//    string line;
-//    string name;
-//    double price;
-//    int year, month, day, hour, minute, second;
-//    Date date {0, 0, 0, 0, 0, 0};
-//    Transaction transaction {0, ""};
-//    while(ist)
-//    {
-//        ist >> year >> month >> day >> hour >> minute >> second;
-//        date = {year, month, day, hour, minute, second};
-////        ist >> NULL;
-//        ist >> name;
-//        ist >> price;
-//        transaction = {price, name};
-//        trans_list_two.transactions.add_transaction(date, transaction);
-//    }
-//    return ist;
-//}
+istream& operator>>(istream& ist, Transaction_List& trans_list_two)
+{
+    string line;
+    string name;
+    double price;
+    int year, month, day, hour, minute, second;
+    Date date {0, 0, 0, 0, 0, 0};
+    char ignore;
+    Transaction transaction {0, ""};
+    while(ist)
+    {
+        ist >> year >> month >> day >> hour >> minute >> second;
+        date = {year, month, day, hour, minute, second};
+        ist >> ignore;
+        ist >> name;
+        ist >> price;
+        transaction = {price, name};
+        trans_list_two.add_transaction(date, transaction);
+    }
+    return ist;
+}
 
 bool Transaction_List::delete_transaction_by_date(Date d)
 {
@@ -149,4 +150,16 @@ char Transaction_List::easy_to_lower(char a)
     if(a <= 'Z' && a >= 'A')
         return a - ('Z' - 'z');
     return a;
+}
+
+void Transaction_List::delete_all_transactions()
+{
+    map<Date,Transaction>::iterator it = transactions.begin();
+    for(;it != transactions.end(); it++)
+        transactions.erase(it);
+}
+
+int Transaction_List::get_size()
+{
+    return transactions.size();
 }
