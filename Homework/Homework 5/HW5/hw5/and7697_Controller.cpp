@@ -109,25 +109,30 @@ void Controller::delete_transaction()
 
 void Controller::load_file()
 {
-    char* file = "and7697_save_file.txt";
+    string file = "and7697_save_file.txt";
     ifstream my_file(file);
-//    string line;
-//    string name;
-//    double price;
-//    int year, month, day, hour, minute, second;
-//    Date date {0, 0, 0, 0, 0, 0};
-//    Transaction transaction {"", 0};
-//    while(my_file >> line)
-//    {
-//        line >> year >> month >> day >> hour >> minute >> second;
-//        line >> name;
-//        line >> price;
-//    }
+    string line;
+    string name;
+    double price;
+    int year, month, day, hour, minute, second;
+    Date date {0, 0, 0, 0, 0, 0};
+    char ignore;
+    Transaction transaction {0, ""};
+    while(my_file)
+    {
+        my_file >> year >> month >> day >> hour >> minute >> second;
+        date = {year, month, day, hour, minute, second};
+        my_file >> ignore;
+        my_file >> name;
+        my_file >> price;
+        transaction = {price, name};
+        transactions.add_transaction(date, transaction);
+    }
 }
 
 void Controller::save_file()
 {
-    char* file = "and7697_save_file.txt";
+    string file = "and7697_save_file.txt";
     ofstream my_file(file);
     if(my_file.is_open())
     {

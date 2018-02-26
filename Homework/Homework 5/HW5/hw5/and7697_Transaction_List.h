@@ -21,7 +21,7 @@ class Transaction_List
         string bonus();
         string to_string();
         friend ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two);
-        friend istream& operator>>(istream& ist, const Transaction_List& trans_list_two);
+//        friend istream& operator>>(istream& ist, const Transaction_List& trans_list_two);
         bool delete_transaction_by_date(Date d);
         bool delete_transactions_by_name(string n);
         string to_lower_case(string s);

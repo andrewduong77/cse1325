@@ -93,26 +93,26 @@ ostream& operator<<(ostream& ost, const Transaction_List& trans_list_two)
     return ost;
 }
 
-istream& operator>>(istream& ist, const Transaction_List& trans_list_two)
-{
+//istream& operator>>(istream& ist, const Transaction_List& trans_list_two)
+//{
 //    string line;
 //    string name;
 //    double price;
 //    int year, month, day, hour, minute, second;
 //    Date date {0, 0, 0, 0, 0, 0};
-//    Transaction transaction {"", 0};
-//    while(ist >> line)
+//    Transaction transaction {0, ""};
+//    while(ist)
 //    {
-//        line >> year >> month >> day >> hour >> minute >> second;
-//        date {year, month, day, hour, minute, second};
-//        line >> NULL;
-//        line >> name;
-//        line >> price;
-//        transaction {name, price};
+//        ist >> year >> month >> day >> hour >> minute >> second;
+//        date = {year, month, day, hour, minute, second};
+////        ist >> NULL;
+//        ist >> name;
+//        ist >> price;
+//        transaction = {price, name};
 //        trans_list_two.transactions.add_transaction(date, transaction);
 //    }
-    return ist;
-}
+//    return ist;
+//}
 
 bool Transaction_List::delete_transaction_by_date(Date d)
 {
