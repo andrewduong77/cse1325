@@ -4,7 +4,7 @@
 class Extendable_Arm
 {
 public:
-    Extendable_Arm(int mn, string n, int bl, int l, int wl, int el)
+    Extendable_Arm(int mn, string n, int bl, int l, int wl, int el);
     bool move(int x, int y);
     bool extend();
     bool retract();

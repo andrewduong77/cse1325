@@ -4,7 +4,7 @@
 class Powered_Arm
 {
 public:
-    Powered_Arm(int mn, string n, int bl, int l, int wl, int ml)
+    Powered_Arm(int mn, string n, int bl, int l, int wl, int ml);
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();

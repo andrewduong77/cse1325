@@ -4,7 +4,7 @@
 class Robot
 {
 public:
-    Robot(int mn, string n, int bl)
+    Robot(int mn, string n, int bl);
     bool move(int x, int y);
     void charge();
     double get_battery_percentage();

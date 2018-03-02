@@ -4,7 +4,7 @@
 class Arm_Robot
 {
 public:
-    Arm_Robot(int mn, string n, int bl, int l, int wl)
+    Arm_Robot(int mn, string n, int bl, int l, int wl);
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();
