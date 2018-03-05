@@ -1,6 +1,9 @@
 #ifndef AND7697_ARM_ROBOT_INCLUDED
 #define AND7697_ARM_ROBOT_INCLUDED
 
+#include "and7697_Extendable_Arm.h"
+#include "and7697_Powered_Arm.h"
+
 class Arm_Robot
 {
 public:

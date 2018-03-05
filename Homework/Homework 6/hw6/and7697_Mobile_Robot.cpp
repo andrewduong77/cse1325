@@ -10,7 +10,7 @@ bool Mobile_Robot::move(int x, int y, int speed)
 
 }
 
-void Mobile_Robot::set_speed_level()
+void Mobile_Robot::set_speed_level(int speed)
 {
 
 }

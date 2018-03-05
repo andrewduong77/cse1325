@@ -31,6 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="and7697_Arm_Robot.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Arm_Robot.h" />
+		<Unit filename="and7697_Extendable_Arm.cpp" />
+		<Unit filename="and7697_Extendable_Arm.h" />
+		<Unit filename="and7697_Mobile_Robot.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Mobile_Robot.h" />
+		<Unit filename="and7697_Powered_Arm.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Powered_Arm.h" />
+		<Unit filename="and7697_Robot.cpp" />
+		<Unit filename="and7697_Robot.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

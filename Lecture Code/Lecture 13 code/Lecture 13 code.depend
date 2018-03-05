@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1519847772 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Clerk.cpp
+	"Clerk.h"
+
+1519848010 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Clerk.h
+	"Stock_boy.h"
+
+1519848524 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Stock_boy.h
+	"Employee.h"
+
+1519848476 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Employee.h
+	<string>
+
+1519848154 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Employee.cpp
+	"Employee.h"
+
+1520199479 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/main.cpp
+	"SalesManager.h"
+	"Clerk.h"
+	<iostream>
+
+1520208773 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/SalesManager.h
+	"Sales.h"
+	"Manager.h"
+
+1519848558 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Sales.h
+	"Employee.h"
+
+1519848544 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Manager.h
+	"Employee.h"
+
+1519848598 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Manager.cpp
+	"Manager.h"
+
+1519848904 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Sales.cpp
+	"Sales.h"
+
+1519848628 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/SalesManager.cpp
+	"SalesManager.h"
+
+1519848952 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 13 code/Stock_boy.cpp
+	"Stock_boy.h"
+
