@@ -1,9 +1,6 @@
 #ifndef AND7697_ROBOT_INCLUDED
 #define AND7697_ROBOT_INCLUDED
 
-#include "and7697_Arm_Robot.h"
-#include "and7697_Mobile_Robot.h"
-
 class Robot
 {
 public:

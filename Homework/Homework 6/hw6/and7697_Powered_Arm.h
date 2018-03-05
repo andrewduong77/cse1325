@@ -1,10 +1,12 @@
 #ifndef AND7697_POWERED_ARM_INCLUDED
 #define AND7697_POWERED_ARM_INCLUDED
 
-class Powered_Arm
+#include "and7697_Arm_Robot.h"
+
+class Powered_Arm : public Arm_Robot
 {
 public:
-    Powered_Arm(int mn, string n, int bl, int l, int wl, int ml);
+    Powered_Arm(int mn, string n, int bl, int l, int wl, int ml) : Arm_Robot(mn, n, bl, l, wl), motor_limit {ml};
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();

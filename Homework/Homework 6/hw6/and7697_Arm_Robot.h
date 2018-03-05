@@ -1,13 +1,12 @@
 #ifndef AND7697_ARM_ROBOT_INCLUDED
 #define AND7697_ARM_ROBOT_INCLUDED
 
-#include "and7697_Extendable_Arm.h"
-#include "and7697_Powered_Arm.h"
+#include "and7697_Robot.h"
 
-class Arm_Robot
+class Arm_Robot : public Robot
 {
 public:
-    Arm_Robot(int mn, string n, int bl, int l, int wl);
+    Arm_Robot(int mn, string n, int bl, int l, int wl) : Robot(mn, n, bl), length {l}, weight_limit {wl};
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();

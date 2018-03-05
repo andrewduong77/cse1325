@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="hw6" />
+		<Option title="Lecture 14 code" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/hw6" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Lecture 14 code" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/hw6" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Lecture 14 code" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -31,25 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="and7697_Arm_Robot.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Arm_Robot.h" />
-		<Unit filename="and7697_Extendable_Arm.cpp" />
-		<Unit filename="and7697_Extendable_Arm.h" />
-		<Unit filename="and7697_Mobile_Robot.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Mobile_Robot.h" />
-		<Unit filename="and7697_Powered_Arm.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="and7697_Powered_Arm.h" />
-		<Unit filename="and7697_Robot.cpp" />
-		<Unit filename="and7697_Robot.h" />
-		<Unit filename="and7697_main.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="Clerk.cpp" />
+		<Unit filename="Clerk.h" />
+		<Unit filename="Employee.cpp" />
+		<Unit filename="Employee.h" />
+		<Unit filename="Manager.cpp" />
+		<Unit filename="Manager.h" />
+		<Unit filename="Sales.cpp" />
+		<Unit filename="Sales.h" />
+		<Unit filename="SalesManager.cpp" />
+		<Unit filename="SalesManager.h" />
+		<Unit filename="Stock_boy.cpp" />
+		<Unit filename="Stock_boy.h" />
+		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -31,6 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Clerk.cpp" />
+		<Unit filename="Clerk.h" />
+		<Unit filename="Employee.cpp" />
+		<Unit filename="Employee.h" />
+		<Unit filename="Manager.cpp" />
+		<Unit filename="Manager.h" />
+		<Unit filename="Sales.cpp" />
+		<Unit filename="Sales.h" />
+		<Unit filename="SalesManager.cpp" />
+		<Unit filename="SalesManager.h" />
+		<Unit filename="Stock_boy.cpp" />
+		<Unit filename="Stock_boy.h" />
+		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
