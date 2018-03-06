@@ -2,22 +2,25 @@
 
 bool Arm_Robot::move(int x, int y)
 {
-    double z = calculate_distance(x, y); // z is distance between x and y
-    if(is_holding ? 2*z : z > battery_level)
+    int d_x = abs(x - position.first);
+    int d_y = abs(y - position.second);
+    double d = calculate_distance(d_x, d_y); // d is distance between x and y
+    double required_level = is_holding ? 2 * d : d; // required 1 extra unit of battery charge for a unit of distance moved
+    if(required_level > battery_level)
     {
         cout << "Battery level is not sufficient enough." << endl;
         return false;
     }
-    else if(z > length)
+    else if(d > length)
     {
         cout << "Arm length is not long enough." << endl;
         return false;
     }
     else
     {
-        position->first += x;
-        position->second += y;
-        battery_level -= is_holding ? 2*z : z;
+        position.first = x;
+        position.second = y;
+        battery_level -= required_level;
         return true;
     }
 }
@@ -42,7 +45,7 @@ bool Arm_Robot::pick_up(int weight)
     else
     {
         is_holding = true;
-        battery_level++;
+        battery_level--;
         return true;
     }
 }
@@ -67,9 +70,7 @@ bool Arm_Robot::drop()
     }
 }
 
-double Robot::calculate_distance(int x, int y)
+double Arm_Robot::calculate_distance(int x, int y)
 {
-    x = abs(x);
-    y = abs(y);
     return sqrt(x*x + y*y);
 }

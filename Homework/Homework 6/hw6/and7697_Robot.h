@@ -1,7 +1,9 @@
 #ifndef AND7697_ROBOT_INCLUDED
 #define AND7697_ROBOT_INCLUDED
 
+#include <iostream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
