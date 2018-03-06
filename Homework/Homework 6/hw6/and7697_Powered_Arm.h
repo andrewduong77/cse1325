@@ -12,7 +12,7 @@ public:
     bool drop();
     void power_on();
     void power_off();
-    double calculate_distance(int x, int y);
+//    double calculate_distance(int x, int y);
 private:
     int motor_limit;
     bool motor_on;

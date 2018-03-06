@@ -5,8 +5,10 @@
 1520292582 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Arm_Robot.h
 	"and7697_Robot.h"
 
-1520293233 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Robot.h
+1520332545 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Robot.h
+	<iostream>
 	<string>
+	<cmath>
 
 1519961001 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Extendable_Arm.cpp
 	"and7697_Extendable_Arm.h"

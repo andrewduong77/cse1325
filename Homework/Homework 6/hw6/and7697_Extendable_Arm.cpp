@@ -74,7 +74,7 @@ bool Extendable_Arm::retract()
     }
 }
 
-double Extendable_Arm::calculate_distance(int x, int y)
-{
-    return sqrt(x*x + y*y);
-}
+//double Extendable_Arm::calculate_distance(int x, int y)
+//{
+//    return sqrt(x*x + y*y);
+//}

@@ -1,5 +1,10 @@
 #include "and7697_Robot.h"
 
+double calculate_distance(int x, int y)
+{
+    return sqrt(x*x + y*y);
+}
+
 bool Robot::move(int x, int y)
 {
     int d_x = abs(x - position.first);
@@ -13,7 +18,7 @@ bool Robot::move(int x, int y)
         position.first = x;
         position.second = y;
         battery_level -= required_level;
-        cout << "Robot now at position (" << position.first << "," << position.second << ")." << endl;
+        cout << name << " moved to (" << position.first << "," << position.second << ")." << endl;
         return true;
     }
 }
@@ -25,10 +30,10 @@ void Robot::charge()
 
 double Robot::get_battery_percentage()
 {
-    return battery_level / battery_life;
+    return (double) battery_level / (double) battery_life * 100;
 }
 
-double Robot::calculate_distance(int x, int y)
-{
-    return sqrt(x*x + y*y);
-}
+//double Robot::calculate_distance(int x, int y)
+//{
+//    return sqrt(x*x + y*y);
+//}

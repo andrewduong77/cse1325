@@ -4,8 +4,11 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
+
+double calculate_distance(int x, int y);
 
 class Robot
 {
@@ -14,7 +17,7 @@ public:
     bool move(int x, int y);
     void charge();
     double get_battery_percentage();
-    double calculate_distance(int x, int y);
+//    double calculate_distance(int x, int y);
 protected:
     int model_number;
     string name;

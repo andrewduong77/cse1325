@@ -90,7 +90,7 @@ void Powered_Arm::power_off()
     motor_on = false;
 }
 
-double Powered_Arm::calculate_distance(int x, int y)
-{
-    return sqrt(x*x + y*y);
-}
+//double Powered_Arm::calculate_distance(int x, int y)
+//{
+//    return sqrt(x*x + y*y);
+//}

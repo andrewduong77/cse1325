@@ -10,7 +10,7 @@ public:
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();
-    double calculate_distance(int x, int y);
+//    double calculate_distance(int x, int y);
 protected:
     int length;
     int weight_limit;
