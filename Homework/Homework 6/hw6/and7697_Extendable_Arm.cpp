@@ -31,7 +31,7 @@ bool Extendable_Arm::move(int x, int y)
         load++;
     if(is_extended)
         load++;
-    int required_level = load * d;
+    int required_level = load * d; // amount of each unit of battery charge needed for each unit of distance moved
     if(required_level > battery_level)
     {
         cout << "Battery level is not sufficient enough." << endl;
