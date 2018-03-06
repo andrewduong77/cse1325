@@ -6,7 +6,7 @@
 class Mobile_Robot : public Robot
 {
 public:
-    Mobile_Robot(int mn, string n, int bl) : Robot(mn, n, bl);
+    Mobile_Robot(int mn, string n, int bl) : Robot(mn, n, bl) {};
     bool move(int x, int y);
     bool move(int x, int y, int speed);
     void set_speed_level(int speed);
