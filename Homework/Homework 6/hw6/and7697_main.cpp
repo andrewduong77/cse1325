@@ -8,7 +8,7 @@ int main()
 {
     int x, y;
 
-    // For Bigweld Robot
+    // For Robot Bigweld
 
     Robot bigweld (1010, "Bigweld", 100);
 
@@ -120,4 +120,64 @@ int main()
         cout << "Mr_Gunk was unable to move to (" << defaultfloat << x << "," << y << ") at the speed of " << speed << "." << endl;
 
     cout << "Mr_Gunk's battery level is currently at " << fixed << setprecision(0) << mr_gunk.get_battery_percentage() << "%." << endl;
+
+    cout << endl;
+
+    // For Arm_Robot Piper
+
+    Arm_Robot piper (1030, "Piper", 100, 40, 30);
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    x = -15;
+    y = 10;
+    if(piper.move(x, y))
+        cout << "Piper was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Piper was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    int weight;
+
+    weight = 25;
+    if(piper.pick_up(weight))
+        cout << "Piper was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Piper was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    x = -20;
+    y = 10;
+    if(piper.move(x, y))
+        cout << "Piper was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Piper was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    if(piper.drop())
+        cout << "Piper was able to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Piper was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    weight = 35;
+    if(piper.pick_up(weight))
+        cout << "Piper was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Piper was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    x = -20;
+    y = 40;
+    if(piper.move(x, y))
+        cout << "Piper was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Piper was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
 }
