@@ -21,13 +21,14 @@ bool Robot::move(int x, int y)
         position.first = x;
         position.second = y;
         battery_level -= required_level;
-        cout << name << " moved to (" << position.first << "," << position.second << ")." << endl;
+//        cout << name << " moved to (" << position.first << "," << position.second << ")." << endl;
         return true;
     }
 }
 
 void Robot::charge()
 {
+    cout << name << "'s battery charged to max." << endl;
     battery_level = battery_life;
 }
 

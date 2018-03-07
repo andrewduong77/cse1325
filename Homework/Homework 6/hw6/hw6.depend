@@ -1,19 +1,20 @@
 # depslib dependency file v1.0
-1519960792 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Arm_Robot.cpp
+1520391103 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Arm_Robot.cpp
 	"and7697_Arm_Robot.h"
 
-1520292582 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Arm_Robot.h
+1520385798 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Arm_Robot.h
 	"and7697_Robot.h"
 
-1520332545 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Robot.h
+1520368018 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Robot.h
 	<iostream>
 	<string>
 	<cmath>
+	<iomanip>
 
-1519961001 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Extendable_Arm.cpp
+1520368207 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Extendable_Arm.cpp
 	"and7697_Extendable_Arm.h"
 
-1520292582 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Extendable_Arm.h
+1520387224 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Extendable_Arm.h
 	"and7697_Arm_Robot.h"
 
 1520208162 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Mobile_Robot.cpp
@@ -22,10 +23,10 @@
 1520292582 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Mobile_Robot.h
 	"and7697_Robot.h"
 
-1519961446 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Powered_Arm.cpp
+1520368207 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Powered_Arm.cpp
 	"and7697_Powered_Arm.h"
 
-1520293368 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Powered_Arm.h
+1520368207 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Powered_Arm.h
 	"and7697_Arm_Robot.h"
 
 1519960668 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 6/hw6/and7697_Robot.cpp
