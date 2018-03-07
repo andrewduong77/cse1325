@@ -16,7 +16,6 @@ bool Mobile_Robot::move(int x, int y)
         position.first = x;
         position.second = y;
         battery_level -= required_level;
-//        cout << name << " moved to (" << position.first << "," << position.second << ")." << endl;
         return true;
     }
 }

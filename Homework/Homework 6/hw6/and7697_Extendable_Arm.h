@@ -12,7 +12,6 @@ public:
     bool move(int x, int y);
     bool extend();
     bool retract();
-//    double calculate_distance(int x, int y);
 private:
     int extend_length;
     bool is_extended;

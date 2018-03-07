@@ -21,7 +21,6 @@ bool Robot::move(int x, int y)
         position.first = x;
         position.second = y;
         battery_level -= required_level;
-//        cout << name << " moved to (" << position.first << "," << position.second << ")." << endl;
         return true;
     }
 }
@@ -36,8 +35,3 @@ double Robot::get_battery_percentage()
 {
     return (double) battery_level / (double) battery_life * 100;
 }
-
-//double Robot::calculate_distance(int x, int y)
-//{
-//    return sqrt(x*x + y*y);
-//}

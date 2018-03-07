@@ -5,13 +5,6 @@ bool Extendable_Arm::move(int x, int y)
     int d_x = abs(x - position.first);
     int d_y = abs(y - position.second);
     double d = calculate_distance(d_x, d_y); // d is distance between x and y
-//    int required_level;
-//    if(is_holding && is_extended)
-//        required_level = 3 * d;
-//    else if(is_holding)
-//        required_level = 2 * d;
-//    else if(is_extended)
-//        required_level = 2 * d;
     if(d > length)
     {
         if(extend())
@@ -73,8 +66,3 @@ bool Extendable_Arm::retract()
         return true;
     }
 }
-
-//double Extendable_Arm::calculate_distance(int x, int y)
-//{
-//    return sqrt(x*x + y*y);
-//}

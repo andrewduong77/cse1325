@@ -17,7 +17,6 @@ public:
     bool move(int x, int y);
     void charge();
     double get_battery_percentage();
-//    double calculate_distance(int x, int y);
 protected:
     int model_number;
     string name;

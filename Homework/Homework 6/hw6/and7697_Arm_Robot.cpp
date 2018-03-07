@@ -21,7 +21,6 @@ bool Arm_Robot::move(int x, int y)
         position.first = x;
         position.second = y;
         battery_level -= required_level;
-//        cout << name << " moved to (" << position.first << "," << position.second << ")." << endl;
         return true;
     }
 }
@@ -70,8 +69,3 @@ bool Arm_Robot::drop()
         return true;
     }
 }
-
-//double Arm_Robot::calculate_distance(int x, int y)
-//{
-//    return sqrt(x*x + y*y);
-//}
