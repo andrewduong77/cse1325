@@ -305,12 +305,86 @@ int main()
 
     cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
 
-    x = -15;
-    y = 25;
-    if(rodney.move(x, y))
-        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    x = -7;
+    y = 15;
+    if(crank.move(x, y))
+        cout << "Crank was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
     else
-        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+        cout << "Crank was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
 
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
 
+    weight = 2;
+    if(crank.pick_up(weight))
+        cout << "Crank was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Crank was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    x = -5;
+    y = 10;
+    if(crank.move(x, y))
+        cout << "Crank was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Crank was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    if(crank.drop())
+        cout << "Crank was able to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Crank was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    x = -5;
+    y = 8;
+    if(crank.move(x, y))
+        cout << "Crank was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Crank was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    weight = 10;
+    if(crank.pick_up(weight))
+        cout << "Crank was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Crank was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    x = -5;
+    y = 10;
+    if(crank.move(x, y))
+        cout << "Crank was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Crank was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    if(crank.drop())
+        cout << "Crank was able to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Crank was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    x = 0;
+    y = 10;
+    if(crank.move(x, y))
+        cout << "Crank was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Crank was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    weight = 25;
+    if(crank.pick_up(weight))
+        cout << "Crank was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Crank was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
 }
