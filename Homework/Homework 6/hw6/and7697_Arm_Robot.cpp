@@ -30,7 +30,7 @@ bool Arm_Robot::pick_up(int weight)
 {
     if(is_holding)
     {
-        cout << "Is already holding an object." << endl;
+        cout << name << " is already holding an object." << endl;
         return false;
     }
     else if(battery_level < 1)
@@ -55,7 +55,7 @@ bool Arm_Robot::drop()
 {
     if(!is_holding)
     {
-        cout << "Is not holding an object." << endl;
+        cout << name << " is not holding an object." << endl;
         return false;
     }
     else if(battery_level < 1)

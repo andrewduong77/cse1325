@@ -6,7 +6,7 @@
 class Arm_Robot : public virtual Robot
 {
 public:
-    Arm_Robot(int mn, string n, int bl, int l, int wl) : Robot(mn, n, bl), length {l}, weight_limit {wl} {};
+    Arm_Robot(int mn, string n, int bl, int l, int wl) : Robot(mn, n, bl), length {l}, weight_limit {wl}, is_holding {false} {};
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();

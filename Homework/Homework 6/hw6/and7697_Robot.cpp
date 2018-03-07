@@ -12,7 +12,10 @@ bool Robot::move(int x, int y)
     double d = calculate_distance(d_x, d_y); // d is distance between x and y
     double required_level = d; // required 1 unit of battery charge for moving a distance of 1
     if(required_level > battery_level)
+    {
+        cout << "Battery level is not sufficient enough." << endl;
         return false;
+    }
     else
     {
         position.first = x;
