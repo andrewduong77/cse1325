@@ -180,4 +180,137 @@ int main()
         cout << "Piper was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
 
     cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper.get_battery_percentage() << "%." << endl;
+
+    cout << endl;
+
+    // For Extendable_Arm Rodney
+
+    Extendable_Arm rodney (1040, "Rodney", 100, 5, 20, 15);
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -3;
+    y = 2;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    weight = 10;
+    if(rodney.pick_up(weight))
+        cout << "Rodney was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Rodney was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -2;
+    y = 2;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    if(rodney.drop())
+        cout << "Rodney was able to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Rodney was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -5;
+    y = 10;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    weight = 15;
+    if(rodney.pick_up(weight))
+        cout << "Rodney was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Rodney was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -4;
+    y = 11;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    if(rodney.drop())
+        cout << "Rodney was able to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Rodney was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -2;
+    y = 5;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    weight = 10;
+    if(rodney.pick_up(weight))
+        cout << "Rodney was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Rodney was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -4;
+    y = 11;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    if(rodney.drop())
+        cout << "Rodney was able to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+    else
+        cout << "Rodney was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    x = -15;
+    y = 25;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
+
+    cout << endl;
+
+    // For Powered_Arm Crank
+
+    Powered_Arm crank (1050, "Crank", 100, 20, 5, 20);
+
+    cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    x = -15;
+    y = 25;
+    if(rodney.move(x, y))
+        cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Rodney was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+
 }

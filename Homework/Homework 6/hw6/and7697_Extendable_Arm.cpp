@@ -10,15 +10,20 @@ bool Extendable_Arm::move(int x, int y)
     {
         if(extend())
             cout << "Arm extended." << endl;
-        else
-            cout << "Unable to extend arm." << endl;
+//        else
+//            cout << "Unable to extend arm." << endl;
+        if(d_o > length + extend_length)
+        {
+            cout << "Arm length is still not long enough." << endl;
+            return false;
+        }
     }
     else
     {
         if(retract())
             cout << "Arm retracted." << endl;
-        else
-            cout << "Unable to retract arm." << endl;
+//        else
+//            cout << "Unable to retract arm." << endl;
     }
     int load = 1;
     if(is_holding)
