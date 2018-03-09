@@ -4,7 +4,7 @@
 #include "and7697_Extendable_Arm.h"
 #include "and7697_Powered_Arm.h"
 
-class Super_Arm
+class Super_Arm : public Extendable_Arm, public Powered_Arm
 {
 public:
     Super_Arm(int mn, string n, int bl, int l, int wl, int el, int ml);

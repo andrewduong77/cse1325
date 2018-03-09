@@ -4,7 +4,7 @@
 #include "and7697_Super_Arm.h"
 #include "and7697_Mobile_Robot.h"
 
-class Mobile_Arm
+class Mobile_Arm : public Super_Arm, public Mobile_Robot
 {
 public:
     Mobile_Arm(int mn, string n, int bl, int l, int wl, int el, int ml);
