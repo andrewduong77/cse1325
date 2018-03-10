@@ -9,8 +9,8 @@ public:
     Mobile_Robot(int mn, string n, int bl) : Robot(mn, n, bl), speed_level {1} {};
     bool move(int x, int y);
     bool move(int x, int y, int speed);
+protected:
     void set_speed_level(int speed);
-private:
     int speed_level;
 };
 

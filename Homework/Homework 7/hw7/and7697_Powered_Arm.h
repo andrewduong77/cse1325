@@ -10,11 +10,11 @@ public:
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();
-    void power_on();
-    void power_off();
-private:
+protected:
     int motor_limit;
     bool motor_on;
+    void power_on();
+    void power_off();
 };
 
 #endif // AND7697_POWERED_ARM_INCLUDED

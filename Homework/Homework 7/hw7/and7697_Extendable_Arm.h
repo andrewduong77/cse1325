@@ -12,9 +12,11 @@ public:
     bool move(int x, int y);
     bool extend();
     bool retract();
-private:
+protected:
     int extend_length;
     bool is_extended;
+    bool extend();
+    bool retract();
 };
 
 #endif // AND7697_EXTENDABLE_ARM_INCLUDED
