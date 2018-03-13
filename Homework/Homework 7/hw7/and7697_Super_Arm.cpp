@@ -7,7 +7,7 @@ bool Super_Arm::move(int x, int y)
     double d_p = calculate_distance(d_x, d_y); // d_p is distance from position
     double d_o = calculate_distance(abs(x), abs(y)); // d_o is distance from origin (0,0)
     int load = 1;
-    if(is_holding)
+    if(Extendable_Arm::is_holding || Powered_Arm::is_holding)
         load++;
     if(is_extended)
         load++;
