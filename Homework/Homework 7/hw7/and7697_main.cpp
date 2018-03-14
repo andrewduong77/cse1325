@@ -1,6 +1,8 @@
-#include "and7697_Extendable_Arm.h"
-#include "and7697_Powered_Arm.h"
-#include "and7697_Mobile_Robot.h"
+//#include "and7697_Extendable_Arm.h"
+//#include "and7697_Powered_Arm.h"
+//#include "and7697_Mobile_Robot.h"
+#include "and7697_Super_Arm.h"
+#include "and7697_Mobile_Arm.h"
 
 //#include <iostream>
 
@@ -387,4 +389,34 @@ int main()
         cout << "Crank was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
 
     cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank.get_battery_percentage() << "%." << endl;
+
+    // For Super_Arm Fanny
+
+    Super_Arm fanny (1060, "Fanny", 100, 5, 5, 20, 20);
+
+    cout << "Fanny's battery level is currently at " << fixed << setprecision(0) << fanny.get_battery_percentage() << "%." << endl;
+
+    x = -3;
+    y = 2;
+    if(fanny.move(x, y))
+        cout << "Fanny was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Fanny was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Fanny's battery level is currently at " << fixed << setprecision(0) << fanny.get_battery_percentage() << "%." << endl;
+
+    // For Mobile_Arm Gasket
+
+    Mobile_Arm gasket (1070, "Gasket", 100, 5, 5, 20, 20);
+
+    cout << "Gasket's battery level is currently at " << fixed << setprecision(0) << gasket.Mobile_Robot::get_battery_percentage() << "%." << endl;
+
+    x = -3;
+    y = 2;
+    if(gasket.move(x, y))
+        cout << "Gasket was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+    else
+        cout << "Gasket was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+    cout << "Gasket's battery level is currently at " << fixed << setprecision(0) << gasket.Mobile_Robot::get_battery_percentage() << "%." << endl;
 }
