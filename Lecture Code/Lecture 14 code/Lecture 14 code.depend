@@ -8,7 +8,7 @@
 1519848524 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Stock_boy.h
 	"Employee.h"
 
-1519848476 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Employee.h
+1520581299 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Employee.h
 	<string>
 
 1519848154 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Employee.cpp
@@ -23,16 +23,22 @@
 1519848904 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Sales.cpp
 	"Sales.h"
 
-1519848558 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Sales.h
+1520585309 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Sales.h
 	"Employee.h"
 
 1519848628 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/SalesManager.cpp
 	"SalesManager.h"
 
-1520208773 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/SalesManager.h
+1520585116 /home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/SalesManager.h
 	"Sales.h"
 	"Manager.h"
 
 1519848952 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/Stock_boy.cpp
 	"Stock_boy.h"
+
+1520281186 source:/home/andrewduong/Documents/Classes/CSE 1325/Lecture Code/Lecture 14 code/main.cpp
+	"SalesManager.h"
+	"Clerk.h"
+	<iostream>
+	<vector>
 
