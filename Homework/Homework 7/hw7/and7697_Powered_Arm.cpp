@@ -51,9 +51,15 @@ bool Powered_Arm::pick_up(int weight)
     else
     {
         if(weight > weight_limit)
+        {
             power_on();
+            cout << "Motor powered on." << endl;
+        }
         else
+        {
             power_off();
+            cout << "Motor powered off." << endl;
+        }
         is_holding = true;
         battery_level--;
         return true;
@@ -74,7 +80,11 @@ bool Powered_Arm::drop()
     }
     else
     {
-        power_off();
+        if(motor_on)
+        {
+            power_off();
+            cout << "Motor powered off." << endl;
+        }
         is_holding = false;
         battery_level--;
         return true;
