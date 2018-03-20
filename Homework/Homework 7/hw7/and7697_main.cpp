@@ -258,7 +258,7 @@ int main()
     cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney.get_battery_percentage() << "%." << endl;
 
     x = -2;
-    y = 5;
+    y = 3;
     if(rodney.move(x, y))
         cout << "Rodney was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
     else

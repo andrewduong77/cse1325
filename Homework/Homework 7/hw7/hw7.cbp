@@ -54,6 +54,7 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="and7697_main.cpp" />
+		<Unit filename="and7697_main_2.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
