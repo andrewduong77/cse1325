@@ -53,8 +53,8 @@
 		<Unit filename="and7697_Super_Arm.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="and7697_main.cpp" />
-		<Unit filename="and7697_main_2.cpp" />
+		<Unit filename="and7697_main1.cpp" />
+		<Unit filename="and7697_main2.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
