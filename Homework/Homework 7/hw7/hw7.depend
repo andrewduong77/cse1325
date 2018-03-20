@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1520398863 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Arm_Robot.cpp
+	"and7697_Arm_Robot.h"
+
+1521530377 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Arm_Robot.h
+	"and7697_Robot.h"
+
+1520586177 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Robot.h
+	<iostream>
+	<string>
+	<cmath>
+	<iomanip>
+
+1521512094 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Extendable_Arm.cpp
+	"and7697_Extendable_Arm.h"
+
+1521532118 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Extendable_Arm.h
+	"and7697_Arm_Robot.h"
+

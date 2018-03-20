@@ -28,7 +28,7 @@ int main()
     int weight;
 
     weight = 3;
-    if(fanny.pick_up(weight))
+    if(fanny.Powered_Arm::pick_up(weight))
         cout << "Fanny was able to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
     else
         cout << "Fanny was unable to pick up an object of a weight of " << defaultfloat << weight << "." << endl;
