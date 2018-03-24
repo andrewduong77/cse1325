@@ -35,3 +35,13 @@ double Robot::get_battery_percentage()
 {
     return (double) battery_level / (double) battery_life * 100;
 }
+
+void Robot::set_type(string type)
+{
+    this->type = type;
+}
+
+string Robot::get_type()
+{
+    return type;
+}
