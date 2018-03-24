@@ -3,11 +3,25 @@
 
 int main()
 {
-    int x, y;
+    int x, y, speed, weight;
 
-    // For Robot Bigweld
+    vector<Robot*> Robots;
 
     Robot *bigweld = new Robot(1010, "Bigweld", 100);
+    Robot *mr_gunk = new Mobile_Robot(1020, "Mr_Gunk", 100);
+    Robot *piper = new Arm_Robot(1030, "Piper", 100, 40, 30);
+    Robot *rodney = new Extendable_Arm(1040, "Rodney", 100, 5, 20, 15);
+    Robot *crank = new Powered_Arm(1050, "Crank", 100, 20, 5, 20);
+    Robot *fanny = new Super_Arm(1060, "Fanny", 100, 5, 5, 20, 20);
+
+    Robots.push_back(bigweld);
+    Robots.push_back(mr_gunk);
+    Robots.push_back(piper);
+    Robots.push_back(rodney);
+    Robots.push_back(crank);
+    Robots.push_back(fanny);
+
+    // For Robot Bigweld
 
     cout << "Bigweld's battery level is currently at " << fixed << setprecision(0) << bigweld->get_battery_percentage() << "%." << endl;
 
@@ -73,10 +87,6 @@ int main()
 
     // For Mobile_Robot Mr_Gunk
 
-    int speed;
-
-    Robot *mr_gunk = new Mobile_Robot(1020, "Mr_Gunk", 100);
-
     cout << "Mr_Gunk's battery level is currently at " << fixed << setprecision(0) << mr_gunk->get_battery_percentage() << "%." << endl;
 
     x = 10;
@@ -122,8 +132,6 @@ int main()
 
     // For Arm_Robot Piper
 
-    Robot *piper = new Arm_Robot(1030, "Piper", 100, 40, 30);
-
     cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper->get_battery_percentage() << "%." << endl;
 
     x = -15;
@@ -134,8 +142,6 @@ int main()
         cout << "Piper was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
 
     cout << "Piper's battery level is currently at " << fixed << setprecision(0) << piper->get_battery_percentage() << "%." << endl;
-
-    int weight;
 
     weight = 25;
     if((dynamic_cast<Arm_Robot*>(piper))->pick_up(weight))
@@ -181,8 +187,6 @@ int main()
     cout << endl;
 
     // For Extendable_Arm Rodney
-
-    Robot *rodney = new Extendable_Arm(1040, "Rodney", 100, 5, 20, 15);
 
     cout << "Rodney's battery level is currently at " << fixed << setprecision(0) << rodney->get_battery_percentage() << "%." << endl;
 
@@ -298,8 +302,6 @@ int main()
 
     // For Powered_Arm Crank
 
-    Robot *crank = new Powered_Arm(1050, "Crank", 100, 20, 5, 20);
-
     cout << "Crank's battery level is currently at " << fixed << setprecision(0) << crank->get_battery_percentage() << "%." << endl;
 
     x = -7;
@@ -388,8 +390,6 @@ int main()
     cout << endl;
 
     // For Super_Arm Fanny
-
-    Robot *fanny = new Super_Arm(1060, "Fanny", 100, 5, 5, 20, 20);
 
     cout << "Fanny's battery level is currently at " << fixed << setprecision(0) << fanny->get_battery_percentage() << "%." << endl;
 
