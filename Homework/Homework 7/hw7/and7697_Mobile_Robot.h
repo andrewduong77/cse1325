@@ -6,7 +6,7 @@
 class Mobile_Robot : public Robot
 {
 public:
-    Mobile_Robot(int mn, string n, int bl) : Robot(mn, n, bl), speed_level {1} {};
+    Mobile_Robot(int mn, string n, int bl) : Robot(mn, n, bl), speed_level {1} {set_type("Mobile_Robot");};
     bool move(int x, int y);
     bool move(int x, int y, int speed);
 protected:

@@ -6,7 +6,7 @@
 class Powered_Arm : public Arm_Robot
 {
 public:
-    Powered_Arm(int mn, string n, int bl, int l, int wl, int ml) : Arm_Robot(mn, n, bl, l, wl), Robot(mn, n, bl), motor_limit {ml}, motor_on {false} {};
+    Powered_Arm(int mn, string n, int bl, int l, int wl, int ml) : Arm_Robot(mn, n, bl, l, wl), Robot(mn, n, bl), motor_limit {ml}, motor_on {false} {set_type("Powered_Arm");};
     bool move(int x, int y);
     bool pick_up(int weight);
     bool drop();

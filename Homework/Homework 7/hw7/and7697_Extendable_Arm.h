@@ -8,7 +8,7 @@ using namespace std;
 class Extendable_Arm : public Arm_Robot
 {
 public:
-    Extendable_Arm(int mn, string n, int bl, int l, int wl, int el) : Arm_Robot(mn, n, bl, l, wl), Robot(mn, n, bl), extend_length {el}, is_extended {false} {};
+    Extendable_Arm(int mn, string n, int bl, int l, int wl, int el) : Arm_Robot(mn, n, bl, l, wl), Robot(mn, n, bl), extend_length {el}, is_extended {false} {set_type("Extendable_Arm");};
     bool move(int x, int y);
 protected:
     int extend_length;
