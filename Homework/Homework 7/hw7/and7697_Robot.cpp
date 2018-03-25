@@ -36,6 +36,14 @@ double Robot::get_battery_percentage()
     return (double) battery_level / (double) battery_life * 100;
 }
 
+pair<int, int> Robot::get_position()
+{
+    pair<int, int> tmp;
+    tmp.first = position.first;
+    tmp.second = position.second;
+    return tmp;
+}
+
 void Robot::set_type(string type)
 {
     this->type = type;

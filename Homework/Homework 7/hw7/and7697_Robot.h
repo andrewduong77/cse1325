@@ -18,6 +18,7 @@ public:
     virtual bool move(int x, int y);
     void charge();
     double get_battery_percentage();
+    pair<int, int> get_position();
     void set_type(string type);
     string get_type();
 protected:

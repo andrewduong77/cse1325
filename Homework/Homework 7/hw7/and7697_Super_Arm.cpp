@@ -10,7 +10,7 @@ bool Super_Arm::move(int x, int y)
     {
         if(d_o > Extendable_Arm::length + extend_length)
         {
-            cout << "Arm length is still not long enough." << endl;
+            cout << "Arm length is still not long enough. Current position is (" << position.first << "," << position.second << "). Target position is (" << x << "," << y << ")." << endl;
             return false;
         }
         else if(extend())

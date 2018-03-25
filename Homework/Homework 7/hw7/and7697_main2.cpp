@@ -5,6 +5,8 @@ int main()
 {
     int x, y, speed, weight;
 
+    pair<int, int> position;
+
     vector<Robot*> Robots;
 
     Robot *bigweld = new Robot(1010, "Bigweld", 100);
@@ -13,6 +15,7 @@ int main()
     Robot *rodney = new Extendable_Arm(1040, "Rodney", 100, 5, 20, 15);
     Robot *crank = new Powered_Arm(1050, "Crank", 100, 20, 5, 20);
     Robot *fanny = new Super_Arm(1060, "Fanny", 100, 5, 5, 20, 20);
+    Mobile_Robot *madame = new Mobile_Arm(1070, "Madame", 50, 5, 5, 20, 20);
 
     Robots.push_back(bigweld);
     Robots.push_back(mr_gunk);
@@ -20,6 +23,7 @@ int main()
     Robots.push_back(rodney);
     Robots.push_back(crank);
     Robots.push_back(fanny);
+    Robots.push_back(madame);
 
     for(Robot* it : Robots)
     {
@@ -542,6 +546,97 @@ int main()
                 cout << "Fanny was unable to drop an object of a weight of " << defaultfloat << weight << "." << endl;
 
             cout << "Fanny's battery level is currently at " << fixed << setprecision(0) << it->get_battery_percentage() << "%." << endl;
+
+            cout << endl;
+        }
+        if(it->get_type() == "Mobile_Arm")
+        {
+            // For Mobile_Arm Madame
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            x = 10;
+            y = 15;
+            if((dynamic_cast<Mobile_Arm*>(it))->move(x, y))
+                cout << "Madame was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+            else
+                cout << "Madame was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            x = -20;
+            y = -30;
+            if((dynamic_cast<Mobile_Arm*>(it))->move(x, y))
+                cout << "Madame was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+            else
+                cout << "Madame was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::charge();
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            int speed;
+
+            x = 15;
+            y = 30;
+            speed = 1;
+            if((dynamic_cast<Mobile_Arm*>(it))->move(x, y, speed))
+                cout << "Madame was able to move to (" << defaultfloat << x << "," << y << ") at the speed of " << speed << "." << endl;
+            else
+                cout << "Madame was unable to move to (" << defaultfloat << x << "," << y << ") at the speed of " << speed << "." << endl;
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            x = 25;
+            y = 20;
+            speed = 3;
+            if((dynamic_cast<Mobile_Arm*>(it))->move(x, y, speed))
+                cout << "Madame was able to move to (" << defaultfloat << x << "," << y << ") at the speed of " << speed << "." << endl;
+            else
+                cout << "Madame was unable to move to (" << defaultfloat << x << "," << y << ") at the speed of " << speed << "." << endl;
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::charge();
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            // move_arm() does not work correctly, it keeps seeing current position as (0,0)
+            x = 25;
+            y = 20;
+            if((dynamic_cast<Mobile_Arm*>(it))->move_arm(x, y))
+                cout << "Madame was able to move to (" << defaultfloat << x << "," << y << ")." << endl;
+            else
+                cout << "Madame was unable to move to (" << defaultfloat << x << "," << y << ")." << endl;
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            int base_x, base_y, arm_x, arm_y;
+
+            // move() does not work correctly with base and arm, it keeps seeing the current position as (0,0)
+            base_x = 20;
+            base_y = 25;
+            arm_x = 25;
+            arm_y = 20;
+            if((dynamic_cast<Mobile_Arm*>(it))->move(base_x, base_y, arm_x, arm_y))
+                cout << "Madame was able to move base to (" << defaultfloat << base_x << "," << base_y << ") and arm to (" << arm_x << "," << arm_y << ")." << endl;
+            else
+                cout << "Madame was unable to move base to (" << defaultfloat << base_x << "," << base_y << ") and arm to (" << arm_x << "," << arm_y << ")." << endl;
+
+            position = (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_position();
+            cout << "Madame's battery level is currently at " << fixed << setprecision(0) << (dynamic_cast<Mobile_Arm*>(it))->Mobile_Robot::get_battery_percentage() << "%. Madame's position is (" << position.first << "," << position.second << ")." << endl;
+
+            cout << endl;
         }
     }
 }
