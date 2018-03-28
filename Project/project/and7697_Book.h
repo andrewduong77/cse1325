@@ -3,13 +3,13 @@
 
 #include "and7697_Media.h"
 
-class Book
+class Book : public virtual Media
 {
 public:
-    Book(string a, int c) : author {a}, copyright_year {c} {};
+    Book(int idn, string cn, string t, string g, string a, int c) : Media(idn, cn, t, g), author {a}, copyright_year {c} {};
     string get_author();
     int get_copyright_year();
-private:
+public:
     string author;
     int copyright_year;
 };
