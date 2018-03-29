@@ -9,8 +9,8 @@ using namespace std;
 
 class Media
 {
-    Media(int idn, string cn, string t, string g) : id_number {idn}, call_number {cn}, title {t}, genre {g}, checked_out {false} {};
 public:
+    Media(int idn, string cn, string t, string g) : id_number {idn}, call_number {cn}, title {t}, genre {g}, checked_out {false} {};
     int get_id_number();
     string get_call_number();
     string get_title();

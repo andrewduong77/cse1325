@@ -2,18 +2,46 @@
 1520398863 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Arm_Robot.cpp
 	"and7697_Arm_Robot.h"
 
-1521530377 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Arm_Robot.h
+1522014515 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Arm_Robot.h
 	"and7697_Robot.h"
 
-1520586177 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Robot.h
+1522017850 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Robot.h
 	<iostream>
 	<string>
 	<cmath>
 	<iomanip>
+	<vector>
 
 1521512094 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Extendable_Arm.cpp
 	"and7697_Extendable_Arm.h"
 
-1521532118 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Extendable_Arm.h
+1522014515 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Extendable_Arm.h
 	"and7697_Arm_Robot.h"
+
+1522026716 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_main2.cpp
+	"and7697_Super_Arm.h"
+	"and7697_Mobile_Arm.h"
+
+1522014515 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Super_Arm.h
+	"and7697_Extendable_Arm.h"
+	"and7697_Powered_Arm.h"
+
+1522014515 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Powered_Arm.h
+	"and7697_Arm_Robot.h"
+
+1522015672 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Mobile_Arm.h
+	"and7697_Super_Arm.h"
+	"and7697_Mobile_Robot.h"
+
+1522014515 /home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Mobile_Robot.h
+	"and7697_Robot.h"
+
+1522014515 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Mobile_Robot.cpp
+	"and7697_Mobile_Robot.h"
+
+1521537524 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Powered_Arm.cpp
+	"and7697_Powered_Arm.h"
+
+1522017850 source:/home/andrewduong/Documents/Classes/CSE 1325/Homework/Homework 7/hw7/and7697_Robot.cpp
+	"and7697_Robot.h"
 

@@ -6,7 +6,7 @@
 class Music_Album : public virtual Media
 {
 public:
-    Music_Album(int idn, string cn, string t, string g, int r, string a, vector<string> t) : Media(idn, cn, t, g), release_year {r}, artist {a}, tracks {t} {};
+    Music_Album(int idn, string cn, string t, string g, int r, string a, vector<string> tr) : Media(idn, cn, t, g), release_year {r}, artist {a}, tracks {tr} {};
     int get_release_year();
     string get_artist();
     vector<string> get_tracks();
