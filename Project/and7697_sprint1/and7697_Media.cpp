@@ -19,3 +19,13 @@ string Media::get_genre()
 {
     return genre;
 }
+
+void Media::set_type(string type)
+{
+    this->type = type;
+}
+
+string Media::get_type()
+{
+    return type;
+}
