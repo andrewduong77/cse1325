@@ -1,6 +1,8 @@
 #ifndef AND7697_MEDIA_H_INCLUDED
 #define AND7697_MEDIA_H_INCLUDED
 
+#include "and7697_Bundle.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
