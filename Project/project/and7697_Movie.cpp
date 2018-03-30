@@ -15,7 +15,25 @@ string Movie::get_director()
     return director;
 }
 
-vector<string> Movie::get_leading_actors()
+ostream& operator<<(ostream& ost, const Movie& movie_two)
 {
-    return leading_actors;
+    // Output goes here
+    return ost;
+}
+
+string Movie::get_leading_actors()
+{
+    string out;
+    ostringstream fmtStr;
+    if(leading_actors.size() == 0)
+    {
+        out = "Leading actors is not listed for this movie.\n";
+        return out;
+    }
+    for(int i = 0; i < leading_actors.size(); i++)
+    {
+        fmtStr << endl << leading_actors[i];
+        out = fmtStr.str();
+    }
+    return out;
 }

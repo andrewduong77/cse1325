@@ -10,7 +10,8 @@ public:
     int get_release_year();
     string get_producer();
     string get_director();
-    vector<string> get_leading_actors();
+    friend ostream& operator<<(ostream& ost, const Movie& movie_two);
+    string get_leading_actors();
 private:
     int release_year;
     string producer;
