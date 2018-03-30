@@ -9,3 +9,13 @@ vector<Media> Bundle::get_medias()
 {
     return medias;
 }
+
+void Bundle::set_type(string type)
+{
+    this->type = type;
+}
+
+string Bundle::get_type()
+{
+    return type;
+}

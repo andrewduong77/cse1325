@@ -5,12 +5,16 @@
 
 using namespace std;
 
-class Bundle : public virtual Media
+class Bundle
 {
 public:
-    Bundle(string n, vector<Media> m) : name {n}, medias {m}, checked_out {false} {set_type("Bundle");};
+    Bundle(string n, vector<Media> m) : name {n}, medias {m}, checked_out {false}, type {"Bundle"} {};
     string get_name();
     vector<Media> get_medias();
+    void set_type(string type);
+    string get_type();
+protected:
+    string type;
 private:
     string name;
     vector<Media> medias;
