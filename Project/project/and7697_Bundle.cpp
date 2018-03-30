@@ -5,7 +5,7 @@ string Bundle::get_name()
     return name;
 }
 
-vector Bundle::get_medias()
+vector<Media> Bundle::get_medias()
 {
     return medias;
 }

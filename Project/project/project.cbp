@@ -33,6 +33,24 @@
 		</Compiler>
 		<Unit filename="and7697_Book.cpp" />
 		<Unit filename="and7697_Book.h" />
+		<Unit filename="and7697_Bundle.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Bundle.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Customer.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Customer.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Librarian.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="and7697_Librarian.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="and7697_Media.cpp" />
 		<Unit filename="and7697_Media.h" />
 		<Unit filename="and7697_Movie.cpp" />
