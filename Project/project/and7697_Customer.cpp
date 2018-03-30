@@ -24,3 +24,13 @@ double Customer::get_balance()
 {
     return balance;
 }
+
+void Customer::set_type(string type)
+{
+    this->type = type;
+}
+
+string Customer::get_type()
+{
+    return type;
+}

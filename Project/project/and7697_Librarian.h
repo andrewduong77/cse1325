@@ -9,11 +9,15 @@ using namespace std;
 class Librarian
 {
 public:
-    Librarian(string n, int idn) : name{n}, id{idn} {};
+    Librarian(string n, int idn) : name {n}, id {idn}, type {"Librarian"} {};
     void check_out();
     void check_in();
     string get_name();
     int get_id();
+    void set_type(string type);
+    string get_type();
+protected:
+    string type;
 private:
     string name;
     int id;

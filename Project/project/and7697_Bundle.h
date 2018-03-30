@@ -5,10 +5,10 @@
 
 using namespace std;
 
-class Bundle
+class Bundle : public virtual Media
 {
 public:
-    Bundle(string n, vector<Media> m) : name {n}, medias {m}, checked_out {false} {};
+    Bundle(string n, vector<Media> m) : name {n}, medias {m}, checked_out {false} {set_type("Bundle");};
     string get_name();
     vector<Media> get_medias();
 private:

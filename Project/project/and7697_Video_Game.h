@@ -6,7 +6,7 @@
 class Video_Game : public virtual Media
 {
 public:
-    Video_Game(int idn, string cn, string t, string g, int r, string s) : Media(idn, cn, t, g), release_year {r}, studio {s} {};
+    Video_Game(int idn, string cn, string t, string g, int r, string s) : Media(idn, cn, t, g), release_year {r}, studio {s} {set_type("Video_Game");};
     int get_release_year();
     string get_studio();
 private:

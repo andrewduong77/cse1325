@@ -19,3 +19,13 @@ int Librarian::get_id()
 {
     return id;
 }
+
+void Librarian::set_type(string type)
+{
+    this->type = type;
+}
+
+string Librarian::get_type()
+{
+    return type;
+}
