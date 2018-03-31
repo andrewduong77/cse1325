@@ -1,5 +1,16 @@
 #include "and7697_Bundle.h"
 
+
+void Bundle::add_to_bundle(Media media)
+{
+
+}
+
+void Bundle::remove_from_bundle(int id)
+{
+
+}
+
 string Bundle::get_name()
 {
     return name;

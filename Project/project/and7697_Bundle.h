@@ -9,6 +9,8 @@ class Bundle
 {
 public:
     Bundle(string n, vector<Media> m) : name {n}, medias {m}, checked_out {false}, type {"Bundle"} {};
+    void add_to_bundle(Media media);
+    void remove_from_bundle(int id);
     string get_name();
     vector<Media> get_medias();
     void set_type(string type);
