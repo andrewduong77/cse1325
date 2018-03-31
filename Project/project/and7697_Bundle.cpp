@@ -3,12 +3,14 @@
 
 void Bundle::add_to_bundle(Media media)
 {
-
+    medias.push_back(media);
 }
 
 void Bundle::remove_from_bundle(int id)
 {
-
+    for(int i = 0; i < medias.size(); i++)
+        if(medias[i].get_id_number() == id)
+            medias.erase(medias.begin()+i);
 }
 
 string Bundle::get_name()
