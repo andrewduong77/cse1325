@@ -10,17 +10,63 @@ string Television_Show_Season::get_producer()
     return producer;
 }
 
-vector<string> Television_Show_Season::get_director()
+string Television_Show_Season::get_voice_actors() const
 {
-    return director;
+    string out;
+    ostringstream fmtStr;
+    if(voice_actors.size() == 0)
+    {
+        out = "N/A";
+        return out;
+    }
+    for(int i = 0; i < voice_actors.size(); i++)
+    {
+        fmtStr << voice_actors[i];
+        if(i < voice_actors.size() - 1)
+            fmtStr << ", ";
+        out = fmtStr.str();
+    }
+    return out;
 }
 
-vector<string> Television_Show_Season::get_leading_actors()
+string Television_Show_Season::get_composers() const
 {
-    return leading_actors;
+    string out;
+    ostringstream fmtStr;
+    if(composers.size() == 0)
+    {
+        out = "N/A";
+        return out;
+    }
+    for(int i = 0; i < composers.size(); i++)
+    {
+        fmtStr << composers[i];
+        if(i < composers.size() - 1)
+            fmtStr << ", ";
+        out = fmtStr.str();
+    }
+    return out;
 }
 
 int Television_Show_Season::get_season_number()
 {
     return season_number;
+}
+
+ostream& operator<<(ostream& ost, const Television_Show_Season& television_show_season_two)
+{
+    ost << R"(
+======================
+Television Show Season
+======================
+              )" << endl;
+    ost << "ID Number: " << television_show_season_two.id_number << endl;
+    ost << "Call Number: " << television_show_season_two.call_number << endl;
+    ost << "Title: " << television_show_season_two.title << " (" << television_show_season_two.release_year << ")" << endl;
+    ost << "Genre: " << television_show_season_two.genre << endl;
+    ost << "Producer: " << television_show_season_two.producer << endl;
+    ost << "Directors: " << television_show_season_two.get_voice_actors() << endl;
+    ost << "Leading Actors: " << television_show_season_two.get_composers() << endl;
+    ost << "Season Number: " << television_show_season_two.season_number << endl;
+    return ost;
 }

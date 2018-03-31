@@ -3,20 +3,21 @@
 
 #include "and7697_Media.h"
 
-class Television_Show_Season : public virtual Media
+class Television_Show_Season : public Media
 {
 public:
-    Television_Show_Season(int idn, string cn, string t, string g, int r, string p, vector<string> d, vector<string> la, int sn) : Media(idn, cn, t, g), release_year {r}, producer {p}, director {d}, leading_actors {la}, season_number {sn} {set_type("Television_Show_Season");};
+    Television_Show_Season(int idn, string cn, string t, string g, int r, string p, vector<string> va, vector<string> c, int sn) : Media(idn, cn, t, g), release_year {r}, producer {p}, voice_actors {va}, composers {c}, season_number {sn} {set_type("Television_Show_Season");};
     int get_release_year();
     string get_producer();
-    vector<string> get_director();
-    vector<string> get_leading_actors();
+    string get_voice_actors() const;
+    string get_composers() const;
     int get_season_number();
+    friend ostream& operator<<(ostream& ost, const Television_Show_Season& television_show_season_two);
 private:
     int release_year;
     string producer;
-    vector<string> director;
-    vector<string> leading_actors;
+    vector<string> voice_actors;
+    vector<string> composers;
     int season_number;
 };
 

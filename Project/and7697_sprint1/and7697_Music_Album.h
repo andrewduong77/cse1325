@@ -3,13 +3,14 @@
 
 #include "and7697_Media.h"
 
-class Music_Album : public virtual Media
+class Music_Album : public Media
 {
 public:
     Music_Album(int idn, string cn, string t, string g, int r, string a, vector<string> tr) : Media(idn, cn, t, g), release_year {r}, artist {a}, tracks {tr} {set_type("Music_Album");};
     int get_release_year();
     string get_artist();
-    vector<string> get_tracks();
+    string get_tracks() const;
+    friend ostream& operator<<(ostream& ost, const Music_Album& music_album_two);
 private:
     int release_year;
     string artist;
