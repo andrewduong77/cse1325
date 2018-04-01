@@ -28,6 +28,13 @@ int main()
 
     Video_Game Halo_3(1002, "1002", "Halo 3", "Shooter", 2007, "Bungie");
 
+    cout << endl;
+    cout << "The author of The " << City_of_Ember.get_title() << " is " << City_of_Ember.get_author() << "." << endl;
+    cout << "The leading actors of " << The_Lord_of_the_Rings.get_title() << " are " << The_Lord_of_the_Rings.get_leading_actors() << "." << endl;
+    cout << Broadcast.get_title() << " was released by The " << Broadcast.get_artist() << " in " << Broadcast.get_release_year() << "." << endl;
+    cout << The_Simpsons.get_title() << " is a " << The_Simpsons.get_genre() << "-based show." << endl;
+    cout << Halo_3.get_title() << " is a " << Halo_3.get_genre() << "-based video game." << endl;
+
     cout << City_of_Ember;
     cout << The_Lord_of_the_Rings;
     cout << Halo_3;
