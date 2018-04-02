@@ -1,0 +1,60 @@
+1
+header
+1
+15
+wsdafd
+head1
+25
+2
+Body
+1
+35
+A body
+body1
+2
+2
+3
+Regualr
+1
+8
+A regular arm
+arm1
+6
+4
+Engine2333
+1
+40
+A simple locomotor
+loco1
+35
+5
+Average
+1
+3
+An average battery.
+bat1
+200
+400
+6
+Cyborg
+1
+1
+1
+1
+1
+1
+7
+Enrique Gomez
+5285
+652-554-2143
+ergomz@gmail.com
+8
+Ken Rivera
+1
+8
+Kit Harrington
+12
+8
+Jason Borne
+3
+0

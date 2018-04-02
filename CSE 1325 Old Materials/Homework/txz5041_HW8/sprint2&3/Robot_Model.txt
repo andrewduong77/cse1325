@@ -1,0 +1,26 @@
+
+_____________________________________________
+	******** Display Models ********
+_____________________________________________
+
+Model Name: moch
+Model Number: 123
+Types of components that made up model moch
+	Head: asf
+	Arms: jkl
+	Arms: jkl
+	Torso: head
+	Locomotor: jkl
+	Batteries: 0
+Model Price: $900
+
+Model Name: Strong man
+Model Number: 0003
+Types of components that made up model Strong man
+	Head: header
+	Arms: muscles
+	Arms: muscles
+	Torso: heavy body
+	Locomotor: motorboat
+	Batteries: 0
+Model Price: $250

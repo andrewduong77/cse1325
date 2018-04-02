@@ -1,0 +1,6 @@
+
+make clean
+make test_video_store  
+./test_video_store  
+make test_media  
+./test_media  
