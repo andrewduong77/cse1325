@@ -7,12 +7,11 @@ string View::get_menu()
 Transaction Management System
 =============================
 
-(1) Load transactions to file (Not working!)
-(2) Save transactions to file (Not working!)
-(3) Browse Catalog
-(4) Add Media
-(5) Delete Media
-(9) Exit
+(1) Browse Catalog
+(2) Add
+(3) Check in
+(4) Check out
+(5) Exit
 _> )";
 }
 
