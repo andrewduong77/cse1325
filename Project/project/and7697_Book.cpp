@@ -10,6 +10,24 @@ int Book::get_copyright_year()
     return copyright_year;
 }
 
+string Book::to_string() const
+{
+    string out;
+    ostringstream ost;
+    ost << R"(
+======================
+Book
+======================
+              )" << endl;
+    ost << "ID Number: " << this->id_number << endl;
+    ost << "Call Number: " << this->call_number << endl;
+    ost << "Title: " << this->title << endl;
+    ost << "Genre: " << this->genre << endl;
+    ost << "Author: " << this->author << endl;
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Book& book_two)
 {
     ost << R"(

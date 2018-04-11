@@ -9,6 +9,7 @@ public:
     Video_Game(int idn, string cn, string t, string g, int r, string s) : Media(idn, cn, t, g), release_year {r}, studio {s} {set_type("Video_Game");};
     int get_release_year();
     string get_studio();
+    string to_string() const;
     friend ostream& operator<<(ostream& ost, const Video_Game& video_game_two);
 private:
     int release_year;

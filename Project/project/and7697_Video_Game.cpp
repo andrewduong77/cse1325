@@ -10,6 +10,24 @@ string Video_Game::get_studio()
     return studio;
 }
 
+string Video_Game::to_string() const
+{
+    string out;
+    ostringstream ost;
+    ost << R"(
+======================
+Video Game
+======================
+              )" << endl;
+    ost << "ID Number: " << this->id_number << endl;
+    ost << "Call Number: " << this->call_number << endl;
+    ost << "Title: " << this->title << " (" << this->release_year << ")" << endl;
+    ost << "Genre: " << this->genre << endl;
+    ost << "Studio: " << this->studio << endl;
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Video_Game& video_game_two)
 {
     ost << R"(

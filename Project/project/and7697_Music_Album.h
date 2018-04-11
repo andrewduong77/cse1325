@@ -10,6 +10,7 @@ public:
     int get_release_year();
     string get_artist();
     string get_tracks() const;
+    string to_string() const;
     friend ostream& operator<<(ostream& ost, const Music_Album& music_album_two);
 private:
     int release_year;

@@ -27,6 +27,25 @@ string Music_Album::get_tracks() const
     return out;
 }
 
+string Music_Album::to_string() const
+{
+    string out;
+    ostringstream ost;
+    ost << R"(
+======================
+Music Album
+======================
+              )" << endl;
+    ost << "ID Number: " << this->id_number << endl;
+    ost << "Call Number: " << this->call_number << endl;
+    ost << "Title: " << this->title << " (" << this->release_year << ")" << endl;
+    ost << "Genre: " << this->genre << endl;
+    ost << "Artist: " << this->artist << endl;
+    ost << "Tracks: " << this->get_tracks() << endl;
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Music_Album& music_album_two)
 {
     ost << R"(

@@ -29,3 +29,8 @@ string Media::get_type()
 {
     return type;
 }
+
+string Media::to_string() const
+{
+
+}

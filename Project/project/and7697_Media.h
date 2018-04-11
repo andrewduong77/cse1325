@@ -19,6 +19,7 @@ public:
     string get_genre();
     void set_type(string type);
     string get_type();
+    virtual string to_string() const;
 protected:
     int id_number;
     string call_number;

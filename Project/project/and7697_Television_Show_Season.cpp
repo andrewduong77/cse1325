@@ -53,6 +53,27 @@ int Television_Show_Season::get_season_number()
     return season_number;
 }
 
+string Television_Show_Season::to_string() const
+{
+    string out;
+    ostringstream ost;
+    ost << R"(
+======================
+Television Show Season
+======================
+              )" << endl;
+    ost << "ID Number: " << this->id_number << endl;
+    ost << "Call Number: " << this->call_number << endl;
+    ost << "Title: " << this->title << " (" << this->release_year << ")" << endl;
+    ost << "Genre: " << this->genre << endl;
+    ost << "Producer: " << this->producer << endl;
+    ost << "Directors: " << this->get_voice_actors() << endl;
+    ost << "Leading Actors: " << this->get_composers() << endl;
+    ost << "Season Number: " << this->season_number << endl;
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Television_Show_Season& television_show_season_two)
 {
     ost << R"(
