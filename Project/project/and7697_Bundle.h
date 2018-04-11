@@ -3,14 +3,6 @@
 
 #include "and7697_Media.h"
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <sstream>
-#include <iomanip>
-
-using namespace std;
-
 class Bundle
 {
 public:

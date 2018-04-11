@@ -19,10 +19,10 @@ public:
     void load(string file_name);
 private:
     vector<Media> medias;
-    vector<Transactions> transactions;
+    vector<Transaction> transactions;
     vector<Customer> customers;
     vector<Librarian> librarians;
-    vector<Bundles> bundles;
+    vector<Bundle> bundles;
 };
 
 #endif // AND7697_LIBRARY_H_INCLUDED

@@ -1,8 +1,13 @@
 #ifndef AND7697_MEDIA_H_INCLUDED
 #define AND7697_MEDIA_H_INCLUDED
 
-#include "and7697_Library.h"
-#include "and7697_Transaction.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <iomanip>
+
+using namespace std;
 
 class Media
 {
