@@ -6,6 +6,7 @@
 
 int main()
 {
+    /*
     Book City_of_Ember(1000, "1000", "City of Ember", "Science Fiction", "Jeanne DuPrau", 2003);
 
     vector<string> leading_actors;
@@ -28,6 +29,22 @@ int main()
 
     Video_Game Halo_3(1002, "1002", "Halo 3", "Shooter", 2007, "Bungie");
 
+    vector<Media> medias;
+    medias.push_back(City_of_Ember);
+    medias.push_back(The_Lord_of_the_Rings);
+    medias.push_back(Broadcast);
+    medias.push_back(The_Simpsons);
+    medias.push_back(Halo_3);
+
+    cout << City_of_Ember.to_string();
+    cout << The_Lord_of_the_Rings.to_string();
+    for(Media it : medias)
+    {
+        cout << it.to_string();
+    }
+    */
+
+    /*
     cout << endl;
     cout << "The author of The " << City_of_Ember.get_title() << " is " << City_of_Ember.get_author() << "." << endl;
     cout << "The leading actors of " << The_Lord_of_the_Rings.get_title() << " are " << The_Lord_of_the_Rings.get_leading_actors() << "." << endl;
@@ -40,9 +57,9 @@ int main()
     cout << Halo_3;
     cout << Broadcast;
     cout << The_Simpsons;
+    */
 
     // Polymorphism ain't no work with operator overloading
-    /*
     Media *City_of_Ember = new Book(1000, "1000", "City of Ember", "Science Fiction", "Jeanne DuPrau", 2003);
 
     vector<string> leading_actors;
@@ -72,12 +89,6 @@ int main()
     medias.push_back(The_Simpsons);
     medias.push_back(Broadcast);
     for(Media* it : medias)
-    {
-        if(it->get_type() == "Book")
-        {
-            cout << it;
-        }
-    }
-    */
+        cout << it->to_string();
     return 0;
 }
