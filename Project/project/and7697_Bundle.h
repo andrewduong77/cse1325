@@ -2,8 +2,12 @@
 #define AND7697_BUNDLE_H_INCLUDED
 
 #include "and7697_Media.h"
-#include "and7697_Library.h"
-#include "and7697_Transaction.h"
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
