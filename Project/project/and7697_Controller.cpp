@@ -97,14 +97,14 @@ void Controller::add_book()
     cout << "Call Number: ";
     cin >> call_number;
     cout << "Title: ";
+    cin >> suppress; // suppress the newline character
     getline(cin, title);
-    cin >> suppress; // suppress the newline character
     cout << "Genre: ";
-    getline(cin, genre);
     cin >> suppress; // suppress the newline character
+    getline(cin, genre);
     cout << "Author: ";
+    cin >> suppress; // suppress the newline character
     getline(cin, author);
-//    cin >> suppress; // suppress the newline character
     cout << "Copyright Year: ";
     cin >> copyright_year;
     Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
