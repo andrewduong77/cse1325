@@ -39,6 +39,8 @@
 		<Unit filename="and7697_Bundle.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="and7697_Controller.cpp" />
+		<Unit filename="and7697_Controller.h" />
 		<Unit filename="and7697_Customer.cpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -79,6 +81,8 @@
 		</Unit>
 		<Unit filename="and7697_Video_Game.cpp" />
 		<Unit filename="and7697_Video_Game.h" />
+		<Unit filename="and7697_View.cpp" />
+		<Unit filename="and7697_View.h" />
 		<Unit filename="and7697_main.cpp" />
 		<Extensions>
 			<code_completion />
