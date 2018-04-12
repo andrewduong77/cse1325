@@ -13,7 +13,7 @@ public:
     void cli();
     void execute_cmd(int cmd);
     void cli_add();
-    void execute_cmd_add(int cmd_add);
+    int execute_cmd_add(int cmd_add);
     void add_book();
     void add_movie();
     void add_video_game();

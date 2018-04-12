@@ -44,29 +44,35 @@ void Controller::cli_add()
     {
         cout << view.get_media_menu();
         cin >> cmd_add;
-        execute_cmd_add(cmd_add);
+        cmd_add = execute_cmd_add(cmd_add);
         cout << endl;
     }
 }
 
-void Controller::execute_cmd_add(int cmd_add)
+int Controller::execute_cmd_add(int cmd_add)
 {
     switch(cmd_add)
     {
     case 1: // add book
         add_book();
+        cout << "Does not work!" << endl;
+        cmd_add = 6; // to exit
         break;
     case 2: // add movie
         add_movie();
+        cmd_add = 6; // to exit
         break;
     case 3: // add video game
         add_video_game();
+        cmd_add = 6; // to exit
         break;
     case 4: // add music album
         add_music_album();
+        cmd_add = 6; // to exit
         break;
     case 5: // add television show
         add_television_show_season();
+        cmd_add = 6; // to exit
         break;
     case 6: // exit
         break;
@@ -74,6 +80,7 @@ void Controller::execute_cmd_add(int cmd_add)
         cout << endl << view.print_try_again_message();
         break;
     }
+    return cmd_add;
 }
 
 void Controller::add_book()
@@ -84,20 +91,20 @@ void Controller::add_book()
     string genre;
     string author;
     int copyright_year;
-    string suppress; // suppress the newline character
+    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
     cin >> call_number;
     cout << "Title: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, title);
+    cin >> suppress; // suppress the newline character
     cout << "Genre: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, genre);
-    cout << "Author: ";
     cin >> suppress; // suppress the newline character
+    cout << "Author: ";
     getline(cin, author);
+//    cin >> suppress; // suppress the newline character
     cout << "Copyright Year: ";
     cin >> copyright_year;
     Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
@@ -113,7 +120,7 @@ void Controller::add_movie()
     int release_year;
     string producer;
     string director;
-    string suppress; // suppress the newline character
+    string suppress;
     vector<string> leading_actors;
     cout << "ID Number: ";
     cin >> id_number;
@@ -156,7 +163,7 @@ void Controller::add_video_game()
     string genre;
     int release_year;
     string studio;
-    string suppress; // suppress the newline character
+    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
@@ -185,7 +192,7 @@ void Controller::add_music_album()
     int release_year;
     string artist;
     vector<string> tracks;
-    string suppress; // suppress the newline character
+    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
@@ -227,7 +234,7 @@ void Controller::add_television_show_season()
     vector<string> voice_actors;
     vector<string> composers;
     int season_number;
-    string suppress; // suppress the newline character
+    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
