@@ -10,19 +10,20 @@
 class Library
 {
 public:
-    void create_new_sales();
-    void create_new_bundle();
-    void create_new_librarian();
-    void create_new_customer();
-    void create_new_transaction();
+    void create_new_media(Media* media);
+    void create_new_bundle(Bundle* bundle);
+    void create_new_librarian(Librarian* librarian);
+    void create_new_customer(Customer* customer);
+    void create_new_transaction(Transaction* transaction);
+    void print_medias();
     void save(string file_name);
     void load(string file_name);
 private:
-    vector<Media> medias;
-    vector<Transaction> transactions;
-    vector<Customer> customers;
-    vector<Librarian> librarians;
-    vector<Bundle> bundles;
+    vector<Media*> medias;
+    vector<Transaction*> transactions;
+    vector<Customer*> customers;
+    vector<Librarian*> librarians;
+    vector<Bundle*> bundles;
 };
 
 #endif // AND7697_LIBRARY_H_INCLUDED
