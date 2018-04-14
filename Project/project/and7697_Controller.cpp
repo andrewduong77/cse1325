@@ -42,7 +42,7 @@ void Controller::cli_add()
     int cmd_add = -1;
     while(cmd_add != 6)
     {
-        cout << view.get_media_menu();
+        cout << view.get_add_menu();
         cin >> cmd_add;
         cmd_add = execute_cmd_add(cmd_add);
         cout << endl;
@@ -53,25 +53,65 @@ int Controller::execute_cmd_add(int cmd_add)
 {
     switch(cmd_add)
     {
+    case 1: // add media
+        cli_add_media();
+        break;
+    case 2: // add transaction
+
+        break;
+    case 3: // add customer
+
+        break;
+    case 4: // add librarian
+
+        break;
+    case 5: // add bundle
+
+        break;
+    case 6: // exit
+        break;
+    default:
+        cout << endl << view.print_try_again_message();
+        break;
+    }
+    return cmd_add;
+}
+
+void Controller::cli_add_media()
+{
+    int cmd_add_media = -1;
+    while(cmd_add_media != 6)
+    {
+        cout << view.get_add_media_menu();
+        cin >> cmd_add_media;
+        cmd_add_media = execute_cmd_add_media(cmd_add_media);
+        cout << endl;
+    }
+}
+
+int Controller::execute_cmd_add_media(int cmd_add_media)
+{
+    switch(cmd_add_media)
+    {
     case 1: // add book
         add_book();
-        cmd_add = 6; // to exit
+        cmd_add_media = 6; // to exit
         break;
     case 2: // add movie
         add_movie();
-        cmd_add = 6; // to exit
+        cmd_add_media = 6; // to exit
         break;
     case 3: // add video game
         add_video_game();
-        cmd_add = 6; // to exit
+        cmd_add_media = 6; // to exit
         break;
     case 4: // add music album
         add_music_album();
-        cmd_add = 6; // to exit
+        cmd_add_media = 6; // to exit
         break;
     case 5: // add television show
         add_television_show_season();
-        cmd_add = 6; // to exit
+        cmd_add_media = 6; // to exit
         break;
     case 6: // exit
         break;
@@ -79,7 +119,7 @@ int Controller::execute_cmd_add(int cmd_add)
         cout << endl << view.print_try_again_message();
         break;
     }
-    return cmd_add;
+    return cmd_add_media;
 }
 
 void Controller::add_book()
@@ -258,6 +298,7 @@ void Controller::add_television_show_season()
         getline(cin, input);
         composers.push_back(input);
     }
+    cin >> season_number;
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
 }

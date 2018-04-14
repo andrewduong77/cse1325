@@ -14,6 +14,8 @@ public:
     void execute_cmd(int cmd);
     void cli_add();
     int execute_cmd_add(int cmd_add);
+    void cli_add_media();
+    int execute_cmd_add_media(int cmd_add_media);
     void add_book();
     void add_movie();
     void add_video_game();

@@ -15,7 +15,23 @@ Library Management System
 _> )";
 }
 
-string View::get_media_menu()
+string View::get_add_menu()
+{
+    return R"(
+=========================
+Library Management System
+=========================
+
+(1) Add Media
+(2) Add Transaction
+(3) Add Customer
+(4) Add Librarian
+(5) Add Bundle
+(6) Cancel
+_> )";
+}
+
+string View::get_add_media_menu()
 {
     return R"(
 ============
