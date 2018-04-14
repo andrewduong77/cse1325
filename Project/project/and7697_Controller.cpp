@@ -55,7 +55,6 @@ int Controller::execute_cmd_add(int cmd_add)
     {
     case 1: // add book
         add_book();
-        cout << "Does not work!" << endl;
         cmd_add = 6; // to exit
         break;
     case 2: // add movie
@@ -91,19 +90,16 @@ void Controller::add_book()
     string genre;
     string author;
     int copyright_year;
-    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
     cin >> call_number;
+    cin.ignore();
     cout << "Title: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, title);
     cout << "Genre: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, genre);
     cout << "Author: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, author);
     cout << "Copyright Year: ";
     cin >> copyright_year;
@@ -120,34 +116,31 @@ void Controller::add_movie()
     int release_year;
     string producer;
     string director;
-    string suppress;
     vector<string> leading_actors;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
     cin >> call_number;
+    cin.ignore();
     cout << "Title: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, title);
     cout << "Genre: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, genre);
     cout << "Release Year: ";
     cin >> release_year;
+    cin.ignore();
     cout << "Producer: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, producer);
     cout << "Director: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, director);
     cout << "Please input the number of leading actors: ";
     int count;
     cin >> count;
+    cin.ignore();
     cout << "Now please input the name of a leading actor and press 'enter' to input the name of the next leading actor." << endl;
     for(int i = 0; i < count; i++)
     {
         string input;
-        cin >> suppress; // suppress the newline character
         getline(cin, input);
         leading_actors.push_back(input);
     }
@@ -163,21 +156,19 @@ void Controller::add_video_game()
     string genre;
     int release_year;
     string studio;
-    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
     cin >> call_number;
+    cin.ignore();
     cout << "Title: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, title);
     cout << "Genre: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, genre);
     cout << "Release Year: ";
     cin >> release_year;
+    cin.ignore();
     cout << "Studio: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, studio);
     Video_Game* video_game = new Video_Game(id_number, call_number, title, genre, release_year, studio);
     library.create_new_media(video_game);
@@ -192,30 +183,28 @@ void Controller::add_music_album()
     int release_year;
     string artist;
     vector<string> tracks;
-    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
     cin >> call_number;
+    cin.ignore();
     cout << "Title: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, title);
     cout << "Genre: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, genre);
     cout << "Release Year: ";
     cin >> release_year;
+    cin.ignore();
     cout << "Artist: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, artist);
     cout << "Please input the number of tracks: ";
     int count;
     cin >> count;
+    cin.ignore();
     cout << "Now please input the name of a track and press 'enter' to input the name of the next track." << endl;
     for(int i = 0; i < count; i++)
     {
         string input;
-        cin >> suppress; // suppress the newline character
         getline(cin, input);
         tracks.push_back(input);
     }
@@ -234,40 +223,38 @@ void Controller::add_television_show_season()
     vector<string> voice_actors;
     vector<string> composers;
     int season_number;
-    string suppress;
     cout << "ID Number: ";
     cin >> id_number;
     cout << "Call Number: ";
     cin >> call_number;
+    cin.ignore();
     cout << "Title: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, title);
     cout << "Genre: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, genre);
     cout << "Release Year: ";
     cin >> release_year;
+    cin.ignore();
     cout << "Producer: ";
-    cin >> suppress; // suppress the newline character
     getline(cin, producer);
     cout << "Please input the number of voice actors: ";
     int count;
     cin >> count;
+    cin.ignore();
     cout << "Now please input the name of a voice actor and press 'enter' to input the name of the next voice actor." << endl;
     for(int i = 0; i < count; i++)
     {
         string input;
-        cin >> suppress; // suppress the newline character
         getline(cin, input);
         voice_actors.push_back(input);
     }
     cout << "Please input the number of composers: ";
     cin >> count;
+    cin.ignore();
     cout << "Now please input the name of a composer and press 'enter' to input the name of the next composer." << endl;
     for(int i = 0; i < count; i++)
     {
         string input;
-        cin >> suppress; // suppress the newline character
         getline(cin, input);
         composers.push_back(input);
     }

@@ -1,48 +1,91 @@
 # depslib dependency file v1.0
-1522447465 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Book.cpp
+1523698572 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Book.cpp
 	"and7697_Book.h"
 
-1522446371 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Book.h
+1523476397 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Book.h
 	"and7697_Media.h"
 
-1522427250 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Media.h
+1523476397 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Media.h
 	<iostream>
 	<string>
 	<vector>
 	<sstream>
 	<iomanip>
 
-1522354550 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_main.cpp
+1523607431 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_main.cpp
+	"and7697_Controller.h"
+
+1523476397 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Movie.h
+	"and7697_Media.h"
+
+1523476397 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Video_Game.h
+	"and7697_Media.h"
+
+1523476397 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Music_Album.h
+	"and7697_Media.h"
+
+1523476397 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Television_Show_Season.h
+	"and7697_Media.h"
+
+1523476397 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Movie.cpp
+	"and7697_Movie.h"
+
+1523476397 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Music_Album.cpp
+	"and7697_Music_Album.h"
+
+1523476397 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Television_Show_Season.cpp
+	"and7697_Television_Show_Season.h"
+
+1523476397 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Video_Game.cpp
+	"and7697_Video_Game.h"
+
+1523476397 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Media.cpp
+	"and7697_Media.h"
+
+1523607431 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Controller.h
+	"and7697_View.h"
 	"and7697_Book.h"
 	"and7697_Movie.h"
 	"and7697_Video_Game.h"
 	"and7697_Music_Album.h"
 	"and7697_Television_Show_Season.h"
+	<fstream>
 
-1522451825 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Movie.h
+1523607431 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_View.h
+	"and7697_Library.h"
+
+1523607431 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Library.h
+	"and7697_Bundle.h"
+	"and7697_Media.h"
+	"and7697_Transaction.h"
+	"and7697_Librarian.h"
+	"and7697_Customer.h"
+
+1523417487 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Bundle.h
 	"and7697_Media.h"
 
-1522451825 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Video_Game.h
+1523417487 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Transaction.h
+	"and7697_Bundle.h"
 	"and7697_Media.h"
+	"and7697_Librarian.h"
+	"and7697_Customer.h"
+	"and7697_Date.h"
+	<iostream>
+	<string>
+	<vector>
+	<sstream>
+	<iomanip>
 
-1522402771 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Music_Album.h
-	"and7697_Media.h"
+1523349113 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Librarian.h
+	<iostream>
+	<string>
 
-1522455322 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Television_Show_Season.h
-	"and7697_Media.h"
+1523349113 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Customer.h
+	<iostream>
+	<string>
 
-1522447587 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Movie.cpp
-	"and7697_Movie.h"
+1523417487 /home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Date.h
 
-1522111933 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Music_Album.cpp
-	"and7697_Music_Album.h"
-
-1522454222 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Television_Show_Season.cpp
-	"and7697_Television_Show_Season.h"
-
-1522447895 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Video_Game.cpp
-	"and7697_Video_Game.h"
-
-1522402771 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_Media.cpp
-	"and7697_Media.h"
+1523607431 source:/home/andrewduong/Documents/Classes/CSE 1325/Project/project/and7697_View.cpp
+	"and7697_View.h"
 
