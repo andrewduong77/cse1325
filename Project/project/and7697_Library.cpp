@@ -31,22 +31,23 @@ void Library::print_medias()
         cout << it->to_string();
 }
 
-// to string does not work
-//void Library::to_string() const
-//{
-//    string out;
-//    ostringstream ost;
-//    ost << "==Media==" << endl;
-//    if(medias.size() == 0)
-//        ost << "Is Empty" << endl;
-//    else
-//    {
-//        for(Media* it : medias)
-//        {
-//            ost << it->to_string_file();
-//        }
-//    }
-//}
+string Library::to_string() const
+{
+    string out;
+    ostringstream ost;
+    ost << "==Media==" << endl;
+    if(medias.size() == 0)
+        ost << "Is Empty" << endl;
+    else
+    {
+        for(Media* it : medias)
+        {
+            ost << it->to_string_file() << endl;
+        }
+    }
+    out = ost.str();
+    return out;
+}
 
 ostream& operator<<(ostream& ost, const Library& library_two)
 {
@@ -61,6 +62,7 @@ ostream& operator<<(ostream& ost, const Library& library_two)
             ost << it->to_string_file();
         }
     }
+
 }
 
 void Library::save(string file_name)
@@ -68,7 +70,7 @@ void Library::save(string file_name)
     ofstream my_file(file_name);
     if(my_file.is_open())
     {
-        if(my_file << this)
+        if(my_file << to_string())
             cout << endl << "File saved successfully.";
         else
             cout << endl << "Unable to save file.";
