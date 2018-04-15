@@ -16,6 +16,7 @@ public:
     void create_new_customer(Customer* customer);
     void create_new_transaction(Transaction* transaction);
     void print_medias();
+    void to_string() const;
     void save(string file_name);
     void load(string file_name);
 private:

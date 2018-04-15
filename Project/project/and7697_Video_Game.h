@@ -10,6 +10,7 @@ public:
     int get_release_year();
     string get_studio();
     string to_string() const;
+    string to_string_file() const;
     friend ostream& operator<<(ostream& ost, const Video_Game& video_game_two);
 private:
     int release_year;

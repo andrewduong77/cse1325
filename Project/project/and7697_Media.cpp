@@ -34,3 +34,8 @@ string Media::to_string() const
 {
 
 }
+
+string Media::to_string_file() const
+{
+
+}

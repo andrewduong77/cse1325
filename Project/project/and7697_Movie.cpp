@@ -54,6 +54,22 @@ Movie
     return out;
 }
 
+string Movie::to_string_file() const
+{
+    string out;
+    ostringstream ost;
+    ost << this->type << ";"
+        << this->id_number << ";"
+        << this->call_number << ";"
+        << this->title << ";"
+        << this->genre << ";"
+        << this->producer << ";"
+        << this->director << ";"
+        << this->get_leading_actors();
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Movie& movie_two)
 {
     ost << R"(

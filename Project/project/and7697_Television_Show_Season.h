@@ -13,6 +13,7 @@ public:
     string get_composers() const;
     int get_season_number();
     string to_string() const;
+    string to_string_file() const;
     friend ostream& operator<<(ostream& ost, const Television_Show_Season& television_show_season_two);
 private:
     int release_year;

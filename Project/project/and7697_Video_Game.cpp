@@ -28,6 +28,20 @@ Video Game
     return out;
 }
 
+string Video_Game::to_string_file() const
+{
+    string out;
+    ostringstream ost;
+    ost << this->type << ";"
+        << this->id_number << ";"
+        << this->call_number << ";"
+        << this->title << ";"
+        << this->genre << ";"
+        << this->studio;
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Video_Game& video_game_two)
 {
     ost << R"(

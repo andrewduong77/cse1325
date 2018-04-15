@@ -20,6 +20,7 @@ public:
     void set_type(string type);
     string get_type();
     virtual string to_string() const;
+    virtual string to_string_file() const;
 protected:
     int id_number;
     string call_number;

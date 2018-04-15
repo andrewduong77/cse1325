@@ -29,6 +29,21 @@ Book
     return out;
 }
 
+string Book::to_string_file() const
+{
+    string out;
+    ostringstream ost;
+    ost << this->type << ";"
+        << this->id_number << ";"
+        << this->call_number << ";"
+        << this->title << ";"
+        << this->genre << ";"
+        << this->author << ";"
+        << this->copyright_year;
+    out = ost.str();
+    return out;
+}
+
 ostream& operator<<(ostream& ost, const Book& book_two)
 {
     ost << R"(

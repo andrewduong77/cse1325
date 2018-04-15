@@ -12,6 +12,7 @@ public:
     string get_director();
     string get_leading_actors() const;
     string to_string() const;
+    string to_string_file() const;
     friend ostream& operator<<(ostream& ost, const Movie& movie_two);
 private:
     int release_year;
