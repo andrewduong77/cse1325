@@ -31,37 +31,50 @@ void Library::print_medias()
         cout << it->to_string();
 }
 
-void Library::to_string() const
-{
+// to string does not work
+//void Library::to_string() const
+//{
 //    string out;
 //    ostringstream ost;
 //    ost << "==Media==" << endl;
-//    if(media.size() == 0)
+//    if(medias.size() == 0)
 //        ost << "Is Empty" << endl;
 //    else
 //    {
 //        for(Media* it : medias)
 //        {
-//            if(it->get_type() == "Book")
-//            {
-//                ;
-//            }
+//            ost << it->to_string_file();
 //        }
 //    }
+//}
+
+ostream& operator<<(ostream& ost, const Library& library_two)
+{
+    string out;
+    ost << "==Media==" << endl;
+    if(library_two.medias.size() == 0)
+        ost << "Is Empty" << endl;
+    else
+    {
+        for(Media* it : library_two.medias)
+        {
+            ost << it->to_string_file();
+        }
+    }
 }
 
 void Library::save(string file_name)
 {
-//    ostream my_file(file_name);
-//    if(my_file.is_open())
-//    {
-//        if(my_file << library.to_string())
-//            cout << endl << "File saved successfully.";
-//        else
-//            cout << endl << "Unable to save file.";
-//    }
-//    else
-//        cout << endl << "Unable to open file.";
+    ofstream my_file(file_name);
+    if(my_file.is_open())
+    {
+        if(my_file << this)
+            cout << endl << "File saved successfully.";
+        else
+            cout << endl << "Unable to save file.";
+    }
+    else
+        cout << endl << "Unable to open file.";
 }
 
 void Library::load(string file_name)

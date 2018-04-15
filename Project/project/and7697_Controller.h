@@ -23,6 +23,8 @@ public:
     void add_television_show_season();
     void add_customer();
     void add_librarian();
+    void save();
+    void load();
 private:
     Library& library;
     View& view;

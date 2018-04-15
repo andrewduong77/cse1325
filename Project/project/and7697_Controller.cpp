@@ -29,10 +29,10 @@ void Controller::execute_cmd(int cmd)
 
         break;
     case 5: // save file
-
+        save();
         break;
     case 6: // load file
-
+        load();
         break;
     case 7: // exit
         cout << endl << "Thank You!";
@@ -61,15 +61,18 @@ int Controller::execute_cmd_add(int cmd_add)
     {
     case 1: // add media
         cli_add_media();
+        cmd_add = 6; // to exit
         break;
     case 2: // add transaction
 
         break;
     case 3: // add customer
         add_customer();
+        cmd_add = 6; // to exit
         break;
     case 4: // add librarian
         add_librarian();
+        cmd_add = 6; // to exit
         break;
     case 5: // add bundle
 
@@ -341,4 +344,22 @@ void Controller::add_librarian()
     cin >> id;
     Librarian* librarian = new Librarian(name, id);
     library.create_new_librarian(librarian);
+}
+
+void Controller::save()
+{
+    string file_name;
+    cout << "Save filename: ";
+    cin.ignore();
+    getline(cin, file_name);
+    library.save(file_name);
+}
+
+void Controller::load()
+{
+    string file_name;
+    cout << "Load filename: ";
+    cin.ignore();
+    getline(cin, file_name);
+    library.load(file_name);
 }

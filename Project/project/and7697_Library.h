@@ -1,6 +1,8 @@
 #ifndef AND7697_LIBRARY_H_INCLUDED
 #define AND7697_LIBRARY_H_INCLUDED
 
+#include <fstream>
+
 #include "and7697_Bundle.h"
 #include "and7697_Media.h"
 #include "and7697_Transaction.h"
@@ -16,7 +18,8 @@ public:
     void create_new_customer(Customer* customer);
     void create_new_transaction(Transaction* transaction);
     void print_medias();
-    void to_string() const;
+//    void to_string() const;
+    friend ostream& operator<<(ostream& ost, const Library& library_two);
     void save(string file_name);
     void load(string file_name);
 private:
