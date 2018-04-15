@@ -11,7 +11,9 @@ Library Management System
 (2) Add
 (3) Check in
 (4) Check out
-(5) Exit
+(5) Save File
+(6) Load File
+(7) Exit
 _> )";
 }
 

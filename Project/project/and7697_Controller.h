@@ -21,6 +21,8 @@ public:
     void add_video_game();
     void add_music_album();
     void add_television_show_season();
+    void add_customer();
+    void add_librarian();
 private:
     Library& library;
     View& view;

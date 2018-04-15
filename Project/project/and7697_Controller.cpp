@@ -3,7 +3,7 @@
 void Controller::cli()
 {
     int cmd = -1;
-    while(cmd != 5)
+    while(cmd != 7)
     {
         cout << view.get_menu();
         cin >> cmd;
@@ -28,7 +28,13 @@ void Controller::execute_cmd(int cmd)
     case 4: // check out
 
         break;
-    case 5: // exit
+    case 5: // save file
+
+        break;
+    case 6: // load file
+
+        break;
+    case 7: // exit
         cout << endl << "Thank You!";
         break;
     default: // invalid input
@@ -60,10 +66,10 @@ int Controller::execute_cmd_add(int cmd_add)
 
         break;
     case 3: // add customer
-
+        add_customer();
         break;
     case 4: // add librarian
-
+        add_librarian();
         break;
     case 5: // add bundle
 
@@ -301,4 +307,38 @@ void Controller::add_television_show_season()
     cin >> season_number;
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
+}
+
+void Controller::add_customer()
+{
+    string name;
+    int id;
+    int phone;
+    string email;
+    double balance;
+    cout << "Name: ";
+    getline(cin, name);
+    cout << "ID: ";
+    cin >> id;
+    cout << "Phone: ";
+    cin >> phone;
+    cin.ignore();
+    cout << "Email: ";
+    getline(cin, email);
+    cout << "Balance: ";
+    cin >> balance;
+    Customer* customer = new Customer(name, id, phone, email, balance);
+    library.create_new_customer(customer);
+}
+
+void Controller::add_librarian()
+{
+    string name;
+    int id;
+    cout << "Name: ";
+    getline(cin, name);
+    cout << "ID: ";
+    cin >> id;
+    Librarian* librarian = new Librarian(name, id);
+    library.create_new_librarian(librarian);
 }
