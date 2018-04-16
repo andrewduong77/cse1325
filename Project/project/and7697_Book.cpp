@@ -39,7 +39,7 @@ string Book::to_string_file() const
         << this->title << ";"
         << this->genre << ";"
         << this->author << ";"
-        << this->copyright_year;
+        << this->copyright_year << endl;
     out = ost.str();
     return out;
 }

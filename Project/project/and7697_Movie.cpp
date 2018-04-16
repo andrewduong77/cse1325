@@ -65,7 +65,7 @@ string Movie::to_string_file() const
         << this->genre << ";"
         << this->producer << ";"
         << this->director << ";"
-        << this->get_leading_actors();
+        << this->get_leading_actors() << endl;
     out = ost.str();
     return out;
 }

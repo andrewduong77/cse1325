@@ -1,3 +1,6 @@
+#ifndef AND7697_VIEW_H_INCLUDED
+#define AND7697_VIEW_H_INCLUDED
+
 #include "and7697_Library.h"
 
 class View
@@ -11,3 +14,5 @@ public:
 private:
     Library& library;
 };
+
+#endif // AND7697_VIEW_H_INCLUDED

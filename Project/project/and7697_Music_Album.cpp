@@ -75,7 +75,7 @@ string Music_Album::to_string_file() const
         << this->title << ";"
         << this->genre << ";"
         << this->artist << ";"
-        << this->get_tracks_string();
+        << this->get_tracks_string() << endl;
     out = ost.str();
     return out;
 }

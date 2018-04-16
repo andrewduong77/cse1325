@@ -320,6 +320,7 @@ void Controller::add_customer()
     string email;
     double balance;
     cout << "Name: ";
+    cin.ignore();
     getline(cin, name);
     cout << "ID: ";
     cin >> id;
@@ -339,6 +340,7 @@ void Controller::add_librarian()
     string name;
     int id;
     cout << "Name: ";
+    cin.ignore();
     getline(cin, name);
     cout << "ID: ";
     cin >> id;
@@ -352,7 +354,17 @@ void Controller::save()
     cout << "Save filename: ";
     cin.ignore();
     getline(cin, file_name);
-    library.save(file_name);
+//    library.save(file_name);
+    ofstream my_file(file_name);
+    if(my_file.is_open())
+    {
+        if(my_file << library)
+            cout << endl << "File saved successfully.";
+        else
+            cout << endl << "Unable to save file.";
+    }
+    else
+        cout << endl << "Unable to open file.";
 }
 
 void Controller::load()

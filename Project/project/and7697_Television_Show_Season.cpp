@@ -86,7 +86,7 @@ string Television_Show_Season::to_string_file() const
         << this->producer << ";"
         << this->get_voice_actors() << ";"
         << this->get_composers() << ";"
-        << this->season_number;
+        << this->season_number << endl;
     out = ost.str();
     return out;
 }

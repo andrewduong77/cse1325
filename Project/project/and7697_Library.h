@@ -18,7 +18,7 @@ public:
     void create_new_customer(Customer* customer);
     void create_new_transaction(Transaction* transaction);
     void print_medias();
-    string to_string() const;
+//    string to_string() const;
     friend ostream& operator<<(ostream& ost, const Library& library_two);
     void save(string file_name);
     void load(string file_name);

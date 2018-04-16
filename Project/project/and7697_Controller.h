@@ -1,9 +1,13 @@
+#ifndef AND7697_CONTROLLER_H_INCLUDED
+#define AND7697_CONTROLLER_H_INCLUDED
+
 #include "and7697_View.h"
 #include "and7697_Book.h"
 #include "and7697_Movie.h"
 #include "and7697_Video_Game.h"
 #include "and7697_Music_Album.h"
 #include "and7697_Television_Show_Season.h"
+
 #include <fstream>
 
 class Controller
@@ -29,3 +33,5 @@ private:
     Library& library;
     View& view;
 };
+
+#endif // AND7697_CONTROLLER_H_INCLUDED
