@@ -1,5 +1,14 @@
 #include "and7697_Controller.h"
 
+int Controller::gui(int argc, char *argv[])
+{
+    Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "com.gtkmm.tutorial3.base");
+
+    Dialog dialog;
+
+    return app->run(dialog);
+}
+
 void Controller::cli()
 {
     int cmd = -1;
