@@ -12,7 +12,16 @@ public:
     Dialog();
     virtual ~Dialog();
 protected:
-
+    void on_browse_catalog_button_click();
+    void on_add_button_click();
+    void on_check_in_button_click();
+    void on_check_out_button_click();
+    void on_save_button_click();
+    void on_load_button_click();
+    void on_exit_button_click();
+    void on_quit_click();
+    void dialog(Glib::ustring msg);
+private:
 };
 
 #endif // AND7697_DIALOG_H
