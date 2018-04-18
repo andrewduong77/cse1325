@@ -53,6 +53,8 @@
 		<Unit filename="and7697_Date.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="and7697_Dialog.cpp" />
+		<Unit filename="and7697_Dialog.h" />
 		<Unit filename="and7697_Librarian.cpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

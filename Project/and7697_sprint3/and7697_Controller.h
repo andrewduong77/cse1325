@@ -7,6 +7,7 @@
 #include "and7697_Video_Game.h"
 #include "and7697_Music_Album.h"
 #include "and7697_Television_Show_Season.h"
+#include "and7697_Dialog.h"
 
 #include <fstream>
 
@@ -14,6 +15,7 @@ class Controller
 {
 public:
     Controller(Library& t, View& v) : library(t), view(v) {};
+    int gui(int argc, char *argv[]);
     void cli();
     void execute_cmd(int cmd);
     void cli_add();
