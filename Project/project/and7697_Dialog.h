@@ -19,7 +19,15 @@ protected:
     void on_save_button_click();
     void on_load_button_click();
     void on_exit_button_click();
-    void on_quit_click();
+    void on_add_transaction_button_click();
+    void on_add_customer_button_click();
+    void on_add_librarian_button_click();
+    void on_add_bundle_click();
+    void on_add_book_button_click();
+    void on_add_movie_button_click();
+    void on_add_video_game_button_click();
+    void on_add_music_album_button_click();
+    void on_add_television_show_season_button_click();
     void dialog(Glib::ustring msg);
 private:
 };
