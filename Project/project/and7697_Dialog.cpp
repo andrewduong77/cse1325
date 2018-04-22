@@ -5,11 +5,14 @@ Dialog::Dialog()
     set_default_size(0, 0);
     set_title("Library Management System");
 
-    Gtk::Box *hbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
-    add(*hbox);
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    add(*vbox);
+
+    Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox1);
 
     Gtk::Box *vbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
-    hbox->add(*vbox1);
+    hbox1->add(*vbox1);
 
     Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
     grid1->set_border_width(10);
@@ -38,12 +41,8 @@ Dialog::Dialog()
     b6->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
     grid1->attach(*b6, 0, 6, 1, 1);
 
-    Gtk::Button *b7 = Gtk::manage(new Gtk::Button("Exit"));
-    b7->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
-    grid1->attach(*b7, 0, 7, 1, 1);
-
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
-    hbox->add(*vbox2);
+    hbox1->add(*vbox2);
 
     Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
     grid2->set_border_width(10);
@@ -69,7 +68,7 @@ Dialog::Dialog()
     grid2->attach(*b12, 0, 5, 1, 1);
 
     Gtk::Box *vbox3 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
-    hbox->add(*vbox3);
+    hbox1->add(*vbox3);
 
     Gtk::Grid *grid3 = Gtk::manage(new Gtk::Grid);
     grid3->set_border_width(10);
@@ -98,7 +97,19 @@ Dialog::Dialog()
     b19->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
     grid3->attach(*b19, 0, 5, 1, 1);
 
-    hbox->show_all();
+    Gtk::Box *hbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox2);
+
+    Gtk::Grid *grid4 = Gtk::manage(new Gtk::Grid);
+    grid4->set_border_width(10);
+    hbox2->add(*grid4);
+
+    Gtk::Button *b7 = Gtk::manage(new Gtk::Button("Exit"));
+    b7->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    b7->set_hexpand(true);
+    grid4->attach(*b7, 0, 7, 1, 1);
+
+    vbox->show_all();
 }
 
 Dialog::~Dialog()
