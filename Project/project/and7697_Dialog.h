@@ -26,6 +26,7 @@ protected:
     void on_save_button_click();
     void on_load_button_click();
     void on_exit_button_click();
+    void on_quit_click();
     void dialog(Glib::ustring msg);
     void on_add_transaction_button_click();
     void on_add_customer_button_click();

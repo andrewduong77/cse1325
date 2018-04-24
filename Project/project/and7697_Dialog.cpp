@@ -8,6 +8,17 @@ Dialog::Dialog(Library& l) : library(l)
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     add(*vbox);
 
+    Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar());
+    vbox->pack_start(*menubar, Gtk::PACK_SHRINK, 0);
+
+    Gtk::MenuItem *menuitem_file = Gtk::manage(new Gtk::MenuItem("_File", true));
+    menubar->append(*menuitem_file);
+    Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
+    menuitem_file->set_submenu(*filemenu);
+    Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit", true));
+    menuitem_quit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_quit_click));
+    filemenu->append(*menuitem_quit);
+
     Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox1);
 
@@ -194,6 +205,12 @@ void Dialog::on_load_button_click()
 }
 
 void Dialog::on_exit_button_click()
+{
+    dialog("Thank You!");
+    hide();
+}
+
+void Dialog::on_quit_click()
 {
     dialog("Thank You!");
     hide();
