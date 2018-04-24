@@ -203,7 +203,7 @@ void Dialog::on_check_in_button_click()
                 dialog("Media is already checked in.");
                 break;
             }
-            else // if is checked out then call check_in
+            else // if is checked out then call check_in()
             {
                 it->check_in();
                 cout << "Media checked in." << endl;
@@ -217,7 +217,30 @@ void Dialog::on_check_in_button_click()
 
 void Dialog::on_check_out_button_click()
 {
-    
+    dialog("Please the CLI interface to check in a media item.");
+    cout << "Please input the id number of the media you would like to check out: " << endl;
+    int id_number;
+    cin >> id_number;
+    for(Media* it : library.get_medias())
+    {
+        if(id_number == it->get_id_number())
+        {
+            if(it->is_checked_out() == true) // if is checked out then display is checked out
+            {
+                cout << "Media is already checked out." << endl;
+                dialog("Media is already checked out.");
+                break;
+            }
+            else // if is not checked out then call check_out()
+            {
+                it->check_out();
+                cout << "Media checked out." << endl;
+                dialog("Media checked out.");
+                break;
+            }
+        }
+    }
+    cout << "Return to the main menu." << endl;
 }
 
 void Dialog::on_save_button_click()
