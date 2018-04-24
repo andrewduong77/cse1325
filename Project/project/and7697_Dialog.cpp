@@ -51,13 +51,17 @@ Dialog::Dialog(Library& l) : library(l)
     button_check_out->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_button_click));
     grid1->attach(*button_check_out, 0, 4, 1, 1);
 
+    Gtk::Button *button_pay_balance = Gtk::manage(new Gtk::Button("Pay Balance"));
+    button_pay_balance->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_pay_balance_button_click));
+    grid1->attach(*button_pay_balance, 0, 5, 1, 1);
+
     Gtk::Button *button_save = Gtk::manage(new Gtk::Button("Save"));
     button_save->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
-    grid1->attach(*button_save, 0, 5, 1, 1);
+    grid1->attach(*button_save, 0, 6, 1, 1);
 
     Gtk::Button *button_load = Gtk::manage(new Gtk::Button("Load"));
     button_load->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
-    grid1->attach(*button_load, 0, 6, 1, 1);
+    grid1->attach(*button_load, 0, 7, 1, 1);
 
     /*
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
@@ -241,6 +245,11 @@ void Dialog::on_check_out_button_click()
         }
     }
     cout << "Return to the main menu." << endl;
+}
+
+void Dialog::on_pay_balance_button_click()
+{
+
 }
 
 void Dialog::on_save_button_click()

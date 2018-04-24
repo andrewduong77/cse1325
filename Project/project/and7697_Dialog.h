@@ -24,10 +24,10 @@ protected:
     // ***For Main Menu***
     void on_check_in_button_click();
     void on_check_out_button_click();
+    void on_pay_balance_button_click();
     void on_save_button_click();
     void on_load_button_click();
     void on_exit_button_click();
-    // void on_exit_click();
     void dialog(Glib::ustring msg);
     // ***For Add***
     void on_add_media_button_click();
