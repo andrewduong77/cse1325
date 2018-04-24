@@ -59,6 +59,7 @@ Dialog::Dialog(Library& l) : library(l)
     button_load->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
     grid1->attach(*button_load, 0, 6, 1, 1);
 
+    /*
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     hbox1->add(*vbox2);
 
@@ -114,7 +115,9 @@ Dialog::Dialog(Library& l) : library(l)
     Gtk::Button *button_add_television_show_season = Gtk::manage(new Gtk::Button("Add Television Show Season"));
     button_add_television_show_season->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_television_show_season_button_click));
     grid3->attach(*button_add_television_show_season, 0, 5, 1, 1);
+    */
 
+    /*
     Gtk::Box *hbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox2);
 
@@ -126,6 +129,7 @@ Dialog::Dialog(Library& l) : library(l)
     button_exit->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
     button_exit->set_hexpand(true);
     grid4->attach(*button_exit, 0, 7, 1, 1);
+    */
 
     vbox->show_all();
 }
@@ -185,29 +189,30 @@ void Dialog::on_add_button_click()
 
 void Dialog::on_check_in_button_click()
 {
-    // It doesn't work because of the darn private variables.
-    // dialog("Please the CLI interface to check in a media item.");
-    // cout << "Please input the id number of the media you would like to check in: " << endl;
-    // int id_number;
-    // cin >> id_number;
-    // for(Media it : library.medias)
-    // {
-    //     if(id_number == it.get_id_number())
-    //     {
-    //         if(it.is_checked_out() == false)
-    //         {
-    //             dialog("Media is already checked in.");
-    //             break;
-    //         }
-    //         else
-    //         {
-    //             it.is_checked_out() = false;
-    //             dialog("Media checked in.");
-    //             break;
-    //         }
-    //     }
-    // }
-    // cout << "Return to the main menu." << endl;
+    dialog("Please the CLI interface to check in a media item.");
+    cout << "Please input the id number of the media you would like to check in: " << endl;
+    int id_number;
+    cin >> id_number;
+    for(Media* it : library.get_medias())
+    {
+        if(id_number == it->get_id_number())
+        {
+            if(it->is_checked_out() == false) // if is not checked out then display is checked in
+            {
+                cout << "Media is already checked in." << endl;
+                dialog("Media is already checked in.");
+                break;
+            }
+            else // if is checked out then call check_in
+            {
+                it->check_in();
+                cout << "Media checked in." << endl;
+                dialog("Media checked in.");
+                break;
+            }
+        }
+    }
+    cout << "Return to the main menu." << endl;
 }
 
 void Dialog::on_check_out_button_click()
