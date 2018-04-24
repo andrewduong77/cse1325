@@ -2,7 +2,7 @@
 
 Dialog::Dialog(Library& l) : library(l)
 {
-    set_default_size(0, 0);
+    // set_default_size(0, 0);
     set_title("Library Management System");
 
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
@@ -15,9 +15,13 @@ Dialog::Dialog(Library& l) : library(l)
     menubar->append(*menuitem_file);
     Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
     menuitem_file->set_submenu(*filemenu);
-    Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit", true));
-    menuitem_quit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_quit_click));
-    filemenu->append(*menuitem_quit);
+    Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
+    menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    filemenu->append(*menuitem_exit);
+    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save", true));
+    menuitem_save->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
+    Gtk::MenuItem *menuitem_load = Gtk::manage(new Gtk::MenuItem("_Save", true));
+    menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
 
     Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox1);
@@ -35,6 +39,10 @@ Dialog::Dialog(Library& l) : library(l)
     Gtk::Button *button_browse_catalog = Gtk::manage(new Gtk::Button("Browse Catalog"));
     button_browse_catalog->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_browse_catalog_button_click));
     grid1->attach(*button_browse_catalog, 0, 1, 1, 1);
+
+    Gtk::Button *add_button = Gtk::manage(new Gtk::Button("Add"));
+    add_button->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_button_click));
+    grid1->attach(*add_button, 0, 2, 1, 1);
 
     Gtk::Button *button_check_in = Gtk::manage(new Gtk::Button("Check in"));
     button_check_in->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_button_click));
@@ -128,6 +136,63 @@ Dialog::~Dialog()
     //dtor
 }
 
+/*
+void Dialog::dialog_add()
+{
+    Gtk::Window *window = new Gtk::Window();
+    // window->set_default_size(400, 200);
+    window->set_title("Add");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window->add(*vbox); // It seems like the vbox content does not show up for window.
+
+    Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar());
+    vbox->pack_start(*menubar, Gtk::PACK_SHRINK, 0);
+
+    Gtk::MenuItem *menuitem_file = Gtk::manage(new Gtk::MenuItem("_File", true));
+    menubar->append(*menuitem_file);
+    Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
+    menuitem_file->set_submenu(*filemenu);
+    Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
+    menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    filemenu->append(*menuitem_exit);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label_add = Gtk::manage(new Gtk::Label("Add"));
+    grid->attach(*label_add, 0, 0, 1, 1);
+
+    Gtk::Button *button_add = Gtk::manage(new Gtk::Button("Add Media"));
+    button_add->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_button_click));
+    grid->attach(*button_add, 0, 2, 1, 1);
+
+    Gtk::Button *button_add_transaction = Gtk::manage(new Gtk::Button("Add Transaction"));
+    button_add_transaction->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_transaction_button_click));
+    grid->attach(*button_add_transaction, 0, 2, 1, 1);
+
+    Gtk::Button *button_add_customer = Gtk::manage(new Gtk::Button("Add Customer"));
+    button_add_customer->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_customer_button_click));
+    grid->attach(*button_add_customer, 0, 3, 1, 1);
+
+    Gtk::Button *button_add_librarian = Gtk::manage(new Gtk::Button("Add Librarian"));
+    button_add_librarian->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_librarian_button_click));
+    grid->attach(*button_add_librarian, 0, 4, 1, 1);
+
+    Gtk::Button *button_add_bundle = Gtk::manage(new Gtk::Button("Add Bundle"));
+    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_click));
+    grid->attach(*button_add_bundle, 0, 5, 1, 1);
+
+    // Gtk::Button *button_exit = Gtk::manage(new Gtk::Button("Cancel"));
+    // button_exit->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    // grid->attach(*button_exit, 0, 6, 1, 1);
+
+    window->show_all();
+    // vbox->show_all();
+}
+*/
+
 void Dialog::on_browse_catalog_button_click()
 {
     dialog("Use the CLI interface to view the catalog.");
@@ -136,8 +201,62 @@ void Dialog::on_browse_catalog_button_click()
 
 void Dialog::on_add_button_click()
 {
-    
+    Gtk::Window *window = new Gtk::Window();
+    // window->set_default_size(400, 200);
+    window->set_title("Add");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window->add(*vbox); // It seems like the vbox content does not show up for window.
+
+    // Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar());
+    // vbox->pack_start(*menubar, Gtk::PACK_SHRINK, 0);
+
+    // Gtk::MenuItem *menuitem_file = Gtk::manage(new Gtk::MenuItem("_File", true));
+    // menubar->append(*menuitem_file);
+    // Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
+    // menuitem_file->set_submenu(*filemenu);
+    // Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
+    // menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    // filemenu->append(*menuitem_exit);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label_add = Gtk::manage(new Gtk::Label("Add"));
+    grid->attach(*label_add, 0, 0, 1, 1);
+
+    Gtk::Button *button_add = Gtk::manage(new Gtk::Button("Add Media"));
+    button_add->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_button_click));
+    grid->attach(*button_add, 0, 2, 1, 1);
+
+    Gtk::Button *button_add_transaction = Gtk::manage(new Gtk::Button("Add Transaction"));
+    button_add_transaction->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_transaction_button_click));
+    grid->attach(*button_add_transaction, 0, 2, 1, 1);
+
+    Gtk::Button *button_add_customer = Gtk::manage(new Gtk::Button("Add Customer"));
+    button_add_customer->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_customer_button_click));
+    grid->attach(*button_add_customer, 0, 3, 1, 1);
+
+    Gtk::Button *button_add_librarian = Gtk::manage(new Gtk::Button("Add Librarian"));
+    button_add_librarian->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_librarian_button_click));
+    grid->attach(*button_add_librarian, 0, 4, 1, 1);
+
+    Gtk::Button *button_add_bundle = Gtk::manage(new Gtk::Button("Add Bundle"));
+    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_click));
+    grid->attach(*button_add_bundle, 0, 5, 1, 1);
+
+    // Gtk::Button *button_exit = Gtk::manage(new Gtk::Button("Cancel"));
+    // button_exit->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    // grid->attach(*button_exit, 0, 6, 1, 1);
+
+    window->show_all();
+    // vbox->show_all();
 }
+
+/*
+***For Main Menu***
+*/
 
 void Dialog::on_check_in_button_click()
 {
@@ -210,11 +329,13 @@ void Dialog::on_exit_button_click()
     hide();
 }
 
-void Dialog::on_quit_click()
+/*
+void Dialog::on_exit_click()
 {
     dialog("Thank You!");
     hide();
 }
+*/
 
 void Dialog::dialog(Glib::ustring msg)
 {
@@ -222,6 +343,10 @@ void Dialog::dialog(Glib::ustring msg)
     dlg.set_title("Librarian Management System");
     dlg.run();
 }
+
+/*
+***For Add***
+*/
 
 void Dialog::on_add_transaction_button_click()
 {
@@ -274,6 +399,10 @@ void Dialog::on_add_bundle_click()
 {
 
 }
+
+/*
+***For Add Media***
+*/
 
 void Dialog::on_add_book_button_click()
 {
