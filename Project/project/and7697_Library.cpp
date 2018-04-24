@@ -50,6 +50,11 @@ vector<Transaction*> Library::get_transactions()
     return transactions;
 }
 
+vector<Media*> Library::get_checked_out_list()
+{
+    return this->checked_out_list;
+}
+
 void Library::print_medias()
 {
     for(Media* it : medias)
