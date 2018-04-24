@@ -12,6 +12,7 @@ class Customer
 {
 public:
     Customer(string n, int idn, int p, string e, double b) : name {n}, id {idn}, phone {p}, email {e}, balance {b}, type {"Customer"} {};
+    void pay_balance();
     string get_name();
     int get_id();
     int get_phone();

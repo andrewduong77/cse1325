@@ -13,6 +13,8 @@ class Media
 {
 public:
     Media(int idn, string cn, string t, string g) : id_number {idn}, call_number {cn}, title {t}, genre {g}, checked_out {false}, type{"Media"} {};
+    void check_out();
+    void check_in();
     int get_id_number();
     string get_call_number();
     string get_title();

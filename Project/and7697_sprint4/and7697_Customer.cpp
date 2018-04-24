@@ -1,5 +1,10 @@
 #include "and7697_Customer.h"
 
+void Customer::pay_balance()
+{
+    this->balance = 0.0; // reset balance to zero after paying balance
+}
+
 string Customer::get_name()
 {
     return name;

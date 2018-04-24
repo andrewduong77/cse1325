@@ -1,5 +1,15 @@
 #include "and7697_Media.h"
 
+void Media::check_out()
+{
+    this->checked_out = true;
+}
+
+void Media::check_in()
+{
+    this->checked_out = false;
+}
+
 int Media::get_id_number()
 {
     return id_number;

@@ -2,7 +2,6 @@
 
 Dialog::Dialog(Library& l) : library(l)
 {
-    set_default_size(0, 0);
     set_title("Library Management System");
 
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
@@ -15,9 +14,13 @@ Dialog::Dialog(Library& l) : library(l)
     menubar->append(*menuitem_file);
     Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
     menuitem_file->set_submenu(*filemenu);
-    Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit", true));
-    menuitem_quit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_quit_click));
-    filemenu->append(*menuitem_quit);
+    Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
+    menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    filemenu->append(*menuitem_exit);
+    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save", true));
+    menuitem_save->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
+    Gtk::MenuItem *menuitem_load = Gtk::manage(new Gtk::MenuItem("_Save", true));
+    menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
 
     Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox1);
@@ -36,6 +39,10 @@ Dialog::Dialog(Library& l) : library(l)
     button_browse_catalog->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_browse_catalog_button_click));
     grid1->attach(*button_browse_catalog, 0, 1, 1, 1);
 
+    Gtk::Button *add_button = Gtk::manage(new Gtk::Button("Add"));
+    add_button->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_button_click));
+    grid1->attach(*add_button, 0, 2, 1, 1);
+
     Gtk::Button *button_check_in = Gtk::manage(new Gtk::Button("Check in"));
     button_check_in->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_button_click));
     grid1->attach(*button_check_in, 0, 3, 1, 1);
@@ -44,14 +51,19 @@ Dialog::Dialog(Library& l) : library(l)
     button_check_out->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_button_click));
     grid1->attach(*button_check_out, 0, 4, 1, 1);
 
+    Gtk::Button *button_pay_balance = Gtk::manage(new Gtk::Button("Pay Balance"));
+    button_pay_balance->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_pay_balance_button_click));
+    grid1->attach(*button_pay_balance, 0, 5, 1, 1);
+
     Gtk::Button *button_save = Gtk::manage(new Gtk::Button("Save"));
     button_save->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
-    grid1->attach(*button_save, 0, 5, 1, 1);
+    grid1->attach(*button_save, 0, 6, 1, 1);
 
     Gtk::Button *button_load = Gtk::manage(new Gtk::Button("Load"));
     button_load->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
-    grid1->attach(*button_load, 0, 6, 1, 1);
+    grid1->attach(*button_load, 0, 7, 1, 1);
 
+    /*
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     hbox1->add(*vbox2);
 
@@ -107,7 +119,9 @@ Dialog::Dialog(Library& l) : library(l)
     Gtk::Button *button_add_television_show_season = Gtk::manage(new Gtk::Button("Add Television Show Season"));
     button_add_television_show_season->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_television_show_season_button_click));
     grid3->attach(*button_add_television_show_season, 0, 5, 1, 1);
+    */
 
+    /*
     Gtk::Box *hbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox2);
 
@@ -119,6 +133,7 @@ Dialog::Dialog(Library& l) : library(l)
     button_exit->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
     button_exit->set_hexpand(true);
     grid4->attach(*button_exit, 0, 7, 1, 1);
+    */
 
     vbox->show_all();
 }
@@ -136,39 +151,105 @@ void Dialog::on_browse_catalog_button_click()
 
 void Dialog::on_add_button_click()
 {
-    
+    Gtk::Window *window = new Gtk::Window();
+    window->set_title("Add");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window->add(*vbox);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label_add = Gtk::manage(new Gtk::Label("Add"));
+    grid->attach(*label_add, 0, 0, 1, 1);
+
+    Gtk::Button *button_add = Gtk::manage(new Gtk::Button("Add Media"));
+    button_add->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_media_button_click));
+    grid->attach(*button_add, 0, 2, 1, 1);
+
+    Gtk::Button *button_add_transaction = Gtk::manage(new Gtk::Button("Add Transaction"));
+    button_add_transaction->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_transaction_button_click));
+    grid->attach(*button_add_transaction, 0, 2, 1, 1);
+
+    Gtk::Button *button_add_customer = Gtk::manage(new Gtk::Button("Add Customer"));
+    button_add_customer->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_customer_button_click));
+    grid->attach(*button_add_customer, 0, 3, 1, 1);
+
+    Gtk::Button *button_add_librarian = Gtk::manage(new Gtk::Button("Add Librarian"));
+    button_add_librarian->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_librarian_button_click));
+    grid->attach(*button_add_librarian, 0, 4, 1, 1);
+
+    Gtk::Button *button_add_bundle = Gtk::manage(new Gtk::Button("Add Bundle"));
+    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_click));
+    grid->attach(*button_add_bundle, 0, 5, 1, 1);
+
+    window->show_all();
 }
+
+/*
+***For Main Menu***
+*/
 
 void Dialog::on_check_in_button_click()
 {
-    // It doesn't work because of the darn private variables.
-    // dialog("Please the CLI interface to check in a media item.");
-    // cout << "Please input the id number of the media you would like to check in: " << endl;
-    // int id_number;
-    // cin >> id_number;
-    // for(Media it : library.medias)
-    // {
-    //     if(id_number == it.get_id_number())
-    //     {
-    //         if(it.is_checked_out() == false)
-    //         {
-    //             dialog("Media is already checked in.");
-    //             break;
-    //         }
-    //         else
-    //         {
-    //             it.is_checked_out() = false;
-    //             dialog("Media checked in.");
-    //             break;
-    //         }
-    //     }
-    // }
-    // cout << "Return to the main menu." << endl;
+    dialog("Please the CLI interface to check in a media item.");
+    cout << "Please input the id number of the media you would like to check in: " << endl;
+    int id_number;
+    cin >> id_number;
+    for(Media* it : library.get_medias())
+    {
+        if(id_number == it->get_id_number())
+        {
+            if(it->is_checked_out() == false) // if is not checked out then display is checked in
+            {
+                cout << "Media is already checked in." << endl;
+                dialog("Media is already checked in.");
+                break;
+            }
+            else // if is checked out then call check_in()
+            {
+                it->check_in();
+                cout << "Media checked in." << endl;
+                dialog("Media checked in.");
+                break;
+            }
+        }
+    }
+    cout << "Return to the main menu." << endl;
 }
 
 void Dialog::on_check_out_button_click()
 {
-    
+    dialog("Please the CLI interface to check in a media item.");
+    cout << "Please input the id number of the media you would like to check out: " << endl;
+    int id_number;
+    cin >> id_number;
+    for(Media* it : library.get_medias())
+    {
+        if(id_number == it->get_id_number())
+        {
+            if(it->is_checked_out() == true) // if is checked out then display is checked out
+            {
+                cout << "Media is already checked out." << endl;
+                dialog("Media is already checked out.");
+                break;
+            }
+            else // if is not checked out then call check_out()
+            {
+                it->check_out();
+                cout << "Media checked out." << endl;
+                dialog("Media checked out.");
+                break;
+            }
+        }
+    }
+    cout << "Return to the main menu." << endl;
+}
+
+void Dialog::on_pay_balance_button_click()
+{
+
 }
 
 void Dialog::on_save_button_click()
@@ -210,17 +291,54 @@ void Dialog::on_exit_button_click()
     hide();
 }
 
-void Dialog::on_quit_click()
-{
-    dialog("Thank You!");
-    hide();
-}
 
 void Dialog::dialog(Glib::ustring msg)
 {
     Gtk::MessageDialog dlg(msg, false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK, true);
     dlg.set_title("Librarian Management System");
     dlg.run();
+}
+
+/*
+***For Add***
+*/
+
+void Dialog::on_add_media_button_click()
+{
+    Gtk::Window *window = new Gtk::Window();
+    window->set_title("Add Media");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window->add(*vbox);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Add Media"));
+    grid->attach(*label, 0, 0, 1, 1);
+    
+    Gtk::Button *button_add_book = Gtk::manage(new Gtk::Button("Add Book"));
+    button_add_book->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_book_button_click));
+    grid->attach(*button_add_book, 0, 1, 1, 1);
+    
+    Gtk::Button *button_add_movie = Gtk::manage(new Gtk::Button("Add Movie"));
+    button_add_movie->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_movie_button_click));
+    grid->attach(*button_add_movie, 0, 2, 1, 1);
+    
+    Gtk::Button *button_add_video_game = Gtk::manage(new Gtk::Button("Add Video Game"));
+    button_add_video_game->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_video_game_button_click));
+    grid->attach(*button_add_video_game, 0, 3, 1, 1);
+    
+    Gtk::Button *button_add_music_album = Gtk::manage(new Gtk::Button("Add Music Album"));
+    button_add_music_album->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_music_album_button_click));
+    grid->attach(*button_add_music_album, 0, 4, 1, 1);
+    
+    Gtk::Button *button_add_television_show_season = Gtk::manage(new Gtk::Button("Add Television Show Season"));
+    button_add_television_show_season->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_television_show_season_button_click));
+    grid->attach(*button_add_television_show_season, 0, 5, 1, 1);
+
+    window->show_all();
 }
 
 void Dialog::on_add_transaction_button_click()
@@ -274,6 +392,10 @@ void Dialog::on_add_bundle_click()
 {
 
 }
+
+/*
+***For Add Media***
+*/
 
 void Dialog::on_add_book_button_click()
 {

@@ -25,29 +25,61 @@ void Library::create_new_transaction(Transaction* transaction)
     transactions.push_back(transaction);
 }
 
+vector<Media*> Library::get_medias()
+{
+    return medias;
+}
+
+vector<Bundle*> Library::get_bundles()
+{
+    return bundles;
+}
+
+vector<Librarian*> Library::get_librarians()
+{
+    return librarians;
+}
+
+vector<Customer*> Library::get_customers()
+{
+    return customers;
+}
+
+vector<Transaction*> Library::get_transactions()
+{
+    return transactions;
+}
+
+vector<Media*> Library::get_checked_out_list()
+{
+    return this->checked_out_list;
+}
+
 void Library::print_medias()
 {
     for(Media* it : medias)
         cout << it->to_string();
 }
 
-//string Library::to_string() const
-//{
-//    string out;
-//    ostringstream ost;
-//    if(medias.size() > 0)
-//    {
-//        ost << "Medias" << endl;
-//        for(Media* it : medias)
-//            ost << it->to_string_file() << endl;
-//    }
-//    if(transactions.size() > 0)
-//    {
-//        ost << "Transactions" << endl;
-//    }
-//    out = ost.str();
-//    return out;
-//}
+/*
+string Library::to_string() const
+{
+   string out;
+   ostringstream ost;
+   if(medias.size() > 0)
+   {
+       ost << "Medias" << endl;
+       for(Media* it : medias)
+           ost << it->to_string_file() << endl;
+   }
+   if(transactions.size() > 0)
+   {
+       ost << "Transactions" << endl;
+   }
+   out = ost.str();
+   return out;
+}
+*/
 
 ostream& operator<<(ostream& ost, const Library& library_two)
 {
@@ -74,16 +106,18 @@ ostream& operator<<(ostream& ost, const Library& library_two)
 
 void Library::save(string file_name)
 {
-//    ofstream my_file(file_name);
-//    if(my_file.is_open())
-//    {
-//        if(my_file << to_string())
-//            cout << endl << "File saved successfully.";
-//        else
-//            cout << endl << "Unable to save file.";
-//    }
-//    else
-//        cout << endl << "Unable to open file.";
+    /*
+    ofstream my_file(file_name);
+    if(my_file.is_open())
+    {
+        if(my_file << to_string())
+            cout << endl << "File saved successfully.";
+        else
+            cout << endl << "Unable to save file.";
+    }
+    else
+        cout << endl << "Unable to open file.";
+    */
 }
 
 void Library::load(string file_name)
