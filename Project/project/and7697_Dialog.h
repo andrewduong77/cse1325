@@ -19,7 +19,6 @@ public:
     Dialog(Library& l);
     virtual ~Dialog();
 protected:
-    // void dialog_add();
     void on_browse_catalog_button_click();
     void on_add_button_click();
     // ***For Main Menu***
@@ -31,6 +30,7 @@ protected:
     // void on_exit_click();
     void dialog(Glib::ustring msg);
     // ***For Add***
+    void on_add_media_button_click();
     void on_add_transaction_button_click();
     void on_add_customer_button_click();
     void on_add_librarian_button_click();
