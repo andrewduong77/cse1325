@@ -1,6 +1,0 @@
-Medias
-Book;380182302;13212JD29;City of Ember;Science Fiction;Jeanne DuPrau;2003
-Movie;801474031;DIS188023;The Lord of the Rings;Fantasy;New Line Cinema;Peter Jackson;Elijah Woods, Sean Astin
-Video_Game;382781023;S82KJD82J;Halo 3;Shooter;Bungie
-Music_Album;674312472;WE82I3KJW;Broadcast;Soft Rock;Cutting Crew;I've Been in Love Before;(I Just) Died in Your Arms
-Television_Show_Season;380147380;IE08Q3208;The Simpsons;Comedy;Matt Groening;Dan Castellaneta, Julie Kavner;Richard Gibbs, Arthur B. Rubinstein;104

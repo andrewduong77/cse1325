@@ -119,46 +119,79 @@ Dialog::~Dialog()
 
 void Dialog::on_browse_catalog_button_click()
 {
+    dialog("Use the CLI interface to view the catalog.");
     library.print_medias();
 }
 
 void Dialog::on_add_button_click()
 {
-    dialog("Add Button Pressed!");
+    
 }
 
 void Dialog::on_check_in_button_click()
 {
-    dialog("Check in Button Pressed!");
+    
 }
 
 void Dialog::on_check_out_button_click()
 {
-    dialog("Check out Button Pressed!");
+    
 }
 
 void Dialog::on_save_button_click()
 {
-    save();
+    dialog("Use the CLI interface to name the save file.");
+    string file_name;
+    cout << "Save filename: ";
+    cin.ignore();
+    getline(cin, file_name);
+    // library.save(file_name);
+    ofstream my_file(file_name);
+    if(my_file.is_open())
+    {
+        if(my_file << library)
+            dialog("File saved successfully.");
+            // cout << endl << "File saved successfully.";
+        else
+            dialog("Unable to save file.");
+            // cout << endl << "Unable to save file.";
+    }
+    else
+        dialog("Unable to open file.");
+        // cout << endl << "Unable to open file.";
+    cout << "Return the main menu." << endl;
 }
 
 void Dialog::on_load_button_click()
 {
-    load();
+    string file_name;
+    cout << "Load filename: ";
+    cin.ignore();
+    getline(cin, file_name);
+    library.load(file_name);
 }
 
 void Dialog::on_exit_button_click()
 {
+    dialog("Thank You!");
     hide();
+}
+
+void Dialog::dialog(Glib::ustring msg)
+{
+    Gtk::MessageDialog dlg(msg, false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK, true);
+    dlg.set_title("Librarian Management System");
+    dlg.run();
 }
 
 void Dialog::on_add_transaction_button_click()
 {
-    dialog("Add Transaction Button Pressed");
+    
 }
 
 void Dialog::on_add_customer_button_click()
 {
+    dialog("Use the CLI interface to add a customer.");
     cout << "Adding a customer." << endl;
     string name;
     int id;
@@ -184,6 +217,7 @@ void Dialog::on_add_customer_button_click()
 
 void Dialog::on_add_librarian_button_click()
 {
+    dialog("Use the CLI interface to add a librarian.");
     cout << "Adding a librarian." << endl;
     string name;
     int id;
@@ -204,6 +238,7 @@ void Dialog::on_add_bundle_click()
 
 void Dialog::on_add_book_button_click()
 {
+    dialog("Use the CLI interface to add a book.");
     cout << "Adding a book." << endl;
     int id_number;
     string call_number;
@@ -231,6 +266,7 @@ void Dialog::on_add_book_button_click()
 
 void Dialog::on_add_movie_button_click()
 {
+    dialog("Use the CLI interface to add a movie.");
     cout << "Adding a movie." << endl;
     int id_number;
     string call_number;
@@ -274,6 +310,7 @@ void Dialog::on_add_movie_button_click()
 
 void Dialog::on_add_video_game_button_click()
 {
+    dialog("Use the CLI interface to add a video game.");
     cout << "Adding a video game." << endl;
     int id_number;
     string call_number;
@@ -302,6 +339,7 @@ void Dialog::on_add_video_game_button_click()
 
 void Dialog::on_add_music_album_button_click()
 {
+    dialog("Use the CLI interface to add a music album.");
     cout << "Adding a music album." << endl;
     int id_number;
     string call_number;
@@ -342,6 +380,7 @@ void Dialog::on_add_music_album_button_click()
 
 void Dialog::on_add_television_show_season_button_click()
 {
+    dialog("Use the CLI interface to add a television show season.");
     cout << "Adding a television show season." << endl;
     int id_number;
     string call_number;
@@ -391,11 +430,4 @@ void Dialog::on_add_television_show_season_button_click()
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
     cout << "Done adding a television show season. Go back to main menu." << endl;
-}
-
-void Dialog::dialog(Glib::ustring msg)
-{
-    Gtk::MessageDialog dlg(msg, false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK, true);
-    dlg.set_title("Gtkmm Tutorial 3");
-    dlg.run();
 }

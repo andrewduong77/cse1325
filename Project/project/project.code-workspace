@@ -7,7 +7,9 @@
 	"settings": {
 		"files.associations": {
 			"iosfwd": "cpp",
-			"typeinfo": "cpp"
+			"typeinfo": "cpp",
+			"istream": "cpp",
+			"iostream": "cpp"
 		}
 	}
 }
