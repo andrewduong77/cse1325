@@ -4,12 +4,19 @@
 #ifndef AND7697_DIALOG_H
 #define AND7697_DIALOG_H
 
+#include "and7697_Library.h"
+#include "and7697_Book.h"
+#include "and7697_Movie.h"
+#include "and7697_Video_Game.h"
+#include "and7697_Music_Album.h"
+#include "and7697_Television_Show_Season.h"
+
 #include <gtkmm.h>
 
 class Dialog : public Gtk::Window
 {
 public:
-    Dialog();
+    Dialog(Library& l);
     virtual ~Dialog();
 protected:
     void on_browse_catalog_button_click();
@@ -30,6 +37,7 @@ protected:
     void on_add_television_show_season_button_click();
     void dialog(Glib::ustring msg);
 private:
+    Library& library;
 };
 
 #endif // AND7697_DIALOG_H

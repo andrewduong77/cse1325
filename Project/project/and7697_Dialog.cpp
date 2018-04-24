@@ -1,6 +1,6 @@
 #include "and7697_Dialog.h"
 
-Dialog::Dialog()
+Dialog::Dialog(Library& l) : library(l)
 {
     set_default_size(0, 0);
     set_title("Library Management System");
@@ -119,7 +119,7 @@ Dialog::~Dialog()
 
 void Dialog::on_browse_catalog_button_click()
 {
-    dialog("Browse Catalog Button Pressed!");
+    library.print_medias();
 }
 
 void Dialog::on_add_button_click()
@@ -139,12 +139,12 @@ void Dialog::on_check_out_button_click()
 
 void Dialog::on_save_button_click()
 {
-    dialog("Save Button Pressed!");
+    save();
 }
 
 void Dialog::on_load_button_click()
 {
-    dialog("Load Button Pressed!");
+    load();
 }
 
 void Dialog::on_exit_button_click()
@@ -159,12 +159,42 @@ void Dialog::on_add_transaction_button_click()
 
 void Dialog::on_add_customer_button_click()
 {
-
+    cout << "Adding a customer." << endl;
+    string name;
+    int id;
+    int phone;
+    string email;
+    double balance;
+    cout << "Name: ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "ID: ";
+    cin >> id;
+    cout << "Phone: ";
+    cin >> phone;
+    cin.ignore();
+    cout << "Email: ";
+    getline(cin, email);
+    cout << "Balance: ";
+    cin >> balance;
+    Customer* customer = new Customer(name, id, phone, email, balance);
+    library.create_new_customer(customer);
+    cout << "Done adding a customer. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_librarian_button_click()
 {
-
+    cout << "Adding a librarian." << endl;
+    string name;
+    int id;
+    cout << "Name: ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "ID: ";
+    cin >> id;
+    Librarian* librarian = new Librarian(name, id);
+    library.create_new_librarian(librarian);
+    cout << "Done adding a librarian. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_bundle_click()
@@ -174,27 +204,193 @@ void Dialog::on_add_bundle_click()
 
 void Dialog::on_add_book_button_click()
 {
-
+    cout << "Adding a book." << endl;
+    int id_number;
+    string call_number;
+    string title;
+    string genre;
+    string author;
+    int copyright_year;
+    cout << "ID Number: ";
+    cin >> id_number;
+    cout << "Call Number: ";
+    cin >> call_number;
+    cin.ignore();
+    cout << "Title: ";
+    getline(cin, title);
+    cout << "Genre: ";
+    getline(cin, genre);
+    cout << "Author: ";
+    getline(cin, author);
+    cout << "Copyright Year: ";
+    cin >> copyright_year;
+    Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
+    library.create_new_media(book);
+    cout << "Done adding a book. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_movie_button_click()
 {
-
+    cout << "Adding a movie." << endl;
+    int id_number;
+    string call_number;
+    string title;
+    string genre;
+    int release_year;
+    string producer;
+    string director;
+    vector<string> leading_actors;
+    cout << "ID Number: ";
+    cin >> id_number;
+    cout << "Call Number: ";
+    cin >> call_number;
+    cin.ignore();
+    cout << "Title: ";
+    getline(cin, title);
+    cout << "Genre: ";
+    getline(cin, genre);
+    cout << "Release Year: ";
+    cin >> release_year;
+    cin.ignore();
+    cout << "Producer: ";
+    getline(cin, producer);
+    cout << "Director: ";
+    getline(cin, director);
+    cout << "Please input the number of leading actors: ";
+    int count;
+    cin >> count;
+    cin.ignore();
+    cout << "Now please input the name of a leading actor and press 'enter' to input the name of the next leading actor." << endl;
+    for(int i = 0; i < count; i++)
+    {
+        string input;
+        getline(cin, input);
+        leading_actors.push_back(input);
+    }
+    Movie* movie = new Movie(id_number, call_number, title, genre, release_year, producer, director, leading_actors);
+    library.create_new_media(movie);
+    cout << "Done adding a movie. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_video_game_button_click()
 {
-
+    cout << "Adding a video game." << endl;
+    int id_number;
+    string call_number;
+    string title;
+    string genre;
+    int release_year;
+    string studio;
+    cout << "ID Number: ";
+    cin >> id_number;
+    cout << "Call Number: ";
+    cin >> call_number;
+    cin.ignore();
+    cout << "Title: ";
+    getline(cin, title);
+    cout << "Genre: ";
+    getline(cin, genre);
+    cout << "Release Year: ";
+    cin >> release_year;
+    cin.ignore();
+    cout << "Studio: ";
+    getline(cin, studio);
+    Video_Game* video_game = new Video_Game(id_number, call_number, title, genre, release_year, studio);
+    library.create_new_media(video_game);
+    cout << "Done adding a video game. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_music_album_button_click()
 {
-
+    cout << "Adding a music album." << endl;
+    int id_number;
+    string call_number;
+    string title;
+    string genre;
+    int release_year;
+    string artist;
+    vector<string> tracks;
+    cout << "ID Number: ";
+    cin >> id_number;
+    cout << "Call Number: ";
+    cin >> call_number;
+    cin.ignore();
+    cout << "Title: ";
+    getline(cin, title);
+    cout << "Genre: ";
+    getline(cin, genre);
+    cout << "Release Year: ";
+    cin >> release_year;
+    cin.ignore();
+    cout << "Artist: ";
+    getline(cin, artist);
+    cout << "Please input the number of tracks: ";
+    int count;
+    cin >> count;
+    cin.ignore();
+    cout << "Now please input the name of a track and press 'enter' to input the name of the next track." << endl;
+    for(int i = 0; i < count; i++)
+    {
+        string input;
+        getline(cin, input);
+        tracks.push_back(input);
+    }
+    Music_Album* music_album = new Music_Album(id_number, call_number, title, genre, release_year, artist, tracks);
+    library.create_new_media(music_album);
+    cout << "Done adding a music album. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_television_show_season_button_click()
 {
-
+    cout << "Adding a television show season." << endl;
+    int id_number;
+    string call_number;
+    string title;
+    string genre;
+    int release_year;
+    string producer;
+    vector<string> voice_actors;
+    vector<string> composers;
+    int season_number;
+    cout << "ID Number: ";
+    cin >> id_number;
+    cout << "Call Number: ";
+    cin >> call_number;
+    cin.ignore();
+    cout << "Title: ";
+    getline(cin, title);
+    cout << "Genre: ";
+    getline(cin, genre);
+    cout << "Release Year: ";
+    cin >> release_year;
+    cin.ignore();
+    cout << "Producer: ";
+    getline(cin, producer);
+    cout << "Please input the number of voice actors: ";
+    int count;
+    cin >> count;
+    cin.ignore();
+    cout << "Now please input the name of a voice actor and press 'enter' to input the name of the next voice actor." << endl;
+    for(int i = 0; i < count; i++)
+    {
+        string input;
+        getline(cin, input);
+        voice_actors.push_back(input);
+    }
+    cout << "Please input the number of composers: ";
+    cin >> count;
+    cin.ignore();
+    cout << "Now please input the name of a composer and press 'enter' to input the name of the next composer." << endl;
+    for(int i = 0; i < count; i++)
+    {
+        string input;
+        getline(cin, input);
+        composers.push_back(input);
+    }
+    cin >> season_number;
+    Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
+    library.create_new_media(television_show_season);
+    cout << "Done adding a television show season. Go back to main menu." << endl;
 }
 
 void Dialog::dialog(Glib::ustring msg)

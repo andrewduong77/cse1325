@@ -4,7 +4,7 @@ int Controller::gui(int argc, char *argv[])
 {
     Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "com.gtkmm.tutorial3.base");
 
-    Dialog dialog;
+    Dialog dialog(library);
 
     return app->run(dialog);
 }
@@ -363,7 +363,7 @@ void Controller::save()
     cout << "Save filename: ";
     cin.ignore();
     getline(cin, file_name);
-//    library.save(file_name);
+    // library.save(file_name);
     ofstream my_file(file_name);
     if(my_file.is_open())
     {
