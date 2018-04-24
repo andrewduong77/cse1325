@@ -130,7 +130,29 @@ void Dialog::on_add_button_click()
 
 void Dialog::on_check_in_button_click()
 {
-    
+    // It doesn't work because of the darn private variables.
+    // dialog("Please the CLI interface to check in a media item.");
+    // cout << "Please input the id number of the media you would like to check in: " << endl;
+    // int id_number;
+    // cin >> id_number;
+    // for(Media it : library.medias)
+    // {
+    //     if(id_number == it.get_id_number())
+    //     {
+    //         if(it.is_checked_out() == false)
+    //         {
+    //             dialog("Media is already checked in.");
+    //             break;
+    //         }
+    //         else
+    //         {
+    //             it.is_checked_out() = false;
+    //             dialog("Media checked in.");
+    //             break;
+    //         }
+    //     }
+    // }
+    // cout << "Return to the main menu." << endl;
 }
 
 void Dialog::on_check_out_button_click()

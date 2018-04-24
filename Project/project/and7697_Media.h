@@ -19,6 +19,7 @@ public:
     string get_genre();
     void set_type(string type);
     string get_type();
+    bool is_checked_out();
     virtual string to_string() const;
     virtual string to_string_file() const;
 protected:

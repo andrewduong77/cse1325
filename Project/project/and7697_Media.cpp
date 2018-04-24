@@ -30,6 +30,11 @@ string Media::get_type()
     return type;
 }
 
+bool Media::is_checked_out()
+{
+    return checked_out;
+}
+
 string Media::to_string() const
 {
 
