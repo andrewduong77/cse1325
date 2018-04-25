@@ -61,6 +61,17 @@ void Library::print_medias()
         cout << it->to_string();
 }
 
+void Library::print_checked_out_list()
+{
+    cout << R"(
+===========
+Checked Out
+===========
+    )";
+    for(Media* it : checked_out_list)
+        cout << it->to_string();
+}
+
 /*
 string Library::to_string() const
 {
