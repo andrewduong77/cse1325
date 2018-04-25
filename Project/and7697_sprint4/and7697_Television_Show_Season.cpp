@@ -58,18 +58,16 @@ string Television_Show_Season::to_string() const
     string out;
     ostringstream ost;
     ost << R"(
-======================
-Television Show Season
-======================
+== Television Show Season ==
               )" << endl;
-    ost << "ID Number: " << this->id_number << endl;
-    ost << "Call Number: " << this->call_number << endl;
-    ost << "Title: " << this->title << " (" << this->release_year << ")" << endl;
-    ost << "Genre: " << this->genre << endl;
-    ost << "Producer: " << this->producer << endl;
-    ost << "Directors: " << this->get_voice_actors() << endl;
-    ost << "Leading Actors: " << this->get_composers() << endl;
-    ost << "Season Number: " << this->season_number << endl;
+    ost << "    ID Number: " << this->id_number << endl;
+    ost << "    Call Number: " << this->call_number << endl;
+    ost << "    Title: " << this->title << " (" << this->release_year << ")" << endl;
+    ost << "    Genre: " << this->genre << endl;
+    ost << "    Producer: " << this->producer << endl;
+    ost << "    Directors: " << this->get_voice_actors() << endl;
+    ost << "    Leading Actors: " << this->get_composers() << endl;
+    ost << "    Season Number: " << this->season_number << endl;
     out = ost.str();
     return out;
 }
@@ -94,17 +92,15 @@ string Television_Show_Season::to_string_file() const
 ostream& operator<<(ostream& ost, const Television_Show_Season& television_show_season_two)
 {
     ost << R"(
-======================
-Television Show Season
-======================
+== Television Show Season ==
               )" << endl;
-    ost << "ID Number: " << television_show_season_two.id_number << endl;
-    ost << "Call Number: " << television_show_season_two.call_number << endl;
-    ost << "Title: " << television_show_season_two.title << " (" << television_show_season_two.release_year << ")" << endl;
-    ost << "Genre: " << television_show_season_two.genre << endl;
-    ost << "Producer: " << television_show_season_two.producer << endl;
-    ost << "Directors: " << television_show_season_two.get_voice_actors() << endl;
-    ost << "Leading Actors: " << television_show_season_two.get_composers() << endl;
-    ost << "Season Number: " << television_show_season_two.season_number << endl;
+    ost << "    ID Number: " << television_show_season_two.id_number << endl;
+    ost << "    Call Number: " << television_show_season_two.call_number << endl;
+    ost << "    Title: " << television_show_season_two.title << " (" << television_show_season_two.release_year << ")" << endl;
+    ost << "    Genre: " << television_show_season_two.genre << endl;
+    ost << "    Producer: " << television_show_season_two.producer << endl;
+    ost << "    Directors: " << television_show_season_two.get_voice_actors() << endl;
+    ost << "    Leading Actors: " << television_show_season_two.get_composers() << endl;
+    ost << "    Season Number: " << television_show_season_two.season_number << endl;
     return ost;
 }

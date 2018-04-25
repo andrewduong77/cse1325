@@ -25,6 +25,22 @@ void Library::create_new_transaction(Transaction* transaction)
     transactions.push_back(transaction);
 }
 
+void Library::create_new_checked_out_media(Media* media)
+{
+    checked_out_list.push_back(media);
+}
+
+void Library::remove_checked_out_media(int call_number)
+{
+    for(int i = 0; i < checked_out_list.size(); i++)
+    {
+        if(call_number == (checked_out_list[i])->get_id_number())
+        {
+            checked_out_list.erase(checked_out_list.begin() + i);
+        }
+    }
+}
+
 vector<Media*> Library::get_medias()
 {
     return medias;
@@ -57,7 +73,23 @@ vector<Media*> Library::get_checked_out_list()
 
 void Library::print_medias()
 {
+    cout << R"(
+==============
+Browse Catalog
+==============
+    )";
     for(Media* it : medias)
+        cout << it->to_string();
+}
+
+void Library::print_checked_out_list()
+{
+    cout << R"(
+===========
+Checked Out
+===========
+    )";
+    for(Media* it : checked_out_list)
         cout << it->to_string();
 }
 

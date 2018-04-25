@@ -14,13 +14,15 @@ Dialog::Dialog(Library& l) : library(l)
     menubar->append(*menuitem_file);
     Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
     menuitem_file->set_submenu(*filemenu);
+    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save", true));
+    menuitem_save->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
+    filemenu->append(*menuitem_save);
+    Gtk::MenuItem *menuitem_load = Gtk::manage(new Gtk::MenuItem("_Load", true));
+    menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
+    filemenu->append(*menuitem_load);
     Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
     menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
     filemenu->append(*menuitem_exit);
-    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save", true));
-    menuitem_save->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
-    Gtk::MenuItem *menuitem_load = Gtk::manage(new Gtk::MenuItem("_Save", true));
-    menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
 
     Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox1);
@@ -230,6 +232,7 @@ void Dialog::on_check_in_button_click()
             else // if is checked out then call check_in()
             {
                 it->check_in();
+                library.remove_checked_out_media(id_number);
                 cout << "Media checked in." << endl;
                 dialog("Media checked in.");
                 break;
@@ -258,6 +261,7 @@ void Dialog::on_check_out_button_click()
             else // if is not checked out then call check_out()
             {
                 it->check_out();
+                library.create_new_checked_out_media(it);
                 cout << "Media checked out." << endl;
                 dialog("Media checked out.");
                 break;
