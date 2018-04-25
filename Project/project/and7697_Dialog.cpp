@@ -153,14 +153,24 @@ Dialog::~Dialog()
 
 void Dialog::on_browse_catalog_button_click()
 {
-    dialog("Use the CLI interface to view the catalog.");
-    library.print_medias();
+    if(library.get_medias().size() <= 0)
+        dialog("The catalog is empty.");
+    else
+    {
+        dialog("Use the CLI interface to view the catalog.");
+        library.print_medias();
+    }
 }
 
 void Dialog::on_view_checked_out_list_button_click()
 {
-    dialog("Use the CLI interface to view the checked out list.");
-    library.print_checked_out_list();
+    if(library.get_checked_out_list().size() <= 0)
+        dialog("The are nothing checked out.");
+    else
+    {
+        dialog("Use the CLI interface to view the checked out list.");
+        library.print_checked_out_list();
+    }
 }
 
 void Dialog::on_add_button_click()
