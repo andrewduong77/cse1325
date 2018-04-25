@@ -14,13 +14,15 @@ Dialog::Dialog(Library& l) : library(l)
     menubar->append(*menuitem_file);
     Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
     menuitem_file->set_submenu(*filemenu);
+    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save", true));
+    menuitem_save->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
+    filemenu->append(*menuitem_save);
+    Gtk::MenuItem *menuitem_load = Gtk::manage(new Gtk::MenuItem("_Load", true));
+    menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
+    filemenu->append(*menuitem_load);
     Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
     menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
     filemenu->append(*menuitem_exit);
-    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save", true));
-    menuitem_save->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
-    Gtk::MenuItem *menuitem_load = Gtk::manage(new Gtk::MenuItem("_Save", true));
-    menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
 
     Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox1);
@@ -39,29 +41,33 @@ Dialog::Dialog(Library& l) : library(l)
     button_browse_catalog->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_browse_catalog_button_click));
     grid1->attach(*button_browse_catalog, 0, 1, 1, 1);
 
+    Gtk::Button *button_view_checked_out_list = Gtk::manage(new Gtk::Button("View Checked Out List"));
+    button_view_checked_out_list->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_checked_out_list_button_click));
+    grid1->attach(*button_view_checked_out_list, 0, 2, 1, 1);
+
     Gtk::Button *add_button = Gtk::manage(new Gtk::Button("Add"));
     add_button->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_button_click));
-    grid1->attach(*add_button, 0, 2, 1, 1);
+    grid1->attach(*add_button, 0, 3, 1, 1);
 
     Gtk::Button *button_check_in = Gtk::manage(new Gtk::Button("Check in"));
     button_check_in->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_button_click));
-    grid1->attach(*button_check_in, 0, 3, 1, 1);
+    grid1->attach(*button_check_in, 0, 4, 1, 1);
 
     Gtk::Button *button_check_out = Gtk::manage(new Gtk::Button("Check out"));
     button_check_out->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_button_click));
-    grid1->attach(*button_check_out, 0, 4, 1, 1);
+    grid1->attach(*button_check_out, 0, 5, 1, 1);
 
     Gtk::Button *button_pay_balance = Gtk::manage(new Gtk::Button("Pay Balance"));
     button_pay_balance->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_pay_balance_button_click));
-    grid1->attach(*button_pay_balance, 0, 5, 1, 1);
+    grid1->attach(*button_pay_balance, 0, 6, 1, 1);
 
     Gtk::Button *button_save = Gtk::manage(new Gtk::Button("Save"));
     button_save->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_save_button_click));
-    grid1->attach(*button_save, 0, 6, 1, 1);
+    grid1->attach(*button_save, 0, 7, 1, 1);
 
     Gtk::Button *button_load = Gtk::manage(new Gtk::Button("Load"));
     button_load->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
-    grid1->attach(*button_load, 0, 7, 1, 1);
+    grid1->attach(*button_load, 0, 8, 1, 1);
 
     /*
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
@@ -143,10 +149,30 @@ Dialog::~Dialog()
     //dtor
 }
 
+/*
+***For Main Menu***
+*/
+
 void Dialog::on_browse_catalog_button_click()
 {
-    dialog("Use the CLI interface to view the catalog.");
-    library.print_medias();
+    if(library.get_medias().size() <= 0)
+        dialog("The catalog is empty.");
+    else
+    {
+        dialog("Use the CLI interface to view the catalog.");
+        library.print_medias();
+    }
+}
+
+void Dialog::on_view_checked_out_list_button_click()
+{
+    if(library.get_checked_out_list().size() <= 0)
+        dialog("The are nothing checked out.");
+    else
+    {
+        dialog("Use the CLI interface to view the checked out list.");
+        library.print_checked_out_list();
+    }
 }
 
 void Dialog::on_add_button_click()
@@ -181,15 +207,11 @@ void Dialog::on_add_button_click()
     grid->attach(*button_add_librarian, 0, 4, 1, 1);
 
     Gtk::Button *button_add_bundle = Gtk::manage(new Gtk::Button("Add Bundle"));
-    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_click));
+    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_button_click));
     grid->attach(*button_add_bundle, 0, 5, 1, 1);
 
     window->show_all();
 }
-
-/*
-***For Main Menu***
-*/
 
 void Dialog::on_check_in_button_click()
 {
@@ -210,6 +232,7 @@ void Dialog::on_check_in_button_click()
             else // if is checked out then call check_in()
             {
                 it->check_in();
+                library.remove_checked_out_media(id_number);
                 cout << "Media checked in." << endl;
                 dialog("Media checked in.");
                 break;
@@ -238,6 +261,7 @@ void Dialog::on_check_out_button_click()
             else // if is not checked out then call check_out()
             {
                 it->check_out();
+                library.create_new_checked_out_media(it);
                 cout << "Media checked out." << endl;
                 dialog("Media checked out.");
                 break;
@@ -388,7 +412,7 @@ void Dialog::on_add_librarian_button_click()
     cout << "Done adding a librarian. Go back to main menu." << endl;
 }
 
-void Dialog::on_add_bundle_click()
+void Dialog::on_add_bundle_button_click()
 {
 
 }

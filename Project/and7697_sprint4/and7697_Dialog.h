@@ -19,9 +19,10 @@ public:
     Dialog(Library& l);
     virtual ~Dialog();
 protected:
-    void on_browse_catalog_button_click();
-    void on_add_button_click();
     // ***For Main Menu***
+    void on_browse_catalog_button_click();
+    void on_view_checked_out_list_button_click();
+    void on_add_button_click();
     void on_check_in_button_click();
     void on_check_out_button_click();
     void on_pay_balance_button_click();
@@ -34,7 +35,7 @@ protected:
     void on_add_transaction_button_click();
     void on_add_customer_button_click();
     void on_add_librarian_button_click();
-    void on_add_bundle_click();
+    void on_add_bundle_button_click();
     // ***For Add Media***
     void on_add_book_button_click();
     void on_add_movie_button_click();
