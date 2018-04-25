@@ -51,16 +51,14 @@ string Music_Album::to_string() const
     string out;
     ostringstream ost;
     ost << R"(
-======================
-Music Album
-======================
+== Music Album ==
               )" << endl;
-    ost << "ID Number: " << this->id_number << endl;
-    ost << "Call Number: " << this->call_number << endl;
-    ost << "Title: " << this->title << " (" << this->release_year << ")" << endl;
-    ost << "Genre: " << this->genre << endl;
-    ost << "Artist: " << this->artist << endl;
-    ost << "Tracks: " << this->get_tracks() << endl;
+    ost << "    ID Number: " << this->id_number << endl;
+    ost << "    Call Number: " << this->call_number << endl;
+    ost << "    Title: " << this->title << " (" << this->release_year << ")" << endl;
+    ost << "    Genre: " << this->genre << endl;
+    ost << "    Artist: " << this->artist << endl;
+    ost << "    Tracks: " << this->get_tracks() << endl;
     out = ost.str();
     return out;
 }
@@ -83,15 +81,13 @@ string Music_Album::to_string_file() const
 ostream& operator<<(ostream& ost, const Music_Album& music_album_two)
 {
     ost << R"(
-======================
-Music Album
-======================
+== Music Album ==
               )" << endl;
-    ost << "ID Number: " << music_album_two.id_number << endl;
-    ost << "Call Number: " << music_album_two.call_number << endl;
-    ost << "Title: " << music_album_two.title << " (" << music_album_two.release_year << ")" << endl;
-    ost << "Genre: " << music_album_two.genre << endl;
-    ost << "Artist: " << music_album_two.artist << endl;
-    ost << "Tracks: " << music_album_two.get_tracks() << endl;
+    ost << "    ID Number: " << music_album_two.id_number << endl;
+    ost << "    Call Number: " << music_album_two.call_number << endl;
+    ost << "    Title: " << music_album_two.title << " (" << music_album_two.release_year << ")" << endl;
+    ost << "    Genre: " << music_album_two.genre << endl;
+    ost << "    Artist: " << music_album_two.artist << endl;
+    ost << "    Tracks: " << music_album_two.get_tracks() << endl;
     return ost;
 }

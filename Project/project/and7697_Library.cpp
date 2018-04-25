@@ -57,6 +57,11 @@ vector<Media*> Library::get_checked_out_list()
 
 void Library::print_medias()
 {
+    cout << R"(
+==============
+Browse Catalog
+==============
+    )";
     for(Media* it : medias)
         cout << it->to_string();
 }
