@@ -419,30 +419,113 @@ void Dialog::on_add_bundle_button_click()
 
 void Dialog::on_add_book_button_click()
 {
-    dialog("Use the CLI interface to add a book.");
-    cout << "Adding a book." << endl;
+    // dialog("Use the CLI interface to add a book.");
+    
+    Gtk::Window *window = new Gtk::Window();
+    window->set_title("Add Book");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("ID Number:"));
+    grid1->attach(*label_id_number, 0, 0, 1, 1);
+    
+    Gtk::Entry *entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 1, 0, 1, 1);
+
+    Gtk::Label *label_call_number = Gtk::manage(new Gtk::Label("Call Number:"));
+    grid1->attach(*label_call_number, 0, 1, 1, 1);
+    
+    Gtk::Entry *entry_call_number = Gtk::manage(new Gtk::Entry());
+    entry_call_number->set_text("");
+    entry_call_number->set_max_length(50);
+    grid1->attach(*entry_call_number, 1, 1, 1, 1);
+
+    Gtk::Label *label_title = Gtk::manage(new Gtk::Label("Title:"));
+    grid1->attach(*label_title, 0, 2, 1, 1);
+    
+    Gtk::Entry *entry_title = Gtk::manage(new Gtk::Entry());
+    entry_title->set_text("");
+    entry_title->set_max_length(50);
+    grid1->attach(*entry_title, 1, 2, 1, 1);
+
+    Gtk::Label *label_genre = Gtk::manage(new Gtk::Label("Genre:"));
+    grid1->attach(*label_genre, 0, 3, 1, 1);
+    
+    Gtk::Entry *entry_genre = Gtk::manage(new Gtk::Entry());
+    entry_genre->set_text("");
+    entry_genre->set_max_length(50);
+    grid1->attach(*entry_genre, 1, 3, 1, 1);
+
+    Gtk::Label *label_author = Gtk::manage(new Gtk::Label("Author:"));
+    grid1->attach(*label_author, 0, 4, 1, 1);
+    
+    Gtk::Entry *entry_author = Gtk::manage(new Gtk::Entry());
+    entry_author->set_text("");
+    entry_author->set_max_length(50);
+    grid1->attach(*entry_author, 1, 4, 1, 1);
+
+    Gtk::Label *label_copyright_year = Gtk::manage(new Gtk::Label("Copyright Year:"));
+    grid1->attach(*label_copyright_year, 0, 5, 1, 1);
+    
+    Gtk::Entry *entry_copyright_year = Gtk::manage(new Gtk::Entry());
+    entry_copyright_year->set_text("");
+    entry_copyright_year->set_max_length(50);
+    grid1->attach(*entry_copyright_year, 1, 5, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_top->add(*grid2);
+
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK", 1));
+    grid2->attach(*button_ok, 0, 0, 1, 1);
+
+    window->show_all();
+
     int id_number;
     string call_number;
     string title;
     string genre;
     string author;
     int copyright_year;
-    cout << "ID Number: ";
-    cin >> id_number;
-    cout << "Call Number: ";
-    cin >> call_number;
-    cin.ignore();
-    cout << "Title: ";
-    getline(cin, title);
-    cout << "Genre: ";
-    getline(cin, genre);
-    cout << "Author: ";
-    getline(cin, author);
-    cout << "Copyright Year: ";
-    cin >> copyright_year;
-    Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
-    library.create_new_media(book);
-    cout << "Done adding a book. Go back to main menu." << endl;
+
+
+    
+    // cout << "Adding a book." << endl;
+    // int id_number;
+    // string call_number;
+    // string title;
+    // string genre;
+    // string author;
+    // int copyright_year;
+    // cout << "ID Number: ";
+    // cin >> id_number;
+    // cout << "Call Number: ";
+    // cin >> call_number;
+    // cin.ignore();
+    // cout << "Title: ";
+    // getline(cin, title);
+    // cout << "Genre: ";
+    // getline(cin, genre);
+    // cout << "Author: ";
+    // getline(cin, author);
+    // cout << "Copyright Year: ";
+    // cin >> copyright_year;
+    // Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
+    // library.create_new_media(book);
+    // cout << "Done adding a book. Go back to main menu." << endl;
 }
 
 void Dialog::on_add_movie_button_click()
