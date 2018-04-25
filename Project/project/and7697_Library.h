@@ -17,6 +17,8 @@ public:
     void create_new_librarian(Librarian* librarian);
     void create_new_customer(Customer* customer);
     void create_new_transaction(Transaction* transaction);
+    void create_new_checked_out_media(Media* media);
+    void remove_checked_out_media(int call_number);
     vector<Media*> get_medias();
     vector<Bundle*> get_bundles();
     vector<Librarian*> get_librarians();

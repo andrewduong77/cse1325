@@ -15,16 +15,14 @@ string Book::to_string() const
     string out;
     ostringstream ost;
     ost << R"(
-======================
-Book
-======================
+== Book ==
               )" << endl;
-    ost << "ID Number: " << this->id_number << endl;
-    ost << "Call Number: " << this->call_number << endl;
-    ost << "Title: " << this->title << endl;
-    ost << "Genre: " << this->genre << endl;
-    ost << "Author: " << this->author << endl;
-    ost << "Copyright Year: " << this->copyright_year << endl;
+    ost << "    ID Number: " << this->id_number << endl;
+    ost << "    Call Number: " << this->call_number << endl;
+    ost << "    Title: " << this->title << endl;
+    ost << "    Genre: " << this->genre << endl;
+    ost << "    Author: " << this->author << endl;
+    ost << "    Copyright Year: " << this->copyright_year << endl;
     out = ost.str();
     return out;
 }
@@ -47,15 +45,13 @@ string Book::to_string_file() const
 ostream& operator<<(ostream& ost, const Book& book_two)
 {
     ost << R"(
-======================
-Book
-======================
+== Book ==
               )" << endl;
-    ost << "ID Number: " << book_two.id_number << endl;
-    ost << "Call Number: " << book_two.call_number << endl;
-    ost << "Title: " << book_two.title << endl;
-    ost << "Genre: " << book_two.genre << endl;
-    ost << "Author: " << book_two.author << endl;
-    ost << "Copyright Year: " << book_two.copyright_year << endl;
+    ost << "    ID Number: " << book_two.id_number << endl;
+    ost << "    Call Number: " << book_two.call_number << endl;
+    ost << "    Title: " << book_two.title << endl;
+    ost << "    Genre: " << book_two.genre << endl;
+    ost << "    Author: " << book_two.author << endl;
+    ost << "    Copyright Year: " << book_two.copyright_year << endl;
     return ost;
 }
