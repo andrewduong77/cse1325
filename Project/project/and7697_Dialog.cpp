@@ -496,40 +496,35 @@ void Dialog::on_add_book_button_click()
     button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_ok_button_click));
     grid2->attach(*button_ok, 0, 0, 1, 1);
 
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
+    int id_number;
+    id_number_geek >> id_number;
+    // int id_number = stoi(entry_id_number->get_text(), nullptr, 10);
+    string call_number = entry_call_number->get_text();
+    string title = entry_title->get_text();
+    string genre = entry_genre->get_text();
+    string author = entry_author->get_text();
+    string copyright_year_str = entry_copyright_year->get_text();
+    stringstream copyright_year_geek(copyright_year_str);
+    int copyright_year;
+    copyright_year_geek >> copyright_year;
+    // int copyright_year = stoi(entry_copyright_year->get_text(), nullptr, 10);
+    Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
+   
     window->show_all();
-    while(!close_window)
+
+    if(accept)
     {
-        string id_number_str = entry_id_number->get_text();
-        stringstream id_number_geek(id_number_str);
-        int id_number;
-        id_number_geek >> id_number;
-        // int id_number = stoi(entry_id_number->get_text(), nullptr, 10);
-        string call_number = entry_call_number->get_text();
-        string title = entry_title->get_text();
-        string genre = entry_genre->get_text();
-        string author = entry_author->get_text();
-        string copyright_year_str = entry_copyright_year->get_text();
-        stringstream copyright_year_geek(copyright_year_str);
-        int copyright_year;
-        copyright_year_geek >> copyright_year;
-        // int copyright_year = stoi(entry_copyright_year->get_text(), nullptr, 10);
-        Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
-        
-        if(accept)
-        {
-            library.create_new_media(book);
-            // window->close();
-        }
-        else
-        {
-            // window->close();
-        }
+        library.create_new_media(book);
+        window->close();
+    }
+    else
+    {
+        window->close();
     }
 
-    // if(close_window)
-    // {
-        window->close();
-    // }
+    // window->close();
 
     // cout << "Adding a book." << endl;
     // int id_number;
