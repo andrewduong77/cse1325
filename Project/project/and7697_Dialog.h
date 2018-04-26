@@ -42,6 +42,8 @@ protected:
     void on_add_video_game_button_click();
     void on_add_music_album_button_click();
     void on_add_television_show_season_button_click();
+    // ***For Button Commands***
+    void on_ok_button_click();
 private:
     Library& library;
 };

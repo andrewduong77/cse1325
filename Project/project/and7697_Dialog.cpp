@@ -492,8 +492,9 @@ void Dialog::on_add_book_button_click()
     Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
     grid2->set_border_width(10);
     hbox_top->add(*grid2);
-
-    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK", 1));
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_ok_button_click));
     grid2->attach(*button_ok, 0, 0, 1, 1);
 
     window->show_all();
@@ -504,8 +505,6 @@ void Dialog::on_add_book_button_click()
     string genre;
     string author;
     int copyright_year;
-
-
     
     // cout << "Adding a book." << endl;
     // int id_number;
@@ -698,4 +697,9 @@ void Dialog::on_add_television_show_season_button_click()
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
     cout << "Done adding a television show season. Go back to main menu." << endl;
+}
+
+void Dialog::on_ok_button_click()
+{
+    close();
 }
