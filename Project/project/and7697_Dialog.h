@@ -44,6 +44,9 @@ protected:
     void on_add_television_show_season_button_click();
     // ***For Button Commands***
     void on_ok_button_click();
+    void on_cancel_button_click();
+    bool accept;
+    bool close_window = false;
 private:
     Library& library;
 };
