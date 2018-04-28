@@ -256,7 +256,10 @@ void Dialog::on_check_in_button_click()
 }
 void Dialog::on_check_in_ok_button_click()
 {
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
     int id_number;
+    id_number_geek >> id_number;
     for(Media* it : library.get_medias())
     {
         if(id_number == it->get_id_number())
@@ -327,7 +330,10 @@ void Dialog::on_check_out_button_click()
 }
 void Dialog::on_check_out_ok_button_click()
 {
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
     int id_number;
+    id_number_geek >> id_number;
     for(Media* it : library.get_medias())
     {
         if(id_number == it->get_id_number())
