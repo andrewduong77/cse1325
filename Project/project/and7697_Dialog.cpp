@@ -370,46 +370,185 @@ void Dialog::on_add_transaction_button_click()
     
 }
 
+// *Add Customer*
 void Dialog::on_add_customer_button_click()
 {
-    dialog("Use the CLI interface to add a customer.");
-    cout << "Adding a customer." << endl;
-    string name;
+    window_add_customer = new Gtk::Window();
+    window_add_customer->set_title("Add Customer");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_customer->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For Name***
+
+    Gtk::Label *label_name = Gtk::manage(new Gtk::Label("Name:"));
+    grid1->attach(*label_name, 0, 0, 1, 1);
+    
+    entry_name = Gtk::manage(new Gtk::Entry());
+    entry_name->set_text("");
+    entry_name->set_max_length(50);
+    grid1->attach(*entry_name, 1, 0, 1, 1);
+
+    // ***For ID***
+
+    Gtk::Label *label_id = Gtk::manage(new Gtk::Label("ID:"));
+    grid1->attach(*label_id, 0, 1, 1, 1);
+    
+    entry_id = Gtk::manage(new Gtk::Entry());
+    entry_id->set_text("");
+    entry_id->set_max_length(50);
+    grid1->attach(*entry_id, 1, 1, 1, 1);
+
+    // ***For Phone***
+
+    Gtk::Label *label_phone = Gtk::manage(new Gtk::Label("Phone:"));
+    grid1->attach(*label_phone, 0, 2, 1, 1);
+    
+    entry_phone = Gtk::manage(new Gtk::Entry());
+    entry_phone->set_text("");
+    entry_phone->set_max_length(50);
+    grid1->attach(*entry_phone, 1, 2, 1, 1);
+
+    // ***For Email***
+
+    Gtk::Label *label_email = Gtk::manage(new Gtk::Label("Email:"));
+    grid1->attach(*label_email, 0, 3, 1, 1);
+    
+    entry_email = Gtk::manage(new Gtk::Entry());
+    entry_email->set_text("");
+    entry_email->set_max_length(50);
+    grid1->attach(*entry_email, 1, 3, 1, 1);
+
+    // ***For Balance***
+
+    Gtk::Label *label_balance = Gtk::manage(new Gtk::Label("Balance:"));
+    grid1->attach(*label_balance, 0, 4, 1, 1);
+    
+    entry_balance = Gtk::manage(new Gtk::Entry());
+    entry_balance->set_text("");
+    entry_balance->set_max_length(50);
+    grid1->attach(*entry_balance, 1, 4, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_customer_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_customer_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_customer->show_all();
+}
+void Dialog::on_add_customer_ok_button_click()
+{
+    string name = entry_name->get_text();
+    string id_str = entry_id->get_text();
+    stringstream id_geek(id_str);
     int id;
+    id_geek >> id;
+    string phone_str = entry_phone->get_text();
+    stringstream phone_geek(phone_str);
     int phone;
-    string email;
+    phone_geek >> phone;
+    string email = entry_email->get_text();
+    string balance_str = entry_balance->get_text();
+    stringstream balance_geek(balance_str);
     double balance;
-    cout << "Name: ";
-    cin.ignore();
-    getline(cin, name);
-    cout << "ID: ";
-    cin >> id;
-    cout << "Phone: ";
-    cin >> phone;
-    cin.ignore();
-    cout << "Email: ";
-    getline(cin, email);
-    cout << "Balance: ";
-    cin >> balance;
+    balance_geek >> balance;
     Customer* customer = new Customer(name, id, phone, email, balance);
     library.create_new_customer(customer);
-    cout << "Done adding a customer. Go back to main menu." << endl;
+    window_add_customer->close();
+    dialog(name + " added.");
+    delete(window_add_customer);
+}
+void Dialog::on_add_customer_cancel_button_click()
+{
+    window_add_customer->close();
 }
 
+// *Add Librarian*
 void Dialog::on_add_librarian_button_click()
 {
-    dialog("Use the CLI interface to add a librarian.");
-    cout << "Adding a librarian." << endl;
+    window_add_librarian = new Gtk::Window();
+    window_add_librarian->set_title("Add Librarian");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_librarian->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For Name***
+
+    Gtk::Label *label_name = Gtk::manage(new Gtk::Label("Name:"));
+    grid1->attach(*label_name, 0, 0, 1, 1);
+    
+    entry_name = Gtk::manage(new Gtk::Entry());
+    entry_name->set_text("");
+    entry_name->set_max_length(50);
+    grid1->attach(*entry_name, 1, 0, 1, 1);
+
+    // ***For ID***
+
+    Gtk::Label *label_id = Gtk::manage(new Gtk::Label("ID:"));
+    grid1->attach(*label_id, 0, 1, 1, 1);
+    
+    entry_id = Gtk::manage(new Gtk::Entry());
+    entry_id->set_text("");
+    entry_id->set_max_length(50);
+    grid1->attach(*entry_id, 1, 1, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_librarian_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_librarian_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_librarian->show_all();
+}
+void Dialog::on_add_librarian_ok_button_click()
+{
     string name;
+    string id_str = entry_id->get_text();
+    stringstream id_geek(id_str);
     int id;
-    cout << "Name: ";
-    cin.ignore();
-    getline(cin, name);
-    cout << "ID: ";
-    cin >> id;
+    id_geek >> id;
     Librarian* librarian = new Librarian(name, id);
     library.create_new_librarian(librarian);
-    cout << "Done adding a librarian. Go back to main menu." << endl;
+    window_add_librarian->close();
+    dialog(name + " added.");
+    delete(window_add_librarian);
+}
+void Dialog::on_add_librarian_cancel_button_click()
+{
+    window_add_librarian->close();
 }
 
 void Dialog::on_add_bundle_button_click()

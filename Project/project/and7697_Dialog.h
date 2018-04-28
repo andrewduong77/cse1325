@@ -34,8 +34,14 @@ protected:
     // ***For Add***
     void on_add_media_button_click();
     void on_add_transaction_button_click();
+    // *Add Customer*
     void on_add_customer_button_click();
+    void on_add_customer_ok_button_click();
+    void on_add_customer_cancel_button_click();
+    // *Add Librarian*
     void on_add_librarian_button_click();
+    void on_add_librarian_ok_button_click();
+    void on_add_librarian_cancel_button_click();
     void on_add_bundle_button_click();
 
     // ***For Add Media***
@@ -65,11 +71,18 @@ protected:
     void on_add_composer_button_click();
 private:
     Library& library;
+    Gtk::Window *window_add_customer;
+    Gtk::Window *window_add_librarian;
     Gtk::Window *window_add_book;
     Gtk::Window *window_add_movie;
     Gtk::Window *window_add_video_game;
     Gtk::Window *window_add_music_album;
     Gtk::Window *window_add_television_show_season;
+    Gtk::Entry *entry_name;
+    Gtk::Entry *entry_id;
+    Gtk::Entry *entry_phone;
+    Gtk::Entry *entry_email;
+    Gtk::Entry *entry_balance;
     Gtk::Entry *entry_id_number;
     Gtk::Entry *entry_call_number;
     Gtk::Entry *entry_title;
