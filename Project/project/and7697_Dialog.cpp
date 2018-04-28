@@ -21,7 +21,7 @@ Dialog::Dialog(Library& l) : library(l)
     menuitem_load->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_load_button_click));
     filemenu->append(*menuitem_load);
     Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
-    menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_click));
     filemenu->append(*menuitem_exit);
 
     Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
@@ -136,7 +136,7 @@ Dialog::Dialog(Library& l) : library(l)
     hbox2->add(*grid4);
 
     Gtk::Button *button_exit = Gtk::manage(new Gtk::Button("Exit"));
-    button_exit->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_button_click));
+    button_exit->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_exit_click));
     button_exit->set_hexpand(true);
     grid4->attach(*button_exit, 0, 7, 1, 1);
     */
@@ -399,7 +399,7 @@ void Dialog::on_load_button_click()
     library.load(file_name);
 }
 
-void Dialog::on_exit_button_click()
+void Dialog::on_exit_click()
 {
     dialog("Thank You!");
     hide();
