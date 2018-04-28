@@ -213,62 +213,146 @@ void Dialog::on_add_button_click()
     window->show_all();
 }
 
+// *Check In*
 void Dialog::on_check_in_button_click()
 {
-    dialog("Please the CLI interface to check in a media item.");
-    cout << "Please input the id number of the media you would like to check in: " << endl;
+    window_check_in = new Gtk::Window();
+    window_check_in->set_title("Check In");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_check_in->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the id number of the media you would like to check in: "));
+    grid1->attach(*label, 0, 0, 2, 1);
+
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 0, 1, 2, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 2, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_ok_button_click));
+    grid2->attach(*button_ok, 1, 2, 1, 1);
+
+    window_check_in->show_all();
+}
+void Dialog::on_check_in_ok_button_click()
+{
     int id_number;
-    cin >> id_number;
     for(Media* it : library.get_medias())
     {
         if(id_number == it->get_id_number())
         {
             if(it->is_checked_out() == false) // if is not checked out then display is checked in
             {
-                cout << "Media is already checked in." << endl;
-                dialog("Media is already checked in.");
+                window_check_in->close();
+                dialog(it->get_title() + " is already checked in.");
                 break;
             }
             else // if is checked out then call check_in()
             {
                 it->check_in();
                 library.remove_checked_out_media(id_number);
-                cout << "Media checked in." << endl;
-                dialog("Media checked in.");
+                window_check_in->close();
+                dialog(it->get_title() + " checked in.");
                 break;
             }
         }
     }
-    cout << "Return to the main menu." << endl;
+    delete(window_check_in);
+}
+void Dialog::on_check_in_cancel_button_click()
+{
+    window_check_in->close();
 }
 
+// *Check Out*
 void Dialog::on_check_out_button_click()
 {
-    dialog("Please the CLI interface to check in a media item.");
-    cout << "Please input the id number of the media you would like to check out: " << endl;
+    window_check_out = new Gtk::Window();
+    window_check_out->set_title("Check Out");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_check_out->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the id number of the media you would like to check out: "));
+    grid1->attach(*label, 0, 0, 2, 1);
+
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 0, 1, 2, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 2, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_ok_button_click));
+    grid2->attach(*button_ok, 1, 2, 1, 1);
+
+    window_check_out->show_all();
+}
+void Dialog::on_check_out_ok_button_click()
+{
     int id_number;
-    cin >> id_number;
     for(Media* it : library.get_medias())
     {
         if(id_number == it->get_id_number())
         {
-            if(it->is_checked_out() == true) // if is checked out then display is checked out
+            if(it->is_checked_out() == true) // if is not checked out then display is checked out
             {
-                cout << "Media is already checked out." << endl;
-                dialog("Media is already checked out.");
+                window_check_out->close();
+                dialog(it->get_title() + " is already checked out.");
                 break;
             }
-            else // if is not checked out then call check_out()
+            else // if is checked out then call check_out()
             {
                 it->check_out();
                 library.create_new_checked_out_media(it);
-                cout << "Media checked out." << endl;
-                dialog("Media checked out.");
+                window_check_out->close();
+                dialog(it->get_title() + " checked out.");
                 break;
             }
         }
     }
-    cout << "Return to the main menu." << endl;
+    delete(window_check_out);
+}
+void Dialog::on_check_out_cancel_button_click()
+{
+    window_check_out->close();
 }
 
 void Dialog::on_pay_balance_button_click()

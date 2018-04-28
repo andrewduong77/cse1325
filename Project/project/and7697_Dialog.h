@@ -23,8 +23,14 @@ protected:
     void on_browse_catalog_button_click();
     void on_view_checked_out_list_button_click();
     void on_add_button_click();
+    // *Check In*
     void on_check_in_button_click();
+    void on_check_in_ok_button_click();
+    void on_check_in_cancel_button_click();
+    // *Check Out*
     void on_check_out_button_click();
+    void on_check_out_ok_button_click();
+    void on_check_out_cancel_button_click();
     void on_pay_balance_button_click();
     void on_save_button_click();
     void on_load_button_click();
@@ -71,6 +77,8 @@ protected:
     void on_add_composer_button_click();
 private:
     Library& library;
+    Gtk::Window *window_check_in;
+    Gtk::Window *window_check_out;
     Gtk::Window *window_add_customer;
     Gtk::Window *window_add_librarian;
     Gtk::Window *window_add_book;
