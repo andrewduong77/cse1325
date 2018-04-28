@@ -421,14 +421,14 @@ void Dialog::on_add_bundle_button_click()
 ***For Add Media***
 */
 
+// *Add Book*
 void Dialog::on_add_book_button_click()
 {
-    // dialog("Use the CLI interface to add a book.");
-    Gtk::Window *window = new Gtk::Window();
-    window->set_title("Add Book");
+    window_add_book = new Gtk::Window();
+    window_add_book->set_title("Add Book");
 
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
-    window->add(*vbox);
+    window_add_book->add(*vbox);
 
     Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox_top);
@@ -437,50 +437,62 @@ void Dialog::on_add_book_button_click()
     grid1->set_border_width(10);
     hbox_top->add(*grid1);
 
+    // ***For ID Number***
+
     Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("ID Number:"));
     grid1->attach(*label_id_number, 0, 0, 1, 1);
     
-    Gtk::Entry *entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number = Gtk::manage(new Gtk::Entry());
     entry_id_number->set_text("");
     entry_id_number->set_max_length(50);
     grid1->attach(*entry_id_number, 1, 0, 1, 1);
 
+    // ***For Call Number***
+
     Gtk::Label *label_call_number = Gtk::manage(new Gtk::Label("Call Number:"));
     grid1->attach(*label_call_number, 0, 1, 1, 1);
     
-    Gtk::Entry *entry_call_number = Gtk::manage(new Gtk::Entry());
+    entry_call_number = Gtk::manage(new Gtk::Entry());
     entry_call_number->set_text("");
     entry_call_number->set_max_length(50);
     grid1->attach(*entry_call_number, 1, 1, 1, 1);
 
+    // ***For Title***
+
     Gtk::Label *label_title = Gtk::manage(new Gtk::Label("Title:"));
     grid1->attach(*label_title, 0, 2, 1, 1);
     
-    Gtk::Entry *entry_title = Gtk::manage(new Gtk::Entry());
+    entry_title = Gtk::manage(new Gtk::Entry());
     entry_title->set_text("");
     entry_title->set_max_length(50);
     grid1->attach(*entry_title, 1, 2, 1, 1);
 
+    // ***For Genre***
+
     Gtk::Label *label_genre = Gtk::manage(new Gtk::Label("Genre:"));
     grid1->attach(*label_genre, 0, 3, 1, 1);
     
-    Gtk::Entry *entry_genre = Gtk::manage(new Gtk::Entry());
+    entry_genre = Gtk::manage(new Gtk::Entry());
     entry_genre->set_text("");
     entry_genre->set_max_length(50);
     grid1->attach(*entry_genre, 1, 3, 1, 1);
 
+    // ***For Author***
+
     Gtk::Label *label_author = Gtk::manage(new Gtk::Label("Author:"));
     grid1->attach(*label_author, 0, 4, 1, 1);
     
-    Gtk::Entry *entry_author = Gtk::manage(new Gtk::Entry());
+    entry_author = Gtk::manage(new Gtk::Entry());
     entry_author->set_text("");
     entry_author->set_max_length(50);
     grid1->attach(*entry_author, 1, 4, 1, 1);
 
+    // ***For Copyright Year***
+
     Gtk::Label *label_copyright_year = Gtk::manage(new Gtk::Label("Copyright Year:"));
     grid1->attach(*label_copyright_year, 0, 5, 1, 1);
     
-    Gtk::Entry *entry_copyright_year = Gtk::manage(new Gtk::Entry());
+    entry_copyright_year = Gtk::manage(new Gtk::Entry());
     entry_copyright_year->set_text("");
     entry_copyright_year->set_max_length(50);
     grid1->attach(*entry_copyright_year, 1, 5, 1, 1);
@@ -490,17 +502,24 @@ void Dialog::on_add_book_button_click()
 
     Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
     grid2->set_border_width(10);
-    hbox_top->add(*grid2);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_book_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
     
     Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
-    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_ok_button_click));
-    grid2->attach(*button_ok, 0, 0, 1, 1);
-
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_book_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_book->show_all();
+}
+void Dialog::on_add_book_ok_button_click()
+{
     string id_number_str = entry_id_number->get_text();
     stringstream id_number_geek(id_number_str);
     int id_number;
     id_number_geek >> id_number;
-    // int id_number = stoi(entry_id_number->get_text(), nullptr, 10);
     string call_number = entry_call_number->get_text();
     string title = entry_title->get_text();
     string genre = entry_genre->get_text();
@@ -509,224 +528,595 @@ void Dialog::on_add_book_button_click()
     stringstream copyright_year_geek(copyright_year_str);
     int copyright_year;
     copyright_year_geek >> copyright_year;
-    // int copyright_year = stoi(entry_copyright_year->get_text(), nullptr, 10);
     Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
-   
-    window->show_all();
-
-    if(accept)
-    {
-        library.create_new_media(book);
-        window->close();
-    }
-    else
-    {
-        window->close();
-    }
-
-    // window->close();
-
-    // cout << "Adding a book." << endl;
-    // int id_number;
-    // string call_number;
-    // string title;
-    // string genre;
-    // string author;
-    // int copyright_year;
-    // cout << "ID Number: ";
-    // cin >> id_number;
-    // cout << "Call Number: ";
-    // cin >> call_number;
-    // cin.ignore();
-    // cout << "Title: ";
-    // getline(cin, title);
-    // cout << "Genre: ";
-    // getline(cin, genre);
-    // cout << "Author: ";
-    // getline(cin, author);
-    // cout << "Copyright Year: ";
-    // cin >> copyright_year;
-    // Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
-    // library.create_new_media(book);
-    // cout << "Done adding a book. Go back to main menu." << endl;
+    library.create_new_media(book);
+    window_add_book->close();
+    dialog(title + " added.");
+    delete(window_add_book);
+}
+void Dialog::on_add_book_cancel_button_click()
+{
+    window_add_book->close();
 }
 
+// *Add Movie*
 void Dialog::on_add_movie_button_click()
 {
-    dialog("Use the CLI interface to add a movie.");
-    cout << "Adding a movie." << endl;
+    window_add_movie = new Gtk::Window();
+    window_add_movie->set_title("Add Movie");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_movie->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For ID Number***
+
+    Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("ID Number:"));
+    grid1->attach(*label_id_number, 0, 0, 1, 1);
+    
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 1, 0, 1, 1);
+
+    // ***For Call Number***
+
+    Gtk::Label *label_call_number = Gtk::manage(new Gtk::Label("Call Number:"));
+    grid1->attach(*label_call_number, 0, 1, 1, 1);
+    
+    entry_call_number = Gtk::manage(new Gtk::Entry());
+    entry_call_number->set_text("");
+    entry_call_number->set_max_length(50);
+    grid1->attach(*entry_call_number, 1, 1, 1, 1);
+
+    // ***For Title***
+
+    Gtk::Label *label_title = Gtk::manage(new Gtk::Label("Title:"));
+    grid1->attach(*label_title, 0, 2, 1, 1);
+    
+    entry_title = Gtk::manage(new Gtk::Entry());
+    entry_title->set_text("");
+    entry_title->set_max_length(50);
+    grid1->attach(*entry_title, 1, 2, 1, 1);
+
+    // ***For Genre***
+
+    Gtk::Label *label_genre = Gtk::manage(new Gtk::Label("Genre:"));
+    grid1->attach(*label_genre, 0, 3, 1, 1);
+    
+    entry_genre = Gtk::manage(new Gtk::Entry());
+    entry_genre->set_text("");
+    entry_genre->set_max_length(50);
+    grid1->attach(*entry_genre, 1, 3, 1, 1);
+
+    // ***For Release Year***
+
+    Gtk::Label *label_release_year = Gtk::manage(new Gtk::Label("Release Year:"));
+    grid1->attach(*label_release_year, 0, 4, 1, 1);
+    
+    entry_release_year = Gtk::manage(new Gtk::Entry());
+    entry_release_year->set_text("");
+    entry_release_year->set_max_length(50);
+    grid1->attach(*entry_release_year, 1, 4, 1, 1);
+
+    // ***For Producer***
+
+    Gtk::Label *label_producer = Gtk::manage(new Gtk::Label("Producer:"));
+    grid1->attach(*label_producer, 0, 5, 1, 1);
+    
+    entry_producer = Gtk::manage(new Gtk::Entry());
+    entry_producer->set_text("");
+    entry_producer->set_max_length(50);
+    grid1->attach(*entry_producer, 1, 5, 1, 1);
+
+    // ***For Director***
+
+    Gtk::Label *label_director = Gtk::manage(new Gtk::Label("Director:"));
+    grid1->attach(*label_director, 0, 6, 1, 1);
+    
+    entry_director = Gtk::manage(new Gtk::Entry());
+    entry_director->set_text("");
+    entry_director->set_max_length(50);
+    grid1->attach(*entry_director, 1, 6, 1, 1);
+
+    // ***For Leading Actors***
+
+    Gtk::Label *label_leading_actors = Gtk::manage(new Gtk::Label("Leading Actor(s):"));
+    grid1->attach(*label_leading_actors, 0, 7, 1, 1);
+    
+    entry_leading_actor = Gtk::manage(new Gtk::Entry());
+    entry_leading_actor->set_text("");
+    entry_leading_actor->set_max_length(50);
+    grid1->attach(*entry_leading_actor, 1, 7, 1, 1);
+    
+    Gtk::Button *button_add_leading_actor = Gtk::manage(new Gtk::Button("Add Leading Actor"));
+    button_add_leading_actor->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_leading_actor_button_click));
+    grid1->attach(*button_add_leading_actor, 2, 7, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_movie_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_movie_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_movie->show_all();
+}
+void Dialog::on_add_movie_ok_button_click()
+{
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
     int id_number;
-    string call_number;
-    string title;
-    string genre;
+    id_number_geek >> id_number;
+    string call_number = entry_call_number->get_text();
+    string title = entry_title->get_text();
+    string genre = entry_genre->get_text();
+    string release_year_str = entry_release_year->get_text();
+    stringstream release_year_geek(release_year_str);
     int release_year;
-    string producer;
-    string director;
-    vector<string> leading_actors;
-    cout << "ID Number: ";
-    cin >> id_number;
-    cout << "Call Number: ";
-    cin >> call_number;
-    cin.ignore();
-    cout << "Title: ";
-    getline(cin, title);
-    cout << "Genre: ";
-    getline(cin, genre);
-    cout << "Release Year: ";
-    cin >> release_year;
-    cin.ignore();
-    cout << "Producer: ";
-    getline(cin, producer);
-    cout << "Director: ";
-    getline(cin, director);
-    cout << "Please input the number of leading actors: ";
-    int count;
-    cin >> count;
-    cin.ignore();
-    cout << "Now please input the name of a leading actor and press 'enter' to input the name of the next leading actor." << endl;
-    for(int i = 0; i < count; i++)
-    {
-        string input;
-        getline(cin, input);
-        leading_actors.push_back(input);
-    }
+    release_year_geek >> release_year;
+    string producer = entry_producer->get_text();
+    string director = entry_director->get_text();
     Movie* movie = new Movie(id_number, call_number, title, genre, release_year, producer, director, leading_actors);
     library.create_new_media(movie);
-    cout << "Done adding a movie. Go back to main menu." << endl;
+    dialog(title + " added.");
+    window_add_movie->close();
+    delete(window_add_movie);
+}
+void Dialog::on_add_movie_cancel_button_click()
+{
+    window_add_movie->close();
+}
+void Dialog::on_add_leading_actor_button_click()
+{
+    string leading_actor = entry_leading_actor->get_text();
+    leading_actors.push_back(leading_actor);
+    entry_leading_actor->set_text("");
+    dialog(leading_actor + " added.");
 }
 
+// *Add Video Game*
 void Dialog::on_add_video_game_button_click()
 {
-    dialog("Use the CLI interface to add a video game.");
-    cout << "Adding a video game." << endl;
+    window_add_video_game = new Gtk::Window();
+    window_add_video_game->set_title("Add Video Game");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_video_game->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For ID Number***
+
+    Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("ID Number:"));
+    grid1->attach(*label_id_number, 0, 0, 1, 1);
+    
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 1, 0, 1, 1);
+
+    // ***For Call Number***
+
+    Gtk::Label *label_call_number = Gtk::manage(new Gtk::Label("Call Number:"));
+    grid1->attach(*label_call_number, 0, 1, 1, 1);
+    
+    entry_call_number = Gtk::manage(new Gtk::Entry());
+    entry_call_number->set_text("");
+    entry_call_number->set_max_length(50);
+    grid1->attach(*entry_call_number, 1, 1, 1, 1);
+
+    // ***For Title***
+
+    Gtk::Label *label_title = Gtk::manage(new Gtk::Label("Title:"));
+    grid1->attach(*label_title, 0, 2, 1, 1);
+    
+    entry_title = Gtk::manage(new Gtk::Entry());
+    entry_title->set_text("");
+    entry_title->set_max_length(50);
+    grid1->attach(*entry_title, 1, 2, 1, 1);
+
+    // ***For Genre***
+
+    Gtk::Label *label_genre = Gtk::manage(new Gtk::Label("Genre:"));
+    grid1->attach(*label_genre, 0, 3, 1, 1);
+    
+    entry_genre = Gtk::manage(new Gtk::Entry());
+    entry_genre->set_text("");
+    entry_genre->set_max_length(50);
+    grid1->attach(*entry_genre, 1, 3, 1, 1);
+
+    // ***For Release Year***
+
+    Gtk::Label *label_release_year = Gtk::manage(new Gtk::Label("Release Year:"));
+    grid1->attach(*label_release_year, 0, 4, 1, 1);
+    
+    entry_release_year = Gtk::manage(new Gtk::Entry());
+    entry_release_year->set_text("");
+    entry_release_year->set_max_length(50);
+    grid1->attach(*entry_release_year, 1, 4, 1, 1);
+
+    // ***For Studio***
+
+    Gtk::Label *label_studio = Gtk::manage(new Gtk::Label("Studio:"));
+    grid1->attach(*label_studio, 0, 5, 1, 1);
+    
+    entry_studio = Gtk::manage(new Gtk::Entry());
+    entry_studio->set_text("");
+    entry_studio->set_max_length(50);
+    grid1->attach(*entry_studio, 1, 5, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_video_game_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_video_game_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_video_game->show_all();
+}
+void Dialog::on_add_video_game_ok_button_click()
+{
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
     int id_number;
-    string call_number;
-    string title;
-    string genre;
+    id_number_geek >> id_number;
+    string call_number = entry_call_number->get_text();
+    string title = entry_title->get_text();
+    string genre = entry_genre->get_text();
+    string release_year_str = entry_release_year->get_text();
+    stringstream release_year_geek(release_year_str);
     int release_year;
-    string studio;
-    cout << "ID Number: ";
-    cin >> id_number;
-    cout << "Call Number: ";
-    cin >> call_number;
-    cin.ignore();
-    cout << "Title: ";
-    getline(cin, title);
-    cout << "Genre: ";
-    getline(cin, genre);
-    cout << "Release Year: ";
-    cin >> release_year;
-    cin.ignore();
-    cout << "Studio: ";
-    getline(cin, studio);
+    release_year_geek >> release_year;
+    string studio = entry_studio->get_text();
     Video_Game* video_game = new Video_Game(id_number, call_number, title, genre, release_year, studio);
     library.create_new_media(video_game);
-    cout << "Done adding a video game. Go back to main menu." << endl;
+    dialog(title + " added.");
+    window_add_video_game->close();
+    delete(window_add_video_game);
+}
+void Dialog::on_add_video_game_cancel_button_click()
+{
+    window_add_video_game->close();
 }
 
+// *Add Music Album*
 void Dialog::on_add_music_album_button_click()
 {
-    dialog("Use the CLI interface to add a music album.");
-    cout << "Adding a music album." << endl;
+    window_add_music_album = new Gtk::Window();
+    window_add_music_album->set_title("Add Music Album");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_music_album->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For ID Number***
+
+    Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("ID Number:"));
+    grid1->attach(*label_id_number, 0, 0, 1, 1);
+    
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 1, 0, 1, 1);
+
+    // ***For Call Number***
+
+    Gtk::Label *label_call_number = Gtk::manage(new Gtk::Label("Call Number:"));
+    grid1->attach(*label_call_number, 0, 1, 1, 1);
+    
+    entry_call_number = Gtk::manage(new Gtk::Entry());
+    entry_call_number->set_text("");
+    entry_call_number->set_max_length(50);
+    grid1->attach(*entry_call_number, 1, 1, 1, 1);
+
+    // ***For Title***
+
+    Gtk::Label *label_title = Gtk::manage(new Gtk::Label("Title:"));
+    grid1->attach(*label_title, 0, 2, 1, 1);
+    
+    entry_title = Gtk::manage(new Gtk::Entry());
+    entry_title->set_text("");
+    entry_title->set_max_length(50);
+    grid1->attach(*entry_title, 1, 2, 1, 1);
+
+    // ***For Genre***
+
+    Gtk::Label *label_genre = Gtk::manage(new Gtk::Label("Genre:"));
+    grid1->attach(*label_genre, 0, 3, 1, 1);
+    
+    entry_genre = Gtk::manage(new Gtk::Entry());
+    entry_genre->set_text("");
+    entry_genre->set_max_length(50);
+    grid1->attach(*entry_genre, 1, 3, 1, 1);
+
+    // ***For Release Year***
+
+    Gtk::Label *label_release_year = Gtk::manage(new Gtk::Label("Release Year:"));
+    grid1->attach(*label_release_year, 0, 4, 1, 1);
+    
+    entry_release_year = Gtk::manage(new Gtk::Entry());
+    entry_release_year->set_text("");
+    entry_release_year->set_max_length(50);
+    grid1->attach(*entry_release_year, 1, 4, 1, 1);
+
+    // ***For Artist***
+
+    Gtk::Label *label_artist = Gtk::manage(new Gtk::Label("Artist:"));
+    grid1->attach(*label_artist, 0, 5, 1, 1);
+    
+    entry_artist = Gtk::manage(new Gtk::Entry());
+    entry_artist->set_text("");
+    entry_artist->set_max_length(50);
+    grid1->attach(*entry_artist, 1, 5, 1, 1);
+
+    // ***For Tracks***
+
+    Gtk::Label *label_tracks = Gtk::manage(new Gtk::Label("Track(s):"));
+    grid1->attach(*label_tracks, 0, 7, 1, 1);
+    
+    entry_track = Gtk::manage(new Gtk::Entry());
+    entry_track->set_text("");
+    entry_track->set_max_length(50);
+    grid1->attach(*entry_track, 1, 7, 1, 1);
+    
+    Gtk::Button *button_add_track = Gtk::manage(new Gtk::Button("Add Track"));
+    button_add_track->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_track_button_click));
+    grid1->attach(*button_add_track, 2, 7, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_music_album_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_music_album_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_music_album->show_all();
+}
+void Dialog::on_add_music_album_ok_button_click()
+{
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
     int id_number;
-    string call_number;
-    string title;
-    string genre;
+    id_number_geek >> id_number;
+    string call_number = entry_call_number->get_text();
+    string title = entry_title->get_text();
+    string genre = entry_genre->get_text();
+    string release_year_str = entry_release_year->get_text();
+    stringstream release_year_geek(release_year_str);
     int release_year;
-    string artist;
-    vector<string> tracks;
-    cout << "ID Number: ";
-    cin >> id_number;
-    cout << "Call Number: ";
-    cin >> call_number;
-    cin.ignore();
-    cout << "Title: ";
-    getline(cin, title);
-    cout << "Genre: ";
-    getline(cin, genre);
-    cout << "Release Year: ";
-    cin >> release_year;
-    cin.ignore();
-    cout << "Artist: ";
-    getline(cin, artist);
-    cout << "Please input the number of tracks: ";
-    int count;
-    cin >> count;
-    cin.ignore();
-    cout << "Now please input the name of a track and press 'enter' to input the name of the next track." << endl;
-    for(int i = 0; i < count; i++)
-    {
-        string input;
-        getline(cin, input);
-        tracks.push_back(input);
-    }
+    release_year_geek >> release_year;
+    string artist = entry_artist->get_text();
     Music_Album* music_album = new Music_Album(id_number, call_number, title, genre, release_year, artist, tracks);
     library.create_new_media(music_album);
-    cout << "Done adding a music album. Go back to main menu." << endl;
+    dialog(title + " added.");
+    window_add_music_album->close();
+    delete(window_add_music_album);
+
+}
+void Dialog::on_add_music_album_cancel_button_click()
+{
+    window_add_music_album->close();
+}
+void Dialog::on_add_track_button_click()
+{
+    string track = entry_track->get_text();
+    tracks.push_back(track);
+    entry_track->set_text("");
+    dialog(track + " added.");
 }
 
+// *Add Television Show Season
 void Dialog::on_add_television_show_season_button_click()
 {
-    dialog("Use the CLI interface to add a television show season.");
-    cout << "Adding a television show season." << endl;
+    window_add_television_show_season = new Gtk::Window();
+    window_add_television_show_season->set_title("Add Television Show");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_television_show_season->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For ID Number***
+
+    Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("ID Number:"));
+    grid1->attach(*label_id_number, 0, 0, 1, 1);
+    
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid1->attach(*entry_id_number, 1, 0, 1, 1);
+
+    // ***For Call Number***
+
+    Gtk::Label *label_call_number = Gtk::manage(new Gtk::Label("Call Number:"));
+    grid1->attach(*label_call_number, 0, 1, 1, 1);
+    
+    entry_call_number = Gtk::manage(new Gtk::Entry());
+    entry_call_number->set_text("");
+    entry_call_number->set_max_length(50);
+    grid1->attach(*entry_call_number, 1, 1, 1, 1);
+
+    // ***For Title***
+
+    Gtk::Label *label_title = Gtk::manage(new Gtk::Label("Title:"));
+    grid1->attach(*label_title, 0, 2, 1, 1);
+    
+    entry_title = Gtk::manage(new Gtk::Entry());
+    entry_title->set_text("");
+    entry_title->set_max_length(50);
+    grid1->attach(*entry_title, 1, 2, 1, 1);
+
+    // ***For Genre***
+
+    Gtk::Label *label_genre = Gtk::manage(new Gtk::Label("Genre:"));
+    grid1->attach(*label_genre, 0, 3, 1, 1);
+    
+    entry_genre = Gtk::manage(new Gtk::Entry());
+    entry_genre->set_text("");
+    entry_genre->set_max_length(50);
+    grid1->attach(*entry_genre, 1, 3, 1, 1);
+
+    // ***For Release Year***
+
+    Gtk::Label *label_release_year = Gtk::manage(new Gtk::Label("Release Year:"));
+    grid1->attach(*label_release_year, 0, 4, 1, 1);
+    
+    entry_release_year = Gtk::manage(new Gtk::Entry());
+    entry_release_year->set_text("");
+    entry_release_year->set_max_length(50);
+    grid1->attach(*entry_release_year, 1, 4, 1, 1);
+
+    // ***For Producer***
+
+    Gtk::Label *label_producer = Gtk::manage(new Gtk::Label("Producer:"));
+    grid1->attach(*label_producer, 0, 5, 1, 1);
+    
+    entry_producer = Gtk::manage(new Gtk::Entry());
+    entry_producer->set_text("");
+    entry_producer->set_max_length(50);
+    grid1->attach(*entry_producer, 1, 5, 1, 1);
+
+    // ***For Voice Actors***
+
+    Gtk::Label *label_voice_actors = Gtk::manage(new Gtk::Label("Voice Actor(s):"));
+    grid1->attach(*label_voice_actors, 0, 6, 1, 1);
+    
+    entry_voice_actor = Gtk::manage(new Gtk::Entry());
+    entry_voice_actor->set_text("");
+    entry_voice_actor->set_max_length(50);
+    grid1->attach(*entry_voice_actor, 1, 6, 1, 1);
+    
+    Gtk::Button *button_add_voice_actor = Gtk::manage(new Gtk::Button("Add Voice Actor"));
+    button_add_voice_actor->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_voice_actor_button_click));
+    grid1->attach(*button_add_voice_actor, 2, 6, 1, 1);
+
+    // ***For Composers***
+
+    Gtk::Label *label_composers = Gtk::manage(new Gtk::Label("Composer(s):"));
+    grid1->attach(*label_composers, 0, 7, 1, 1);
+    
+    entry_composer = Gtk::manage(new Gtk::Entry());
+    entry_composer->set_text("");
+    entry_composer->set_max_length(50);
+    grid1->attach(*entry_composer, 1, 7, 1, 1);
+    
+    Gtk::Button *button_add_composer = Gtk::manage(new Gtk::Button("Add Composer"));
+    button_add_composer->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_composer_button_click));
+    grid1->attach(*button_add_composer, 2, 7, 1, 1);
+
+    // ***For Season Number***
+
+    Gtk::Label *label_season_number = Gtk::manage(new Gtk::Label("Season Number:"));
+    grid1->attach(*label_season_number, 0, 8, 1, 1);
+    
+    entry_season_number = Gtk::manage(new Gtk::Entry());
+    entry_season_number->set_text("");
+    entry_season_number->set_max_length(50);
+    grid1->attach(*entry_season_number, 1, 8, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_television_show_season_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_television_show_season_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_television_show_season->show_all();
+}
+void Dialog::on_add_television_show_season_ok_button_click()
+{
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
     int id_number;
-    string call_number;
-    string title;
-    string genre;
+    id_number_geek >> id_number;
+    string call_number = entry_call_number->get_text();
+    string title = entry_title->get_text();
+    string genre = entry_genre->get_text();
+    string release_year_str = entry_release_year->get_text();
+    stringstream release_year_geek(release_year_str);
     int release_year;
-    string producer;
-    vector<string> voice_actors;
-    vector<string> composers;
+    release_year_geek >> release_year;
+    string producer = entry_producer->get_text();
+    string season_number_str = entry_season_number->get_text();
+    stringstream season_number_geek(season_number_str);
     int season_number;
-    cout << "ID Number: ";
-    cin >> id_number;
-    cout << "Call Number: ";
-    cin >> call_number;
-    cin.ignore();
-    cout << "Title: ";
-    getline(cin, title);
-    cout << "Genre: ";
-    getline(cin, genre);
-    cout << "Release Year: ";
-    cin >> release_year;
-    cin.ignore();
-    cout << "Producer: ";
-    getline(cin, producer);
-    cout << "Please input the number of voice actors: ";
-    int count;
-    cin >> count;
-    cin.ignore();
-    cout << "Now please input the name of a voice actor and press 'enter' to input the name of the next voice actor." << endl;
-    for(int i = 0; i < count; i++)
-    {
-        string input;
-        getline(cin, input);
-        voice_actors.push_back(input);
-    }
-    cout << "Please input the number of composers: ";
-    cin >> count;
-    cin.ignore();
-    cout << "Now please input the name of a composer and press 'enter' to input the name of the next composer." << endl;
-    for(int i = 0; i < count; i++)
-    {
-        string input;
-        getline(cin, input);
-        composers.push_back(input);
-    }
-    cin >> season_number;
+    season_number_geek >> season_number;
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
-    cout << "Done adding a television show season. Go back to main menu." << endl;
+    dialog(title + " added.");
+    window_add_television_show_season->close();
+    delete(window_add_television_show_season);
 }
-
-void Dialog::on_ok_button_click()
+void Dialog::on_add_television_show_season_cancel_button_click()
 {
-    accept = true;
-    close_window = true;
+    window_add_television_show_season->close();
 }
-
-void Dialog::on_cancel_button_click()
+void Dialog::on_add_voice_actor_button_click()
 {
-    accept = false;
-    close_window = true;
+    string voice_actor = entry_voice_actor->get_text();
+    voice_actors.push_back(voice_actor);
+    entry_voice_actor->set_text("");
+    dialog(voice_actor + " added.");
+}
+void Dialog::on_add_composer_button_click()
+{
+    string composer = entry_composer->get_text();
+    composers.push_back(composer);
+    entry_composer->set_text("");
+    dialog(composer + " added.");
 }
