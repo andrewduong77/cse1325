@@ -32,8 +32,14 @@ protected:
     void on_check_out_ok_button_click();
     void on_check_out_cancel_button_click();
     void on_pay_balance_button_click();
+    // *Save*
     void on_save_button_click();
+    void on_save_ok_button_click();
+    void on_save_cancel_button_click();
+    // *Load*
     void on_load_button_click();
+    void on_load_ok_button_click();
+    void on_load_cancel_button_click();
     void on_exit_click();
     void dialog(Glib::ustring msg);
 
@@ -79,6 +85,7 @@ private:
     Library& library;
     Gtk::Window *window_check_in;
     Gtk::Window *window_check_out;
+    Gtk::Window *window_save;
     Gtk::Window *window_add_customer;
     Gtk::Window *window_add_librarian;
     Gtk::Window *window_add_book;
@@ -86,6 +93,7 @@ private:
     Gtk::Window *window_add_video_game;
     Gtk::Window *window_add_music_album;
     Gtk::Window *window_add_television_show_season;
+    Gtk::Entry *entry_save_name;
     Gtk::Entry *entry_name;
     Gtk::Entry *entry_id;
     Gtk::Entry *entry_phone;

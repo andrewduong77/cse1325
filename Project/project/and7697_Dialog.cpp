@@ -366,30 +366,67 @@ void Dialog::on_pay_balance_button_click()
 
 }
 
+// *Save*
 void Dialog::on_save_button_click()
 {
-    dialog("Use the CLI interface to name the save file.");
-    string file_name;
-    cout << "Save filename: ";
-    cin.ignore();
-    getline(cin, file_name);
-    // library.save(file_name);
+    window_save = new Gtk::Window();
+    window_save->set_title("Save");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_save->add(*vbox);
+    
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    vbox->add(*grid1);
+    
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input a name you would like to save the file as.\n(Leave blank for default file name save.)"));
+    grid1->attach(*label, 0, 0, 1, 1);
+
+    entry_save_name = Gtk::manage(new Gtk::Entry());
+    entry_save_name->set_text("");
+    entry_save_name->set_max_length(50);
+    grid1->attach(*entry_save_name, 0, 1, 1, 1);
+    
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    vbox->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_save_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_save_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+    
+    window_save->show_all();
+}
+void Dialog::on_save_ok_button_click()
+{
+    string file_name = entry_save_name->get_text();
+    if(file_name == "")
+    {
+        file_name = "and7697_default.txt";
+    }
     ofstream my_file(file_name);
     if(my_file.is_open())
     {
         if(my_file << library)
-            dialog("File saved successfully.");
-            // cout << endl << "File saved successfully.";
+            dialog("Saved successfully as " + file_name);
         else
-            dialog("Unable to save file.");
-            // cout << endl << "Unable to save file.";
+            dialog("ERROR: Unable to save file.");
     }
     else
-        dialog("Unable to open file.");
-        // cout << endl << "Unable to open file.";
-    cout << "Return the main menu." << endl;
+        dialog("ERROR: Unable to open file.");
+    window_save->close();
+    delete(window_save);
+}
+void Dialog::on_save_cancel_button_click()
+{
+    window_save->close();
 }
 
+// *Load*
 void Dialog::on_load_button_click()
 {
     string file_name;
@@ -397,6 +434,14 @@ void Dialog::on_load_button_click()
     cin.ignore();
     getline(cin, file_name);
     library.load(file_name);
+}
+void Dialog::on_load_ok_button_click()
+{
+
+}
+void Dialog::on_load_cancel_button_click()
+{
+    
 }
 
 void Dialog::on_exit_click()
