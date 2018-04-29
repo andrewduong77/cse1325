@@ -81,6 +81,52 @@ string Library::print_medias_to_string()
     return out;
 }
 
+string Library::print_transactions_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Transaction* it : transactions)
+        // ost << "Does not work yet!" << endl;
+        ost << it->to_string();
+    out = ost.str();
+    return out;
+}
+
+string Library::print_customers_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Customer* it : customers)
+        ost << it->to_string();
+    out = ost.str();
+    return out;
+}
+
+string Library::print_librarians_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Librarian* it : librarians)
+        ost << it->to_string();
+    out = ost.str();
+    return out;
+}
+
+string Library::print_bundles_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Bundle* it_bundle : bundles)
+    {
+        ost << "== " << it_bundle->get_name() << " Bundle ==" << endl << endl;
+        for(Media* it_media : it_bundle->get_medias())
+            ost << "    ID Number: " << it_media->get_id_number() << endl;
+        // ost << it_bundle->to_string();
+    }
+    out = ost.str();
+    return out;
+}
+
 string Library::print_checked_out_list_to_string()
 {
     string out;
@@ -100,6 +146,26 @@ Browse Catalog
     )";
     for(Media* it : medias)
         cout << it->to_string();
+}
+
+void Library::print_transactions()
+{
+
+}
+
+void Library::print_customers()
+{
+
+}
+
+void Library::print_librarians()
+{
+    
+}
+
+void Library::print_bundles()
+{
+
 }
 
 void Library::print_checked_out_list()

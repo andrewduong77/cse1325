@@ -19,13 +19,15 @@ class Transaction
 {
 public:
     double calculate_fee();
+    string to_string() const;
+    string to_string_file() const;
 private:
     int transaction_number;
     Date check_out_date;
     Librarian librarian;
     Customer customer;
-    vector<Media> media;
-    vector<Bundle> bundle;
+    vector<Media*> media;
+    vector<Bundle*> bundle;
     Date check_in_date;
     Date due_date;
 };

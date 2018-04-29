@@ -44,11 +44,11 @@ string Customer::to_string() const
 {
     string out;
     ostringstream ost;
-    ost << R"(
-======================
-Customer
-======================
-              )" << endl;
+//     ost << R"(
+// ======================
+// Customer
+// ======================
+//               )" << endl;
     ost << "Name: " << this->name << endl;
     ost << "ID: " << this->id << endl;
     ost << "Phone: " << this->id << endl;
@@ -73,11 +73,11 @@ string Customer::to_string_file() const
 
 ostream& operator<<(ostream& ost, const Customer& customer_two)
 {
-    ost << R"(
-======================
-Customer
-======================
-              )" << endl;
+//     ost << R"(
+// ======================
+// Customer
+// ======================
+//               )" << endl;
     ost << "Name: " << customer_two.name << endl;
     ost << "ID: " << customer_two.id << endl;
     ost << "Phone: " << customer_two.id << endl;

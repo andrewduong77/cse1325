@@ -22,6 +22,8 @@ protected:
     // ***For Main Menu***
     void on_browse_catalog_button_click();
     void on_view_checked_out_list_button_click();
+    void on_view_customers_button_click();
+    void on_view_librarians_button_click();
     void on_add_button_click();
     // *Check In*
     void on_check_in_button_click();
