@@ -10,7 +10,11 @@
 			"typeinfo": "cpp",
 			"istream": "cpp",
 			"iostream": "cpp",
-			"fstream": "cpp"
+			"fstream": "cpp",
+			"array": "cpp",
+			"initializer_list": "cpp",
+			"utility": "cpp",
+			"valarray": "cpp"
 		}
 	}
 }

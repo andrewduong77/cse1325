@@ -136,6 +136,11 @@ ostream& operator<<(ostream& ost, const Library& library_two)
     return ost;
 }
 
+istream& operator>>(istream& ist, Library& library_two)
+{
+    
+}
+
 void Library::save(string file_name)
 {
     /*

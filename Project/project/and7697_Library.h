@@ -29,6 +29,7 @@ public:
     void print_checked_out_list();
 //    string to_string() const;
     friend ostream& operator<<(ostream& ost, const Library& library_two);
+    friend istream& operator>>(istream& ist, Library& library_two);
     void save(string file_name);
     void load(string file_name);
 private:
