@@ -155,13 +155,38 @@ Dialog::~Dialog()
 
 void Dialog::on_browse_catalog_button_click()
 {
-    if(library.get_medias().size() <= 0)
-        dialog("The catalog is empty.");
-    else
-    {
-        dialog("Use the CLI interface to view the catalog.");
-        library.print_medias();
-    }
+    Gtk::Window *window_browse_catalog = new Gtk::Window();
+    window_browse_catalog->set_title("Browse Catalog");
+    
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_browse_catalog->add(*vbox);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Browse Catalog"));
+    grid->attach(*label, 0, 0, 1, 1);
+
+    string browse_catalog = "Browse Catalog Contents goes here.";
+
+    Gtk::TextBuffer *textbuffer = Gtk::manage(new Gtk::TextBuffer());
+    // textbuffer->set_text(browse_catalog);
+
+    Gtk::TextView *textview = Gtk::manage(new Gtk::TextView());
+    textview->set_editable(false);
+    // textview->set_buffer(textbuffer);
+    grid->attach(*textview, 0, 1, 1, 1);
+
+    window_browse_catalog->show_all();
+
+    // if(library.get_medias().size() <= 0)
+    //     dialog("The catalog is empty.");
+    // else
+    // {
+    //     dialog("Use the CLI interface to view the catalog.");
+    //     library.print_medias();
+    // }
 }
 
 void Dialog::on_view_checked_out_list_button_click()
