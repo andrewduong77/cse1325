@@ -88,7 +88,6 @@ protected:
     void on_add_composer_button_click();
 private:
     Library& library;
-    // Gtk::Window *window_browse_catalog;
     Gtk::Window *window_check_in;
     Gtk::Window *window_check_out;
     Gtk::Window *window_pay_balance;
