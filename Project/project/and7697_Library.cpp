@@ -71,6 +71,26 @@ vector<Media*> Library::get_checked_out_list()
     return this->checked_out_list;
 }
 
+string Library::print_medias_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Media* it : medias)
+        ost << it->to_string();
+    out = ost.str();
+    return out;
+}
+
+string Library::print_checked_out_list_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Media* it : checked_out_list)
+        ost << it->to_string();
+    out = ost.str();
+    return out;
+}
+
 void Library::print_medias()
 {
     cout << R"(

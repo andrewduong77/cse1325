@@ -25,6 +25,8 @@ public:
     vector<Customer*> get_customers();
     vector<Transaction*> get_transactions();
     vector<Media*> get_checked_out_list();
+    string print_medias_to_string();
+    string print_checked_out_list_to_string();
     void print_medias();
     void print_checked_out_list();
 //    string to_string() const;
