@@ -431,9 +431,81 @@ void Dialog::on_check_out_cancel_button_click()
     window_check_out->close();
 }
 
+// *Pay Balance*
 void Dialog::on_pay_balance_button_click()
 {
+    window_pay_balance = new Gtk::Window();
+    window_pay_balance->set_title("Pay Balance");
 
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_pay_balance->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the id number of the customer you would like to pay balance: "));
+    grid1->attach(*label, 0, 0, 2, 1);
+
+    entry_id = Gtk::manage(new Gtk::Entry());
+    entry_id->set_text("");
+    entry_id->set_max_length(50);
+    grid1->attach(*entry_id, 0, 1, 2, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_pay_balance_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 2, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_pay_balance_ok_button_click));
+    grid2->attach(*button_ok, 1, 2, 1, 1);
+
+    window_pay_balance->show_all();
+}
+void Dialog::on_pay_balance_ok_button_click()
+{
+    string id_str = entry_id->get_text();
+    stringstream id_geek(id_str);
+    int id;
+    id_geek >> id;
+    string balance;
+    for(Customer* it : library.get_customers())
+    {
+        balance = it->get_balance();
+        if(id == it->get_id())
+        {
+            if(it->get_balance() > 0)
+            {
+                it->pay_balance();
+                window_pay_balance->close();
+                dialog(it->get_name() + " paid the balance.");
+                // dialog(it->get_name() + " paid a balance of " + balance + ".");
+                break;
+            }
+            else
+            {
+                window_pay_balance->close();
+                dialog(it->get_name() + " has a balance of $0.00. " + it->get_name() + " doesn't have to pay anything.");
+                // dialog(it->get_name() + " has a balance of " + balance + ". " + it->get_name() + " doesn't have to pay anything.");
+                break;
+            }
+        }
+    }
+    delete(window_pay_balance);
+}
+void Dialog::on_pay_balance_cancel_button_click()
+{
+    window_pay_balance->close();
 }
 
 // *Save*
@@ -783,7 +855,7 @@ void Dialog::on_add_librarian_button_click()
 }
 void Dialog::on_add_librarian_ok_button_click()
 {
-    string name;
+    string name = entry_name->get_text();
     string id_str = entry_id->get_text();
     stringstream id_geek(id_str);
     int id;

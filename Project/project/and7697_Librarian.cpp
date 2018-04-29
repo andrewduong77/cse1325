@@ -34,11 +34,6 @@ string Librarian::to_string() const
 {
     string out;
     ostringstream ost;
-    ost << R"(
-======================
-Librarian
-======================
-              )" << endl;
     ost << "Name: " << this->name << endl;
     ost << "ID: " << this->id << endl;
     out = ost.str();
@@ -57,11 +52,6 @@ string Librarian::to_string_file() const
 
 ostream& operator<<(ostream& ost, const Librarian& librarian_two)
 {
-    ost << R"(
-======================
-Librarian
-======================
-              )" << endl;
     ost << "Name: " << librarian_two.name << endl;
     ost << "ID: " << librarian_two.id << endl;
     return ost;

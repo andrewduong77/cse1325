@@ -33,7 +33,10 @@ protected:
     void on_check_out_button_click();
     void on_check_out_ok_button_click();
     void on_check_out_cancel_button_click();
+    // *Pay Balance*
     void on_pay_balance_button_click();
+    void on_pay_balance_ok_button_click();
+    void on_pay_balance_cancel_button_click();
     // *Save*
     void on_save_button_click();
     void on_save_ok_button_click();
@@ -88,6 +91,7 @@ private:
     // Gtk::Window *window_browse_catalog;
     Gtk::Window *window_check_in;
     Gtk::Window *window_check_out;
+    Gtk::Window *window_pay_balance;
     Gtk::Window *window_save;
     Gtk::Window *window_load;
     Gtk::Window *window_add_customer;
