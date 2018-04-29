@@ -1047,6 +1047,7 @@ void Dialog::on_add_movie_ok_button_click()
     Movie* movie = new Movie(id_number, call_number, title, genre, release_year, producer, director, leading_actors);
     library.create_new_media(movie);
     dialog(title + " added.");
+    leading_actors.clear();
     window_add_movie->close();
     delete(window_add_movie);
 }
@@ -1304,6 +1305,7 @@ void Dialog::on_add_music_album_ok_button_click()
     Music_Album* music_album = new Music_Album(id_number, call_number, title, genre, release_year, artist, tracks);
     library.create_new_media(music_album);
     dialog(title + " added.");
+    tracks.clear();
     window_add_music_album->close();
     delete(window_add_music_album);
 
@@ -1472,6 +1474,8 @@ void Dialog::on_add_television_show_season_ok_button_click()
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
     dialog(title + " added.");
+    voice_actors.clear();
+    composers.clear();
     window_add_television_show_season->close();
     delete(window_add_television_show_season);
 }
