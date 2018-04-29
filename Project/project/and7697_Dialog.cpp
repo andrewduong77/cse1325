@@ -163,7 +163,7 @@ void Dialog::on_browse_catalog_button_click()
         display = library.print_medias_to_string();
 
     Gtk::Window *window_browse_catalog = new Gtk::Window();
-    window_browse_catalog->set_default_size(400, 600);
+    window_browse_catalog->set_default_size(600, 600);
     window_browse_catalog->set_title("Browse Catalog");
     
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
@@ -179,11 +179,15 @@ void Dialog::on_browse_catalog_button_click()
     Glib::RefPtr<Gtk::TextBuffer> textbuffer;
     textbuffer = Gtk::TextBuffer::create();
     textbuffer->set_text(display);
+    
+    Gtk::ScrolledWindow *scrolledwindow = Gtk::manage(new Gtk::ScrolledWindow());
+    scrolledwindow->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+    vbox->pack_start(*scrolledwindow);
 
     Gtk::TextView *textview = Gtk::manage(new Gtk::TextView());
     textview->set_editable(false);
     textview->set_buffer(textbuffer);
-    grid->attach(*textview, 0, 1, 1, 1);
+    scrolledwindow->add(*textview);
 
     window_browse_catalog->show_all();
 }
@@ -198,7 +202,7 @@ void Dialog::on_view_checked_out_list_button_click()
         display = library.print_checked_out_list_to_string();
 
     Gtk::Window *window_view_checked_out_list = new Gtk::Window();
-    window_view_checked_out_list->set_default_size(400, 600);
+    window_view_checked_out_list->set_default_size(600, 600);
     window_view_checked_out_list->set_title("View Checked Out List");
     
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
@@ -214,11 +218,15 @@ void Dialog::on_view_checked_out_list_button_click()
     Glib::RefPtr<Gtk::TextBuffer> textbuffer;
     textbuffer = Gtk::TextBuffer::create();
     textbuffer->set_text(display);
+    
+    Gtk::ScrolledWindow *scrolledwindow = Gtk::manage(new Gtk::ScrolledWindow());
+    scrolledwindow->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+    vbox->pack_start(*scrolledwindow);
 
     Gtk::TextView *textview = Gtk::manage(new Gtk::TextView());
     textview->set_editable(false);
     textview->set_buffer(textbuffer);
-    grid->attach(*textview, 0, 1, 1, 1);
+    scrolledwindow->add(*textview);
 
     window_view_checked_out_list->show_all();
 }
