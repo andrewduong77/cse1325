@@ -429,19 +429,62 @@ void Dialog::on_save_cancel_button_click()
 // *Load*
 void Dialog::on_load_button_click()
 {
-    string file_name;
-    cout << "Load filename: ";
-    cin.ignore();
-    getline(cin, file_name);
-    library.load(file_name);
+    window_load = new Gtk::Window();
+    window_load->set_title("Save");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_load->add(*vbox);
+    
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    vbox->add(*grid1);
+    
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input a name you would like to load the file as.\n(Leave blank for default file name load.)"));
+    grid1->attach(*label, 0, 0, 1, 1);
+
+    entry_load_name = Gtk::manage(new Gtk::Entry());
+    entry_load_name->set_text("");
+    entry_load_name->set_max_length(50);
+    grid1->attach(*entry_load_name, 0, 1, 1, 1);
+    
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    vbox->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_load_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+    
+    window_load->show_all();
 }
 void Dialog::on_load_ok_button_click()
 {
-
+    string file_name = entry_load_name->get_text();
+    if(file_name == "")
+    {
+        file_name = "and7697_default.txt";
+    }
+    ofstream my_file(file_name);
+    if(my_file.is_open())
+    {
+        // if(my_file >> library) // does not work yet
+        if(0)
+            dialog("Loaded successfully from " + file_name);
+        else
+            dialog("ERROR: Unable to load file.");
+    }
+    else
+        dialog("ERROR: Unable to open file.");
+    window_load->close();
+    delete(window_load);
 }
 void Dialog::on_load_cancel_button_click()
 {
-    
+    window_load->close();
 }
 
 void Dialog::on_exit_click()

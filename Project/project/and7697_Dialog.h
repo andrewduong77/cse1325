@@ -86,6 +86,7 @@ private:
     Gtk::Window *window_check_in;
     Gtk::Window *window_check_out;
     Gtk::Window *window_save;
+    Gtk::Window *window_load;
     Gtk::Window *window_add_customer;
     Gtk::Window *window_add_librarian;
     Gtk::Window *window_add_book;
@@ -94,6 +95,7 @@ private:
     Gtk::Window *window_add_music_album;
     Gtk::Window *window_add_television_show_season;
     Gtk::Entry *entry_save_name;
+    Gtk::Entry *entry_load_name;
     Gtk::Entry *entry_name;
     Gtk::Entry *entry_id;
     Gtk::Entry *entry_phone;
