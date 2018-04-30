@@ -13,7 +13,7 @@ string Music_Album::get_artist()
 string Music_Album::get_tracks() const
 {
     string out;
-    ostringstream fmtStr;
+    ostringstream ost;
     if(tracks.size() == 0)
     {
         out = "N/A";
@@ -21,16 +21,16 @@ string Music_Album::get_tracks() const
     }
     for(int i = 0; i < tracks.size(); i++)
     {
-        fmtStr << endl << "    " << i + 1 << " " << tracks[i];
-        out = fmtStr.str();
+        ost << endl << "    " << i + 1 << " " << tracks[i];
+        out = ost.str();
     }
     return out;
 }
 
-string Music_Album::get_tracks_string() const
+string Music_Album::tracks_to_string() const
 {
     string out;
-    ostringstream fmtStr;
+    ostringstream ost;
     if(tracks.size() == 0)
     {
         out = "N/A";
@@ -38,10 +38,24 @@ string Music_Album::get_tracks_string() const
     }
     for(int i = 0; i < tracks.size(); i++)
     {
-        fmtStr << tracks[i];
+        ost << tracks[i];
         if(i < tracks.size() - 1)
-            fmtStr << ";";
-        out = fmtStr.str();
+            ost << ";";
+        out = ost.str();
+    }
+    return out;
+}
+
+string Music_Album::tracks_to_file() const
+{
+    string out;
+    ostringstream ost;
+    for(int i = 0; i < tracks.size(); i++)
+    {
+        ost << tracks[i];
+        if(i < tracks.size() - 1)
+            ost << ":";
+        out = ost.str();
     }
     return out;
 }
@@ -63,7 +77,7 @@ string Music_Album::to_string() const
     return out;
 }
 
-string Music_Album::to_string_file() const
+string Music_Album::to_file() const
 {
     string out;
     ostringstream ost;
@@ -72,8 +86,9 @@ string Music_Album::to_string_file() const
         << this->call_number << ";"
         << this->title << ";"
         << this->genre << ";"
+        << this->release_year << ";"
         << this->artist << ";"
-        << this->get_tracks_string() << endl;
+        << this->tracks_to_file() << endl;
     out = ost.str();
     return out;
 }

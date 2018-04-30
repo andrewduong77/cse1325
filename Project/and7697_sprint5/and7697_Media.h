@@ -23,7 +23,7 @@ public:
     string get_type();
     bool is_checked_out();
     virtual string to_string() const;
-    virtual string to_string_file() const;
+    virtual string to_file() const;
 protected:
     int id_number;
     string call_number;

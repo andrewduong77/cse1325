@@ -17,7 +17,7 @@ public:
     string get_type();
     bool is_checked_out();
     string to_string() const;
-    string to_string_file() const;
+    string to_file() const;
     friend ostream& operator<<(ostream& ost, const Bundle& bundle_two);
 protected:
     string type;

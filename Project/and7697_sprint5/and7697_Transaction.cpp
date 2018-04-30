@@ -29,7 +29,7 @@ string Transaction::to_string() const
     return out;
 }
 
-string Transaction::to_string_file() const
+string Transaction::to_file() const
 {
     string out;
     ostringstream ost;

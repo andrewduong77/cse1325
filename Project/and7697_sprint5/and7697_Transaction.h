@@ -20,7 +20,7 @@ class Transaction
 public:
     double calculate_fee();
     string to_string() const;
-    string to_string_file() const;
+    string to_file() const;
 private:
     int transaction_number;
     Date check_out_date;

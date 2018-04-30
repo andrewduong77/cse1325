@@ -35,6 +35,7 @@ string Video_Game::to_file() const
         << this->call_number << ";"
         << this->title << ";"
         << this->genre << ";"
+        << this->release_year << ";"
         << this->studio << endl;
     out = ost.str();
     return out;

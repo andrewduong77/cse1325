@@ -67,7 +67,7 @@ string Bundle::to_file() const
 {
     string out;
     ostringstream ost;
-    ost << "Bundle" << ";"
+    ost << this->type << ";"
         << this->name << ";";
     for(int i = 0; i < medias.size(); i++)
     {

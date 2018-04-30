@@ -10,7 +10,7 @@ public:
     string get_author();
     int get_copyright_year();
     string to_string() const;
-    string to_string_file() const;
+    string to_file() const;
     friend ostream& operator<<(ostream& ost, const Book& book_two);
 private:
     string author;

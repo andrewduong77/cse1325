@@ -86,6 +86,7 @@ string Music_Album::to_file() const
         << this->call_number << ";"
         << this->title << ";"
         << this->genre << ";"
+        << this->release_year << ";"
         << this->artist << ";"
         << this->tracks_to_file() << endl;
     out = ost.str();

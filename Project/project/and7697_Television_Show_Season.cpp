@@ -109,6 +109,7 @@ string Television_Show_Season::to_file() const
         << this->call_number << ";"
         << this->title << ";"
         << this->genre << ";"
+        << this->release_year << ";"
         << this->producer << ";"
         << this->voice_actors_to_file() << ";"
         << this->composers_to_file() << ";"

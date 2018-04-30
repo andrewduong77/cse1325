@@ -26,7 +26,7 @@ string Video_Game::to_string() const
     return out;
 }
 
-string Video_Game::to_string_file() const
+string Video_Game::to_file() const
 {
     string out;
     ostringstream ost;
@@ -35,6 +35,7 @@ string Video_Game::to_string_file() const
         << this->call_number << ";"
         << this->title << ";"
         << this->genre << ";"
+        << this->release_year << ";"
         << this->studio << endl;
     out = ost.str();
     return out;

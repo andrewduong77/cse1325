@@ -289,7 +289,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Book *book = new Book(id_number, call_number, title, genre, author, copyright_year);
             library_two.create_new_media(book);
         }
-        if(type == "Movie")
+        else if(type == "Movie")
         {
             int release_year;
             string release_year_str;
@@ -317,7 +317,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Movie *movie = new Movie(id_number, call_number, title, genre, release_year, producer, director, leading_actors);
             library_two.create_new_media(movie);
         }
-        if(type == "Video_Game")
+        else if(type == "Video_Game")
         {
             int release_year;
             string release_year_str;
@@ -333,7 +333,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Video_Game *video_game = new Video_Game(id_number, call_number, title, genre, release_year, studio);
             library_two.create_new_media(video_game);
         }
-        if(type == "Music_Album")
+        else if(type == "Music_Album")
         {
             int release_year;
             string release_year_str;
@@ -359,7 +359,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Music_Album *music_album = new Music_Album(id_number, call_number, title, genre, release_year, artist, tracks);
             library_two.create_new_media(music_album);
         }
-        if(type == "Television_Show_Season")
+        else if(type == "Television_Show_Season")
         {
             int release_year;
             string release_year_str;
@@ -399,11 +399,11 @@ istream& operator>>(istream& ist, Library& library_two)
             Television_Show_Season *television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
             library_two.create_new_media(television_show_season);
         }
-        if(type == "Transaction")
-        {
-
-        }
-        if(type == "Customer");
+        // else if(type == "Transaction")
+        // {
+            
+        // }
+        else if(type == "Customer")
         {
             string name;
             int id;
@@ -424,7 +424,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Customer *customer = new Customer(name, id, phone, email, balance);
             library_two.create_new_customer(customer);
         }
-        if(type == "Librarian")
+        else if(type == "Librarian")
         {
             string name;
             int id;
@@ -435,7 +435,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Librarian *librarian = new Librarian(name, id);
             library_two.create_new_librarian(librarian);
         }
-        if(type == "Bundle")
+        else if(type == "Bundle")
         {
             string name;
             vector<Media*> medias;

@@ -40,7 +40,7 @@ string Librarian::to_string() const
     return out;
 }
 
-string Librarian::to_string_file() const
+string Librarian::to_file() const
 {
     string out;
     ostringstream ost;
