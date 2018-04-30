@@ -10,9 +10,10 @@ public:
     int get_release_year();
     string get_producer();
     string get_director();
-    string get_leading_actors() const;
+    string leading_actors_to_string() const;
+    string leading_actors_to_file() const;
     string to_string() const;
-    string to_string_file() const;
+    string to_file() const;
     friend ostream& operator<<(ostream& ost, const Movie& movie_two);
 private:
     int release_year;

@@ -53,7 +53,7 @@ string Customer::to_string() const
     return out;
 }
 
-string Customer::to_string_file() const
+string Customer::to_file() const
 {
     string out;
     ostringstream ost;

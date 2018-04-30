@@ -26,7 +26,7 @@ string Video_Game::to_string() const
     return out;
 }
 
-string Video_Game::to_string_file() const
+string Video_Game::to_file() const
 {
     string out;
     ostringstream ost;

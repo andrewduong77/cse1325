@@ -10,7 +10,7 @@ string Television_Show_Season::get_producer()
     return producer;
 }
 
-string Television_Show_Season::get_voice_actors() const
+string Television_Show_Season::voice_actors_to_string() const
 {
     string out;
     ostringstream fmtStr;
@@ -29,7 +29,21 @@ string Television_Show_Season::get_voice_actors() const
     return out;
 }
 
-string Television_Show_Season::get_composers() const
+string Television_Show_Season::voice_actors_to_file() const
+{
+    string out;
+    ostringstream ost;
+    for(int i = 0; i < voice_actors.size(); i++)
+    {
+        ost << voice_actors[i];
+        if(i < voice_actors.size() - 1)
+            ost << ":";
+        out = ost.str();
+    }
+    return out;
+}
+
+string Television_Show_Season::composers_to_string() const
 {
     string out;
     ostringstream fmtStr;
@@ -44,6 +58,20 @@ string Television_Show_Season::get_composers() const
         if(i < composers.size() - 1)
             fmtStr << ", ";
         out = fmtStr.str();
+    }
+    return out;
+}
+
+string Television_Show_Season::composers_to_file() const
+{
+    string out;
+    ostringstream ost;
+    for(int i = 0; i < composers.size(); i++)
+    {
+        ost << composers[i];
+        if(i < composers.size() - 1)
+            ost << ":";
+        out = ost.str();
     }
     return out;
 }
@@ -65,14 +93,14 @@ string Television_Show_Season::to_string() const
     ost << "    Title: " << this->title << " (" << this->release_year << ")" << endl;
     ost << "    Genre: " << this->genre << endl;
     ost << "    Producer: " << this->producer << endl;
-    ost << "    Directors: " << this->get_voice_actors() << endl;
-    ost << "    Leading Actors: " << this->get_composers() << endl;
+    ost << "    Directors: " << this->voice_actors_to_string() << endl;
+    ost << "    Leading Actors: " << this->composers_to_string() << endl;
     ost << "    Season Number: " << this->season_number << endl;
     out = ost.str();
     return out;
 }
 
-string Television_Show_Season::to_string_file() const
+string Television_Show_Season::to_file() const
 {
     string out;
     ostringstream ost;
@@ -82,8 +110,8 @@ string Television_Show_Season::to_string_file() const
         << this->title << ";"
         << this->genre << ";"
         << this->producer << ";"
-        << this->get_voice_actors() << ";"
-        << this->get_composers() << ";"
+        << this->voice_actors_to_file() << ";"
+        << this->composers_to_file() << ";"
         << this->season_number << endl;
     out = ost.str();
     return out;
@@ -99,8 +127,8 @@ ostream& operator<<(ostream& ost, const Television_Show_Season& television_show_
     ost << "    Title: " << television_show_season_two.title << " (" << television_show_season_two.release_year << ")" << endl;
     ost << "    Genre: " << television_show_season_two.genre << endl;
     ost << "    Producer: " << television_show_season_two.producer << endl;
-    ost << "    Directors: " << television_show_season_two.get_voice_actors() << endl;
-    ost << "    Leading Actors: " << television_show_season_two.get_composers() << endl;
+    ost << "    Directors: " << television_show_season_two.voice_actors_to_string() << endl;
+    ost << "    Leading Actors: " << television_show_season_two.composers_to_string() << endl;
     ost << "    Season Number: " << television_show_season_two.season_number << endl;
     return ost;
 }

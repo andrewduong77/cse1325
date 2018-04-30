@@ -27,7 +27,7 @@ string Book::to_string() const
     return out;
 }
 
-string Book::to_string_file() const
+string Book::to_file() const
 {
     string out;
     ostringstream ost;

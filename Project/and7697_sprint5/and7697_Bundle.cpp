@@ -47,3 +47,43 @@ bool Bundle::is_checked_out()
 {
     return checked_out;
 }
+
+string Bundle::to_string() const
+{
+    string out;
+    ostringstream ost;
+    ost << "================" << endl << name << " Bundle" << endl << "================" << endl << endl;
+    for(Media* it : medias)
+    {
+        ost << "    == " << it->get_type() << " ==" << endl;
+        ost << "        ID Number: " << it->get_id_number() << endl;
+        ost << "        Title: " << it->get_title() << endl;
+    }
+    out = ost.str();
+    return out;
+}
+
+string Bundle::to_string_file() const
+{
+    string out;
+    ostringstream ost;
+    ost << "Bundle" << ";"
+        << this->name << ";";
+    for(Media* it : this->medias)
+        ost << it->get_id_number() << ";";
+    ost << endl;
+    out = ost.str();
+    return out;
+}
+
+ostream& operator<<(ostream& ost, const Bundle& bundle_two)
+{
+    ost << "================" << endl << bundle_two.name << " Bundle" << endl << "================" << endl << endl;
+    for(Media* it : bundle_two.medias)
+    {
+        ost << "    == " << it->get_type() << " ==" << endl;
+        ost << "        ID Number: " << it->get_id_number() << endl;
+        ost << "        Title: " << it->get_title() << endl;
+    }
+    return ost;
+}

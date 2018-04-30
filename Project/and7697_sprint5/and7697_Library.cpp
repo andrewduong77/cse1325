@@ -143,17 +143,8 @@ string Library::print_bundles_to_string()
 {
     string out;
     ostringstream ost;
-    for(Bundle* it_bundle : bundles)
-    {
-        ost << "================" << endl << it_bundle->get_name() << " Bundle" << endl << "================" << endl << endl;
-        for(Media* it_media : it_bundle->get_medias())
-        {
-            ost << "    == " << it_media->get_type() << " ==" << endl;
-            ost << "        ID Number: " << it_media->get_id_number() << endl;
-            ost << "        Title: " << it_media->get_title() << endl;
-        }
-        // ost << it_bundle->to_string();
-    }
+    for(Bundle* it : bundles)
+        ost << it->to_string();
     out = ost.str();
     return out;
 }
@@ -172,17 +163,8 @@ string Library::print_checked_out_bundle_list_to_string()
 {
     string out;
     ostringstream ost;
-    for(Bundle* it_bundle : checked_out_bundle_list)
-    {
-        ost << "================" << endl << it_bundle->get_name() << " Bundle" << endl << "================" << endl << endl;
-        for(Media* it_media : it_bundle->get_medias())
-        {
-            ost << "    == " << it_media->get_type() << " ==" << endl;
-            ost << "        ID Number: " << it_media->get_id_number() << endl;
-            ost << "        Title: " << it_media->get_title() << endl;
-        }
-        // ost << it_bundle->to_string();
-    }
+    for(Bundle* it : checked_out_bundle_list)
+        it->to_string();
     out = ost.str();
     return out;
 }
@@ -256,51 +238,55 @@ string Library::to_string() const
 
 ostream& operator<<(ostream& ost, const Library& library_two)
 {
-    if(library_two.medias.size() > 0)
-    {
-        ost << "Medias" << endl;
-        for(Media* it : library_two.medias)
-            ost << it->to_string_file();
-    }
-    if(library_two.customers.size() > 0)
-    {
-        ost << "Customers" << endl;
-        for(Customer* it : library_two.customers)
-            ost << it->to_string_file();
-    }
-    if(library_two.librarians.size() > 0)
-    {
-        ost << "Librarians" << endl;
-        for(Librarian* it : library_two.librarians)
-            ost << it->to_string_file();
-    }
+    for(Media* it : library_two.medias)
+        ost << it->to_string_file();
+    for(Transaction* it : library_two.transactions)
+        ost << it->to_string_file();
+    for(Customer* it : library_two.customers)
+        ost << it->to_string_file();
+    for(Librarian* it : library_two.librarians)
+        ost << it->to_string_file();
+    for(Bundle* it : library_two.bundles)
+        ost << it->to_string_file();
+    for(Media* it : library_two.checked_out_list)
+        ost << it->to_string_file();
+    for(Bundle* it : library_two.checked_out_bundle_list)
+        ost << it->to_string_file();
     return ost;
 }
 
 istream& operator>>(istream& ist, Library& library_two)
 {
-    
+    // string type;
+    // getline(ist, type, ';');
+    // if(type == "Book")
+    // {
+    //     int id_number;
+    //     string call_number;
+    //     string title;
+    //     string genre;
+    //     string author;
+    //     int copyright_year;
+    //     ist >> id_number;
+    //     getline(ist, call_number, ';');
+    //     getline(ist, title, ';');
+    //     getline(ist, genre, ';');
+    //     getline(ist, author, ';');
+    //     ist.ignore();
+    //     ist >> copyright_year;
+    //     Book *book = new Book(id_number, call_number, title, genre, author, copyright_year);
+    //     return ist;
+    // }
 }
 
 void Library::save(string file_name)
 {
-    /*
-    ofstream my_file(file_name);
-    if(my_file.is_open())
-    {
-        if(my_file << to_string())
-            cout << endl << "File saved successfully.";
-        else
-            cout << endl << "Unable to save file.";
-    }
-    else
-        cout << endl << "Unable to open file.";
-    */
+    
 }
 
 void Library::load(string file_name)
 {
-
+    
 }
 
 string Library::to_lower_case(string s)

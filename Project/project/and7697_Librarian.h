@@ -18,7 +18,7 @@ public:
     void set_type(string type);
     string get_type();
     string to_string() const;
-    string to_string_file() const;
+    string to_file() const;
     friend ostream& operator<<(ostream& ost, const Librarian& librarian_two);
 protected:
     string type;

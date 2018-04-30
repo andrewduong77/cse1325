@@ -4,7 +4,11 @@
 #include <fstream>
 
 #include "and7697_Bundle.h"
-#include "and7697_Media.h"
+#include "and7697_Book.h"
+#include "and7697_Movie.h"
+#include "and7697_Video_Game.h"
+#include "and7697_Music_Album.h"
+#include "and7697_Television_Show_Season.h"
 #include "and7697_Transaction.h"
 #include "and7697_Librarian.h"
 #include "and7697_Customer.h"
@@ -44,7 +48,9 @@ public:
     void print_checked_out_bundle_list();
     string to_lower_case(string s);
     char easy_to_lower(char a);
-//    string to_string() const;
+    int string_to_int(string s);
+    double string_to_double(string s);
+   string to_string() const;
     friend ostream& operator<<(ostream& ost, const Library& library_two);
     friend istream& operator>>(istream& ist, Library& library_two);
     void save(string file_name);

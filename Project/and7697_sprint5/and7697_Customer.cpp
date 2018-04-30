@@ -57,7 +57,8 @@ string Customer::to_string_file() const
 {
     string out;
     ostringstream ost;
-    ost << this->name << ";"
+    ost << this->type << ";"
+        << this->name << ";"
         << this->id << ";"
         << this->phone << ";"
         << this->email << ";"

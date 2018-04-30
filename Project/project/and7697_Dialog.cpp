@@ -902,11 +902,10 @@ void Dialog::on_load_ok_button_click()
     {
         file_name = "and7697_default.txt";
     }
-    ofstream my_file(file_name);
+    ifstream my_file(file_name);
     if(my_file.is_open())
     {
-        // if(my_file >> library) // does not work yet
-        if(0)
+        if(my_file >> library)
             dialog("Loaded successfully from " + file_name);
         else
             dialog("ERROR: Unable to load file.");
