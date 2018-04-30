@@ -444,10 +444,12 @@ void Dialog::on_check_in_ok_button_click()
     stringstream id_number_geek(id_number_str);
     int id_number;
     id_number_geek >> id_number;
+    bool found = false;
     for(Media* it : library.get_medias())
     {
         if(id_number == it->get_id_number())
         {
+            found = true;
             if(it->is_checked_out() == false) // if is not checked out then display is checked in
             {
                 window_check_in->close();
@@ -464,6 +466,8 @@ void Dialog::on_check_in_ok_button_click()
             }
         }
     }
+    if(!found)
+        dialog("Media with ID Number " + id_number_str + " is not found.");
     delete(window_check_in);
 }
 void Dialog::on_check_in_cancel_button_click()
@@ -518,10 +522,12 @@ void Dialog::on_check_out_ok_button_click()
     stringstream id_number_geek(id_number_str);
     int id_number;
     id_number_geek >> id_number;
+    bool found = false;
     for(Media* it : library.get_medias())
     {
         if(id_number == it->get_id_number())
         {
+            found = true;
             if(it->is_checked_out() == true) // if is not checked out then display is checked out
             {
                 window_check_out->close();
@@ -538,6 +544,8 @@ void Dialog::on_check_out_ok_button_click()
             }
         }
     }
+    if(!found)
+        dialog("Media with ID Number " + id_number_str + " is not found.");
     delete(window_check_out);
 }
 void Dialog::on_check_out_cancel_button_click()
@@ -592,11 +600,13 @@ void Dialog::on_pay_balance_ok_button_click()
     stringstream id_geek(id_str);
     int id;
     id_geek >> id;
+    bool found = false;
     for(Customer* it : library.get_customers())
     {
         double balance = it->get_balance();
         if(id == it->get_id())
         {
+            found = true;
             if(it->get_balance() > 0)
             {
                 it->pay_balance();
@@ -620,6 +630,8 @@ void Dialog::on_pay_balance_ok_button_click()
             }
         }
     }
+    if(!found)
+        dialog("Customer with ID " + id_str + " is not found.");
     delete(window_pay_balance);
 }
 void Dialog::on_pay_balance_cancel_button_click()
