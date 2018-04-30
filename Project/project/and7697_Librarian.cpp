@@ -44,7 +44,8 @@ string Librarian::to_string_file() const
 {
     string out;
     ostringstream ost;
-    ost << this->name << ";"
+    ost << this->type << ";"
+        << this->name << ";"
         << this->id << endl;
     out = ost.str();
     return out;
