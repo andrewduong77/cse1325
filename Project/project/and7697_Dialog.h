@@ -25,7 +25,6 @@ protected:
     void on_view_customers_button_click();
     void on_view_librarians_button_click();
     void on_view_bundles_button_click();
-    // void on_add_button_click();
     // *Check In*
     void on_check_in_button_click();
     void on_check_in_ok_button_click();
@@ -34,6 +33,14 @@ protected:
     void on_check_out_button_click();
     void on_check_out_ok_button_click();
     void on_check_out_cancel_button_click();
+    // *Check In Bundle*
+    void on_check_in_bundle_button_click();
+    void on_check_in_bundle_ok_button_click();
+    void on_check_in_bundle_cancel_button_click();
+    // *Check Out Bundle*
+    void on_check_out_bundle_button_click();
+    void on_check_out_bundle_ok_button_click();
+    void on_check_out_bundle_cancel_button_click();
     // *Pay Balance*
     void on_pay_balance_button_click();
     void on_pay_balance_ok_button_click();
@@ -95,6 +102,8 @@ private:
     Library& library;
     Gtk::Window *window_check_in;
     Gtk::Window *window_check_out;
+    Gtk::Window *window_check_in_bundle;
+    Gtk::Window *window_check_out_bundle;
     Gtk::Window *window_pay_balance;
     Gtk::Window *window_save;
     Gtk::Window *window_load;

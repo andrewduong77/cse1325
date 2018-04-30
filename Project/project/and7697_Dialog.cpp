@@ -357,46 +357,6 @@ void Dialog::on_view_bundles_button_click()
     window_view_bundles->show_all();
 }
 
-/*
-void Dialog::on_add_button_click()
-{
-    Gtk::Window *window = new Gtk::Window();
-    window->set_title("Add");
-
-    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
-    window->add(*vbox);
-
-    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
-    grid->set_border_width(10);
-    vbox->add(*grid);
-
-    Gtk::Label *label_add = Gtk::manage(new Gtk::Label("Add"));
-    grid->attach(*label_add, 0, 0, 1, 1);
-
-    Gtk::Button *button_add = Gtk::manage(new Gtk::Button("Add Media"));
-    button_add->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_media_button_click));
-    grid->attach(*button_add, 0, 2, 1, 1);
-
-    Gtk::Button *button_add_transaction = Gtk::manage(new Gtk::Button("Add Transaction"));
-    button_add_transaction->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_transaction_button_click));
-    grid->attach(*button_add_transaction, 0, 2, 1, 1);
-
-    Gtk::Button *button_add_customer = Gtk::manage(new Gtk::Button("Add Customer"));
-    button_add_customer->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_customer_button_click));
-    grid->attach(*button_add_customer, 0, 3, 1, 1);
-
-    Gtk::Button *button_add_librarian = Gtk::manage(new Gtk::Button("Add Librarian"));
-    button_add_librarian->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_librarian_button_click));
-    grid->attach(*button_add_librarian, 0, 4, 1, 1);
-
-    Gtk::Button *button_add_bundle = Gtk::manage(new Gtk::Button("Add Bundle"));
-    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_button_click));
-    grid->attach(*button_add_bundle, 0, 5, 1, 1);
-
-    window->show_all();
-}
-*/
-
 // *Check In*
 void Dialog::on_check_in_button_click()
 {
@@ -551,6 +511,156 @@ void Dialog::on_check_out_ok_button_click()
 void Dialog::on_check_out_cancel_button_click()
 {
     window_check_out->close();
+}
+
+// *Check In Bundle*
+void Dialog::on_check_in_bundle_button_click()
+{
+    window_check_in_bundle = new Gtk::Window();
+    window_check_in_bundle->set_title("Check In Bundle");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_check_in_bundle->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the name of the bundle you would like to check in: "));
+    grid1->attach(*label, 0, 0, 1, 1);
+
+    entry_name = Gtk::manage(new Gtk::Entry());
+    entry_name->set_text("");
+    entry_name->set_max_length(50);
+    grid1->attach(*entry_name, 0, 1, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_bundle_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 2, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_bundle_ok_button_click));
+    grid2->attach(*button_ok, 1, 2, 1, 1);
+
+    window_check_in_bundle->show_all();
+}
+void Dialog::on_check_in_bundle_ok_button_click()
+{
+    string name = entry_name->get_text();
+    bool found = false;
+    for(Bundle* it : library.get_bundles())
+    {
+        if(name == it->get_name())
+        {
+            found = true;
+            if(it->is_checked_out() == false) // if is not checked out then display is checked in
+            {
+                window_check_in_bundle->close();
+                dialog(it->get_name() + " bundle is already checked in.");
+                break;
+            }
+            else // if is checked out then call check_in_bundle()
+            {
+                it->check_in_bundle();
+                library.remove_checked_out_bundle(name);
+                window_check_in_bundle->close();
+                dialog(it->get_name() + " bundle checked in.");
+                break;
+            }
+        }
+    }
+    if(!found)
+        dialog("Bundle with ID Number " + name + " is not found.");
+    delete(window_check_in_bundle);
+}
+void Dialog::on_check_in_bundle_cancel_button_click()
+{
+    window_check_in_bundle->close();
+}
+
+// *Check Out Bundle*
+void Dialog::on_check_out_bundle_button_click()
+{
+    window_check_out_bundle = new Gtk::Window();
+    window_check_out_bundle->set_title("Check Out Bundle");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_check_out_bundle->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the name of the bundle you would like to check out: "));
+    grid1->attach(*label, 0, 0, 1, 1);
+
+    entry_name = Gtk::manage(new Gtk::Entry());
+    entry_name->set_text("");
+    entry_name->set_max_length(50);
+    grid1->attach(*entry_name, 0, 1, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_bundle_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 2, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_bundle_ok_button_click));
+    grid2->attach(*button_ok, 1, 2, 1, 1);
+
+    window_check_out_bundle->show_all();
+}
+void Dialog::on_check_out_bundle_ok_button_click()
+{
+    string name = entry_name->get_text();
+    bool found = false;
+    for(Bundle* it : library.get_bundles())
+    {
+        if(name == it->get_name())
+        {
+            found = true;
+            if(it->is_checked_out() == true) // if is not checked out then display is checked out
+            {
+                window_check_out_bundle->close();
+                dialog(it->get_name() + " bundle is already checked out.");
+                break;
+            }
+            else // if is checked out then call check_out_bundle()
+            {
+                it->check_out_bundle();
+                library.create_new_checked_out_bundle(it);
+                window_check_out_bundle->close();
+                dialog(it->get_name() + " bundle checked out.");
+                break;
+            }
+        }
+    }
+    if(!found)
+        dialog("Bundle with ID Number " + name + " is not found.");
+    delete(window_check_out_bundle);
+}
+void Dialog::on_check_out_bundle_cancel_button_click()
+{
+    window_check_out_bundle->close();
 }
 
 // *Pay Balance*

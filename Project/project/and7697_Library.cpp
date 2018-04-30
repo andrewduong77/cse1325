@@ -30,6 +30,11 @@ void Library::create_new_checked_out_media(Media* media)
     checked_out_list.push_back(media);
 }
 
+void Library::create_new_checked_out_bundle(Bundle* bundle)
+{
+
+}
+
 void Library::remove_checked_out_media(int call_number)
 {
     for(int i = 0; i < checked_out_list.size(); i++)
@@ -39,6 +44,11 @@ void Library::remove_checked_out_media(int call_number)
             checked_out_list.erase(checked_out_list.begin() + i);
         }
     }
+}
+
+void Library::remove_checked_out_bundle(string name)
+{
+
 }
 
 vector<Media*> Library::get_medias()
@@ -69,6 +79,11 @@ vector<Transaction*> Library::get_transactions()
 vector<Media*> Library::get_checked_out_list()
 {
     return this->checked_out_list;
+}
+
+vector<Bundle*> Library::get_checked_out_bundle_list()
+{
+
 }
 
 string Library::print_medias_to_string()
@@ -147,6 +162,25 @@ string Library::print_checked_out_list_to_string()
     return out;
 }
 
+string Library::print_checked_out_bundle_list_to_string()
+{
+    string out;
+    ostringstream ost;
+    for(Bundle* it_bundle : checked_out_bundle_list)
+    {
+        ost << "================" << endl << it_bundle->get_name() << " Bundle" << endl << "================" << endl << endl;
+        for(Media* it_media : it_bundle->get_medias())
+        {
+            ost << "    == " << it_media->get_type() << " ==" << endl;
+            ost << "        ID Number: " << it_media->get_id_number() << endl;
+            ost << "        Title: " << it_media->get_title() << endl;
+        }
+        // ost << it_bundle->to_string();
+    }
+    out = ost.str();
+    return out;
+}
+
 void Library::print_medias()
 {
     cout << R"(
@@ -187,6 +221,11 @@ Checked Out
     )";
     for(Media* it : checked_out_list)
         cout << it->to_string();
+}
+
+void Library::print_checked_out_bundle_list()
+{
+
 }
 
 /*
