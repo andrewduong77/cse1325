@@ -124,9 +124,13 @@ string Library::print_bundles_to_string()
     ostringstream ost;
     for(Bundle* it_bundle : bundles)
     {
-        ost << "== " << it_bundle->get_name() << " Bundle ==" << endl << endl;
+        ost << "================" << endl << it_bundle->get_name() << " Bundle" << endl << "================" << endl << endl;
         for(Media* it_media : it_bundle->get_medias())
-            ost << "    ID Number: " << it_media->get_id_number() << endl;
+        {
+            ost << "    == " << it_media->get_type() << " ==" << endl;
+            ost << "        ID Number: " << it_media->get_id_number() << endl;
+            ost << "        Title: " << it_media->get_title() << endl;
+        }
         // ost << it_bundle->to_string();
     }
     out = ost.str();

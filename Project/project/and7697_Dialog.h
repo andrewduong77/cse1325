@@ -19,12 +19,13 @@ public:
     Dialog(Library& l);
     virtual ~Dialog();
 protected:
-    // ***For Main Menu***
+    // ***For View***
     void on_browse_catalog_button_click();
     void on_view_checked_out_list_button_click();
     void on_view_customers_button_click();
     void on_view_librarians_button_click();
-    void on_add_button_click();
+    void on_view_bundles_button_click();
+    // void on_add_button_click();
     // *Check In*
     void on_check_in_button_click();
     void on_check_in_ok_button_click();
@@ -59,7 +60,11 @@ protected:
     void on_add_librarian_button_click();
     void on_add_librarian_ok_button_click();
     void on_add_librarian_cancel_button_click();
+    // *Add Bundle*
     void on_add_bundle_button_click();
+    void on_add_bundle_ok_button_click();
+    void on_add_bundle_cancel_button_click();
+    void on_add_to_bundle_button_click();
 
     // ***For Add Media***
     // *Add Book*
@@ -95,6 +100,7 @@ private:
     Gtk::Window *window_load;
     Gtk::Window *window_add_customer;
     Gtk::Window *window_add_librarian;
+    Gtk::Window *window_add_bundle;
     Gtk::Window *window_add_book;
     Gtk::Window *window_add_movie;
     Gtk::Window *window_add_video_game;
@@ -123,6 +129,7 @@ private:
     Gtk::Entry *entry_voice_actor;
     Gtk::Entry *entry_composer;
     Gtk::Entry *entry_season_number;
+    vector<Media*> medias;
     vector<string> leading_actors;
     vector<string> tracks;
     vector<string> voice_actors;

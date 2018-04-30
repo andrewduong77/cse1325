@@ -53,6 +53,10 @@ Dialog::Dialog(Library& l) : library(l)
     button_view_librarians->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_librarians_button_click));
     grid1->attach(*button_view_librarians, 0, 4, 1, 1);
 
+    Gtk::Button *button_view_bundles = Gtk::manage(new Gtk::Button("View Bundles"));
+    button_view_bundles->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_bundles_button_click));
+    grid1->attach(*button_view_bundles, 0, 5, 1, 1);
+
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     hbox1->add(*vbox2);
 
@@ -314,6 +318,46 @@ void Dialog::on_view_librarians_button_click()
     window_browse_catalog->show_all();
 }
 
+void Dialog::on_view_bundles_button_click()
+{
+    string display;
+
+    if(library.get_bundles().size() <= 0)
+        display = "There are no bundles.";
+    else
+        display = library.print_bundles_to_string();
+
+    Gtk::Window *window_view_bundles = new Gtk::Window();
+    window_view_bundles->set_default_size(600, 600);
+    window_view_bundles->set_title("View Bundles");
+    
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_view_bundles->add(*vbox);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("View Bundles"));
+    grid->attach(*label, 0, 0, 1, 1);
+
+    Glib::RefPtr<Gtk::TextBuffer> textbuffer;
+    textbuffer = Gtk::TextBuffer::create();
+    textbuffer->set_text(display);
+    
+    Gtk::ScrolledWindow *scrolledwindow = Gtk::manage(new Gtk::ScrolledWindow());
+    scrolledwindow->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+    vbox->pack_start(*scrolledwindow);
+
+    Gtk::TextView *textview = Gtk::manage(new Gtk::TextView());
+    textview->set_editable(false);
+    textview->set_buffer(textbuffer);
+    scrolledwindow->add(*textview);
+
+    window_view_bundles->show_all();
+}
+
+/*
 void Dialog::on_add_button_click()
 {
     Gtk::Window *window = new Gtk::Window();
@@ -351,6 +395,7 @@ void Dialog::on_add_button_click()
 
     window->show_all();
 }
+*/
 
 // *Check In*
 void Dialog::on_check_in_button_click()
@@ -369,12 +414,12 @@ void Dialog::on_check_in_button_click()
     hbox_top->add(*grid1);
 
     Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the id number of the media you would like to check in: "));
-    grid1->attach(*label, 0, 0, 2, 1);
+    grid1->attach(*label, 0, 0, 1, 1);
 
     entry_id_number = Gtk::manage(new Gtk::Entry());
     entry_id_number->set_text("");
     entry_id_number->set_max_length(50);
-    grid1->attach(*entry_id_number, 0, 1, 2, 1);
+    grid1->attach(*entry_id_number, 0, 1, 1, 1);
 
     Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox_bottom);
@@ -443,12 +488,12 @@ void Dialog::on_check_out_button_click()
     hbox_top->add(*grid1);
 
     Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the id number of the media you would like to check out: "));
-    grid1->attach(*label, 0, 0, 2, 1);
+    grid1->attach(*label, 0, 0, 1, 1);
 
     entry_id_number = Gtk::manage(new Gtk::Entry());
     entry_id_number->set_text("");
     entry_id_number->set_max_length(50);
-    grid1->attach(*entry_id_number, 0, 1, 2, 1);
+    grid1->attach(*entry_id_number, 0, 1, 1, 1);
 
     Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox_bottom);
@@ -517,12 +562,12 @@ void Dialog::on_pay_balance_button_click()
     hbox_top->add(*grid1);
 
     Gtk::Label *label = Gtk::manage(new Gtk::Label("Please input the id number of the customer you would like to pay balance: "));
-    grid1->attach(*label, 0, 0, 2, 1);
+    grid1->attach(*label, 0, 0, 1, 1);
 
     entry_id = Gtk::manage(new Gtk::Entry());
     entry_id->set_text("");
     entry_id->set_max_length(50);
-    grid1->attach(*entry_id, 0, 1, 2, 1);
+    grid1->attach(*entry_id, 0, 1, 1, 1);
 
     Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox_bottom);
@@ -945,9 +990,101 @@ void Dialog::on_add_librarian_cancel_button_click()
     window_add_librarian->close();
 }
 
+// *Add Bundle*
 void Dialog::on_add_bundle_button_click()
 {
+    window_add_bundle = new Gtk::Window();
+    window_add_bundle->set_title("Add Bundle");
 
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_bundle->add(*vbox);
+
+    Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox1);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox1->add(*grid1);
+
+    Gtk::Label *label_name = Gtk::manage(new Gtk::Label("Name: "));
+    grid1->attach(*label_name, 0, 0, 1, 1);
+
+    entry_name = Gtk::manage(new Gtk::Entry());
+    entry_name->set_text("");
+    entry_name->set_max_length(50);
+    grid1->attach(*entry_name, 1, 0, 1, 1);
+
+    Gtk::Box *hbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox2);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox2->add(*grid2);
+
+    Gtk::Label *label_id_number = Gtk::manage(new Gtk::Label("Please input the id number of the media you would like to add to the Bundle: "));
+    grid2->attach(*label_id_number, 0, 0, 2, 1);
+
+    entry_id_number = Gtk::manage(new Gtk::Entry());
+    entry_id_number->set_text("");
+    entry_id_number->set_max_length(50);
+    grid2->attach(*entry_id_number, 0, 1, 1, 1);
+
+    Gtk::Button *button_add_to_bundle = Gtk::manage(new Gtk::Button("Add to Bundle"));
+    button_add_to_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_to_bundle_button_click));
+    grid2->attach(*button_add_to_bundle, 1, 1, 1, 1);
+
+    Gtk::Box *hbox3 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox3);
+
+    Gtk::Grid *grid3 = Gtk::manage(new Gtk::Grid);
+    grid3->set_border_width(10);
+    hbox3->add(*grid3);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_cancel_button_click));
+    grid3->attach(*button_cancel, 0, 2, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_ok_button_click));
+    grid3->attach(*button_ok, 1, 2, 1, 1);
+
+    window_add_bundle->show_all();
+}
+void Dialog::on_add_bundle_ok_button_click()
+{
+    string name = entry_name->get_text();
+    Bundle* bundle = new Bundle(name, medias);
+    library.create_new_bundle(bundle);
+    dialog(name + " added.");
+    medias.clear();
+    window_add_bundle->close();
+    delete(window_add_bundle);
+}
+void Dialog::on_add_bundle_cancel_button_click()
+{
+    window_add_bundle->close();
+}
+void Dialog::on_add_to_bundle_button_click()
+{
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
+    int id_number;
+    id_number_geek >> id_number;
+    bool found = false;
+    for(Media* it : library.get_medias())
+    {
+        if(id_number == it->get_id_number())
+        {
+            // Media media_temp = *it;
+            found = true;
+            medias.push_back(it);
+            entry_id_number->set_text("");
+            dialog(it->get_title() + " added to " + entry_name->get_text());
+            break;
+        }
+    }
+    if(!found)
+        dialog("Media with ID Number " + id_number_str + " not found.");
 }
 
 /*

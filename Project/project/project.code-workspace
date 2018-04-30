@@ -16,7 +16,9 @@
 			"utility": "cpp",
 			"valarray": "cpp",
 			"sstream": "cpp",
-			"ostream": "cpp"
+			"ostream": "cpp",
+			"*.tcc": "cpp",
+			"system_error": "cpp"
 		}
 	}
 }
