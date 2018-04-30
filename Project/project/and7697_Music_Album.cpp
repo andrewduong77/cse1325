@@ -77,7 +77,7 @@ string Music_Album::to_string() const
     return out;
 }
 
-string Music_Album::to_string_file() const
+string Music_Album::to_file() const
 {
     string out;
     ostringstream ost;

@@ -259,28 +259,32 @@ ostream& operator<<(ostream& ost, const Library& library_two)
 
 istream& operator>>(istream& ist, Library& library_two)
 {
+
     while(ist)
     {
         // For Media
+        string line_str;
+        getline(ist, line_str);
+        stringstream ist2(line_str);
         int id_number;
         string id_number_str;
         string call_number;
         string title;
         string genre;
         string type;
-        getline(ist, type, ';');
+        getline(ist2, type, ';');
         if(type == "Book")
         {
             string author;
             int copyright_year;
             string copyright_year_str;
-            getline(ist, id_number_str, ';');
+            getline(ist2, id_number_str, ';');
             id_number = library_two.string_to_int(id_number_str);
-            getline(ist, call_number, ';');
-            getline(ist, title, ';');
-            getline(ist, genre, ';');
-            getline(ist, author, ';');
-            getline(ist, copyright_year_str);
+            getline(ist2, call_number, ';');
+            getline(ist2, title, ';');
+            getline(ist2, genre, ';');
+            getline(ist2, author, ';');
+            getline(ist2, copyright_year_str);
             copyright_year = library_two.string_to_int(copyright_year_str);
             Book *book = new Book(id_number, call_number, title, genre, author, copyright_year);
             library_two.create_new_media(book);
@@ -293,16 +297,16 @@ istream& operator>>(istream& ist, Library& library_two)
             string director;
             vector<string> leading_actors;
             string leading_actors_str;
-            getline(ist, id_number_str, ';');
+            getline(ist2, id_number_str, ';');
             id_number = library_two.string_to_int(id_number_str);
-            getline(ist, call_number, ';');
-            getline(ist, title, ';');
-            getline(ist, genre, ';');
-            getline(ist, release_year_str, ';');
+            getline(ist2, call_number, ';');
+            getline(ist2, title, ';');
+            getline(ist2, genre, ';');
+            getline(ist2, release_year_str, ';');
             release_year = library_two.string_to_int(release_year_str);
-            getline(ist, producer, ';');
-            getline(ist, director, ';');
-            getline(ist, leading_actors_str);
+            getline(ist2, producer, ';');
+            getline(ist2, director, ';');
+            getline(ist2, leading_actors_str);
             stringstream leading_actors_geek(leading_actors_str);
             while(leading_actors_geek)
             {
@@ -313,38 +317,38 @@ istream& operator>>(istream& ist, Library& library_two)
             Movie *movie = new Movie(id_number, call_number, title, genre, release_year, producer, director, leading_actors);
             library_two.create_new_media(movie);
         }
-        if(type == "Video Game")
+        if(type == "Video_Game")
         {
             int release_year;
             string release_year_str;
             string studio;
-            getline(ist, id_number_str, ';');
+            getline(ist2, id_number_str, ';');
             id_number = library_two.string_to_int(id_number_str);
-            getline(ist, call_number, ';');
-            getline(ist, title, ';');
-            getline(ist, genre, ';');
-            getline(ist, release_year_str, ';');
+            getline(ist2, call_number, ';');
+            getline(ist2, title, ';');
+            getline(ist2, genre, ';');
+            getline(ist2, release_year_str, ';');
             release_year = library_two.string_to_int(release_year_str);
-            getline(ist, studio);
+            getline(ist2, studio);
             Video_Game *video_game = new Video_Game(id_number, call_number, title, genre, release_year, studio);
             library_two.create_new_media(video_game);
         }
-        if(type == "Music Album")
+        if(type == "Music_Album")
         {
             int release_year;
             string release_year_str;
             vector<string> tracks;
             string tracks_str;
             string artist;
-            getline(ist, id_number_str, ';');
+            getline(ist2, id_number_str, ';');
             id_number = library_two.string_to_int(id_number_str);
-            getline(ist, call_number, ';');
-            getline(ist, title, ';');
-            getline(ist, genre, ';');
-            getline(ist, release_year_str, ';');
+            getline(ist2, call_number, ';');
+            getline(ist2, title, ';');
+            getline(ist2, genre, ';');
+            getline(ist2, release_year_str, ';');
             release_year = library_two.string_to_int(release_year_str);
-            getline(ist, artist, ';');
-            getline(ist, tracks_str);
+            getline(ist2, artist, ';');
+            getline(ist2, tracks_str);
             stringstream tracks_geek(tracks_str);
             while(tracks_geek)
             {
@@ -355,7 +359,7 @@ istream& operator>>(istream& ist, Library& library_two)
             Music_Album *music_album = new Music_Album(id_number, call_number, title, genre, release_year, artist, tracks);
             library_two.create_new_media(music_album);
         }
-        if(type == "Television Show Season")
+        if(type == "Television_Show_Season")
         {
             int release_year;
             string release_year_str;
@@ -366,15 +370,15 @@ istream& operator>>(istream& ist, Library& library_two)
             string composers_str;
             int season_number;
             string season_number_str;
-            getline(ist, id_number_str, ';');
+            getline(ist2, id_number_str, ';');
             id_number = library_two.string_to_int(id_number_str);
-            getline(ist, call_number, ';');
-            getline(ist, title, ';');
-            getline(ist, genre, ';');
-            getline(ist, release_year_str, ';');
+            getline(ist2, call_number, ';');
+            getline(ist2, title, ';');
+            getline(ist2, genre, ';');
+            getline(ist2, release_year_str, ';');
             release_year = library_two.string_to_int(release_year_str);
-            getline(ist, producer, ';');
-            getline(ist, voice_actors_str, ';');
+            getline(ist2, producer, ';');
+            getline(ist2, voice_actors_str, ';');
             stringstream voice_actors_geek(voice_actors_str);
             while(voice_actors_geek)
             {
@@ -382,7 +386,7 @@ istream& operator>>(istream& ist, Library& library_two)
                 if(getline(voice_actors_geek, voice_actor, ':'))
                     voice_actors.push_back(voice_actor);
             }
-            getline(ist, composers_str, ';');
+            getline(ist2, composers_str, ';');
             stringstream composers_geek(composers_str);
             while(composers_geek)
             {
@@ -390,7 +394,7 @@ istream& operator>>(istream& ist, Library& library_two)
                 if(getline(composers_geek, composer, ':'))
                     composers.push_back(composer);
             }
-            getline(ist, season_number_str);
+            getline(ist2, season_number_str);
             season_number = library_two.string_to_int(season_number_str);
             Television_Show_Season *television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
             library_two.create_new_media(television_show_season);
@@ -409,13 +413,13 @@ istream& operator>>(istream& ist, Library& library_two)
             string email;
             double balance;
             string balance_str;
-            getline(ist, name, ';');
-            getline(ist, id_str, ';');
+            getline(ist2, name, ';');
+            getline(ist2, id_str, ';');
             id = library_two.string_to_int(id_str);
-            getline(ist, phone_str, ';');
+            getline(ist2, phone_str, ';');
             phone = library_two.string_to_int(phone_str);
-            getline(ist, email, ';');
-            getline(ist, balance_str);
+            getline(ist2, email, ';');
+            getline(ist2, balance_str);
             balance = library_two.string_to_double(balance_str);
             Customer *customer = new Customer(name, id, phone, email, balance);
             library_two.create_new_customer(customer);
@@ -425,8 +429,8 @@ istream& operator>>(istream& ist, Library& library_two)
             string name;
             int id;
             string id_str;
-            getline(ist, name, ';');
-            getline(ist, id_str);
+            getline(ist2, name, ';');
+            getline(ist2, id_str);
             id = library_two.string_to_int(id_str);
             Librarian *librarian = new Librarian(name, id);
             library_two.create_new_librarian(librarian);
@@ -436,8 +440,8 @@ istream& operator>>(istream& ist, Library& library_two)
             string name;
             vector<Media*> medias;
             string id_numbers_str;
-            getline(ist, name, ';');
-            getline(ist, id_numbers_str);
+            getline(ist2, name, ';');
+            getline(ist2, id_numbers_str);
             stringstream id_numbers_geek(id_numbers_str);
             while(id_numbers_geek)
             {

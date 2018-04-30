@@ -13,7 +13,7 @@ public:
     string tracks_to_string() const;
     string tracks_to_file() const;
     string to_string() const;
-    string to_string_file() const;
+    string to_file() const;
     friend ostream& operator<<(ostream& ost, const Music_Album& music_album_two);
 private:
     int release_year;
