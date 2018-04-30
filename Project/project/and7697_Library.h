@@ -42,6 +42,8 @@ public:
     void print_bundles();
     void print_checked_out_list();
     void print_checked_out_bundle_list();
+    string to_lower_case(string s);
+    char easy_to_lower(char a);
 //    string to_string() const;
     friend ostream& operator<<(ostream& ost, const Library& library_two);
     friend istream& operator>>(istream& ist, Library& library_two);

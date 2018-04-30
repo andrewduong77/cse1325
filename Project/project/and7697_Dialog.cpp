@@ -45,17 +45,21 @@ Dialog::Dialog(Library& l) : library(l)
     button_view_checked_out_list->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_checked_out_list_button_click));
     grid1->attach(*button_view_checked_out_list, 0, 2, 1, 1);
 
+    Gtk::Button *button_view_checked_out_bundle_list = Gtk::manage(new Gtk::Button("View Checked Out Bundle List"));
+    button_view_checked_out_bundle_list->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_checked_out_bundle_list_button_click));
+    grid1->attach(*button_view_checked_out_bundle_list, 0, 3, 1, 1);
+
     Gtk::Button *button_view_customers = Gtk::manage(new Gtk::Button("View Customers"));
     button_view_customers->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_customers_button_click));
-    grid1->attach(*button_view_customers, 0, 3, 1, 1);
+    grid1->attach(*button_view_customers, 0, 4, 1, 1);
 
     Gtk::Button *button_view_librarians = Gtk::manage(new Gtk::Button("View Librarians"));
     button_view_librarians->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_librarians_button_click));
-    grid1->attach(*button_view_librarians, 0, 4, 1, 1);
+    grid1->attach(*button_view_librarians, 0, 5, 1, 1);
 
     Gtk::Button *button_view_bundles = Gtk::manage(new Gtk::Button("View Bundles"));
     button_view_bundles->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_bundles_button_click));
-    grid1->attach(*button_view_bundles, 0, 5, 1, 1);
+    grid1->attach(*button_view_bundles, 0, 6, 1, 1);
 
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     hbox1->add(*vbox2);
@@ -131,9 +135,17 @@ Dialog::Dialog(Library& l) : library(l)
     button_check_out->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_button_click));
     grid4->attach(*button_check_out, 0, 2, 1, 1);
 
+    Gtk::Button *button_check_in_bundle = Gtk::manage(new Gtk::Button("Check in Bundle"));
+    button_check_in_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_in_bundle_button_click));
+    grid4->attach(*button_check_in_bundle, 0, 3, 1, 1);
+
+    Gtk::Button *button_check_out_bundle = Gtk::manage(new Gtk::Button("Check out Bundle"));
+    button_check_out_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_check_out_bundle_button_click));
+    grid4->attach(*button_check_out_bundle, 0, 4, 1, 1);
+
     Gtk::Button *button_pay_balance = Gtk::manage(new Gtk::Button("Pay Balance"));
     button_pay_balance->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_pay_balance_button_click));
-    grid4->attach(*button_pay_balance, 0, 3, 1, 1);
+    grid4->attach(*button_pay_balance, 0, 5, 1, 1);
 
     Gtk::Box *hbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
     vbox->add(*hbox2);
@@ -238,6 +250,45 @@ void Dialog::on_view_checked_out_list_button_click()
     scrolledwindow->add(*textview);
 
     window_view_checked_out_list->show_all();
+}
+
+void Dialog::on_view_checked_out_bundle_list_button_click()
+{
+    string display;
+
+    if(library.get_checked_out_bundle_list().size() <= 0)
+        display = "The are nothing checked out.";
+    else
+        display = library.print_checked_out_bundle_list_to_string();
+
+    Gtk::Window *window_view_checked_out_bundle_list = new Gtk::Window();
+    window_view_checked_out_bundle_list->set_default_size(600, 600);
+    window_view_checked_out_bundle_list->set_title("View Checked Out List");
+    
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_view_checked_out_bundle_list->add(*vbox);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("View Checked Out List"));
+    grid->attach(*label, 0, 0, 1, 1);
+
+    Glib::RefPtr<Gtk::TextBuffer> textbuffer;
+    textbuffer = Gtk::TextBuffer::create();
+    textbuffer->set_text(display);
+    
+    Gtk::ScrolledWindow *scrolledwindow = Gtk::manage(new Gtk::ScrolledWindow());
+    scrolledwindow->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+    vbox->pack_start(*scrolledwindow);
+
+    Gtk::TextView *textview = Gtk::manage(new Gtk::TextView());
+    textview->set_editable(false);
+    textview->set_buffer(textbuffer);
+    scrolledwindow->add(*textview);
+
+    window_view_checked_out_bundle_list->show_all();
 }
 
 void Dialog::on_view_customers_button_click()
@@ -560,7 +611,7 @@ void Dialog::on_check_in_bundle_ok_button_click()
     bool found = false;
     for(Bundle* it : library.get_bundles())
     {
-        if(name == it->get_name())
+        if(to_lower_case(name) == to_lower_case(it->get_name()))
         {
             found = true;
             if(it->is_checked_out() == false) // if is not checked out then display is checked in
@@ -635,7 +686,7 @@ void Dialog::on_check_out_bundle_ok_button_click()
     bool found = false;
     for(Bundle* it : library.get_bundles())
     {
-        if(name == it->get_name())
+        if(to_lower_case(name) == to_lower_case(it->get_name()))
         {
             found = true;
             if(it->is_checked_out() == true) // if is not checked out then display is checked out
@@ -1915,4 +1966,22 @@ void Dialog::on_add_composer_button_click()
     composers.push_back(composer);
     entry_composer->set_text("");
     dialog(composer + " added.");
+}
+
+/*
+***Miscellaneous***
+*/
+
+string Dialog::to_lower_case(string s)
+{
+    for(int i = 0; i < s.size(); i++)
+        s[i] = easy_to_lower(s[i]);
+    return s;
+}
+
+char Dialog::easy_to_lower(char a)
+{
+    if(a <= 'Z' && a >= 'A')
+        return a - ('Z' - 'z');
+    return a;
 }

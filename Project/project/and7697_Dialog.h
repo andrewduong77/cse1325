@@ -22,6 +22,7 @@ protected:
     // ***For View***
     void on_browse_catalog_button_click();
     void on_view_checked_out_list_button_click();
+    void on_view_checked_out_bundle_list_button_click();
     void on_view_customers_button_click();
     void on_view_librarians_button_click();
     void on_view_bundles_button_click();
@@ -98,6 +99,10 @@ protected:
     void on_add_television_show_season_cancel_button_click();
     void on_add_voice_actor_button_click();
     void on_add_composer_button_click();
+
+    // ***Miscellaneous***
+    string to_lower_case(string s);
+    char easy_to_lower(char a);
 private:
     Library& library;
     Gtk::Window *window_check_in;

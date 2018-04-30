@@ -32,14 +32,14 @@ void Library::create_new_checked_out_media(Media* media)
 
 void Library::create_new_checked_out_bundle(Bundle* bundle)
 {
-
+    checked_out_bundle_list.push_back(bundle);
 }
 
-void Library::remove_checked_out_media(int call_number)
+void Library::remove_checked_out_media(int id_number)
 {
     for(int i = 0; i < checked_out_list.size(); i++)
     {
-        if(call_number == (checked_out_list[i])->get_id_number())
+        if(id_number == (checked_out_list[i])->get_id_number())
         {
             checked_out_list.erase(checked_out_list.begin() + i);
         }
@@ -48,7 +48,13 @@ void Library::remove_checked_out_media(int call_number)
 
 void Library::remove_checked_out_bundle(string name)
 {
-
+    for(int i = 0; i < checked_out_bundle_list.size(); i++)
+    {
+        if(to_lower_case(name) == to_lower_case((checked_out_bundle_list[i])->get_name()))
+        {
+            checked_out_bundle_list.erase(checked_out_bundle_list.begin() + i);
+        }
+    }
 }
 
 vector<Media*> Library::get_medias()
@@ -83,7 +89,7 @@ vector<Media*> Library::get_checked_out_list()
 
 vector<Bundle*> Library::get_checked_out_bundle_list()
 {
-
+    return this->checked_out_bundle_list;
 }
 
 string Library::print_medias_to_string()
@@ -295,4 +301,18 @@ void Library::save(string file_name)
 void Library::load(string file_name)
 {
 
+}
+
+string Library::to_lower_case(string s)
+{
+    for(int i = 0; i < s.size(); i++)
+        s[i] = easy_to_lower(s[i]);
+    return s;
+}
+
+char Library::easy_to_lower(char a)
+{
+    if(a <= 'Z' && a >= 'A')
+        return a - ('Z' - 'z');
+    return a;
 }
