@@ -306,7 +306,7 @@ void Dialog::on_view_transactions_button_click()
 
     Gtk::Window *window_browse_catalog = new Gtk::Window();
     window_browse_catalog->set_default_size(600, 600);
-    window_browse_catalog->set_title("Customers");
+    window_browse_catalog->set_title("Transactions");
     
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     window_browse_catalog->add(*vbox);
@@ -315,7 +315,7 @@ void Dialog::on_view_transactions_button_click()
     grid->set_border_width(10);
     vbox->add(*grid);
 
-    Gtk::Label *label = Gtk::manage(new Gtk::Label("Customers"));
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Transactions"));
     grid->attach(*label, 0, 0, 1, 1);
 
     Glib::RefPtr<Gtk::TextBuffer> textbuffer;
@@ -1248,7 +1248,7 @@ void Dialog::on_add_transaction_cancel_button_click()
 }
 void Dialog::on_add_media_by_id_button_click()
 {
-    string id_number_str = entry_id_number->get_text();
+    string id_number_str = entry_media->get_text();
     stringstream id_number_geek(id_number_str);
     int id_number;
     id_number_geek >> id_number;
@@ -1259,11 +1259,11 @@ void Dialog::on_add_media_by_id_button_click()
             dialog("\"" + it->get_title() + "\" added.");
             break;
         }
-    entry_id_number->set_text("");
+    entry_media->set_text("");
 }
 void Dialog::on_add_bundle_by_name_button_click()
 {
-    string name = entry_name->get_text();
+    string name = entry_bundle->get_text();
     for(Bundle* it : library.get_bundles())
         if(to_lower_case(name) == to_lower_case(it->get_name()))
         {
@@ -1271,7 +1271,7 @@ void Dialog::on_add_bundle_by_name_button_click()
             dialog("\"" + it->get_name() + "\" added.");
             break;
         }
-    entry_name->set_text("");
+    entry_bundle->set_text("");
 }
 
 // *Add Customer*
