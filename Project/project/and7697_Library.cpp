@@ -222,17 +222,13 @@ string Library::to_string() const
     ostringstream ost;
     for(Media* it : this->medias)
         ost << it->to_file();
-    for(Transaction* it : this->transactions)
-        ost << it->to_file();
+    // for(Transaction* it : this->transactions)
+    //     ost << it->to_file();
     for(Customer* it : this->customers)
         ost << it->to_file();
     for(Librarian* it : this->librarians)
         ost << it->to_file();
     for(Bundle* it : this->bundles)
-        ost << it->to_file();
-    for(Media* it : this->checked_out_list)
-        ost << it->to_file();
-    for(Bundle* it : this->checked_out_bundle_list)
         ost << it->to_file();
     out = ost.str();
     return out;
@@ -259,7 +255,11 @@ ostream& operator<<(ostream& ost, const Library& library_two)
 
 istream& operator>>(istream& ist, Library& library_two)
 {
-
+    library_two.medias.clear();
+    library_two.transactions.clear();
+    library_two.customers.clear();
+    library_two.librarians.clear();
+    library_two.bundles.clear();
     while(ist)
     {
         // For Media
@@ -446,13 +446,16 @@ istream& operator>>(istream& ist, Library& library_two)
             while(id_numbers_geek)
             {
                 int id_number;
-                getline(id_numbers_geek, id_number_str, ':');
-                id_number = library_two.string_to_int(id_number_str);
-                for(Media* it : library_two.medias)
+                if(getline(id_numbers_geek, id_number_str, ':'))
                 {
-                    if(id_number == it->get_id_number())
+                    id_number = library_two.string_to_int(id_number_str);
+                    for(Media* it : library_two.medias)
                     {
-                        medias.push_back(it);
+                        if(id_number == it->get_id_number())
+                        {
+                            medias.push_back(it);
+                            break;
+                        }
                     }
                 }
             }

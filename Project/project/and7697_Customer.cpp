@@ -62,7 +62,7 @@ string Customer::to_file() const
         << this->id << ";"
         << this->phone << ";"
         << this->email << ";"
-        << this->balance << endl;
+        << fixed << setprecision(2) << this->balance << endl;
     out = ost.str();
     return out;
 }

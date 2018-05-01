@@ -464,7 +464,7 @@ void Dialog::on_check_in_ok_button_click()
             if(it->is_checked_out() == false) // if is not checked out then display is checked in
             {
                 window_check_in->close();
-                dialog(it->get_title() + " is already checked in.");
+                dialog("\"" + it->get_title() + "\" is already checked in.");
                 break;
             }
             else // if is checked out then call check_in()
@@ -472,7 +472,7 @@ void Dialog::on_check_in_ok_button_click()
                 it->check_in();
                 library.remove_checked_out_media(id_number);
                 window_check_in->close();
-                dialog(it->get_title() + " checked in.");
+                dialog("\"" + it->get_title() + "\" checked in.");
                 break;
             }
         }
@@ -542,7 +542,7 @@ void Dialog::on_check_out_ok_button_click()
             if(it->is_checked_out() == true) // if is not checked out then display is checked out
             {
                 window_check_out->close();
-                dialog(it->get_title() + " is already checked out.");
+                dialog("\"" + it->get_title() + "\" is already checked out.");
                 break;
             }
             else // if is checked out then call check_out()
@@ -550,7 +550,7 @@ void Dialog::on_check_out_ok_button_click()
                 it->check_out();
                 library.create_new_checked_out_media(it);
                 window_check_out->close();
-                dialog(it->get_title() + " checked out.");
+                dialog("\"" + it->get_title() + "\" checked out.");
                 break;
             }
         }
@@ -617,7 +617,7 @@ void Dialog::on_check_in_bundle_ok_button_click()
             if(it->is_checked_out() == false) // if is not checked out then display is checked in
             {
                 window_check_in_bundle->close();
-                dialog(it->get_name() + " bundle is already checked in.");
+                dialog("\"" + it->get_name() + "\" bundle is already checked in.");
                 break;
             }
             else // if is checked out then call check_in_bundle()
@@ -625,7 +625,7 @@ void Dialog::on_check_in_bundle_ok_button_click()
                 it->check_in_bundle();
                 library.remove_checked_out_bundle(name);
                 window_check_in_bundle->close();
-                dialog(it->get_name() + " bundle checked in.");
+                dialog("\"" + it->get_name() + "\" bundle checked in.");
                 break;
             }
         }
@@ -692,7 +692,7 @@ void Dialog::on_check_out_bundle_ok_button_click()
             if(it->is_checked_out() == true) // if is not checked out then display is checked out
             {
                 window_check_out_bundle->close();
-                dialog(it->get_name() + " bundle is already checked out.");
+                dialog("\"" + it->get_name() + "\" bundle is already checked out.");
                 break;
             }
             else // if is checked out then call check_out_bundle()
@@ -700,7 +700,7 @@ void Dialog::on_check_out_bundle_ok_button_click()
                 it->check_out_bundle();
                 library.create_new_checked_out_bundle(it);
                 window_check_out_bundle->close();
-                dialog(it->get_name() + " bundle checked out.");
+                dialog("\"" + it->get_name() + "\" bundle checked out.");
                 break;
             }
         }
@@ -864,7 +864,7 @@ void Dialog::on_save_cancel_button_click()
 void Dialog::on_load_button_click()
 {
     window_load = new Gtk::Window();
-    window_load->set_title("Save");
+    window_load->set_title("Load");
 
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     window_load->add(*vbox);
@@ -1227,7 +1227,7 @@ void Dialog::on_add_bundle_ok_button_click()
     string name = entry_name->get_text();
     Bundle* bundle = new Bundle(name, medias);
     library.create_new_bundle(bundle);
-    dialog(name + " added.");
+    dialog(name + " Bundle added.");
     medias.clear();
     window_add_bundle->close();
     delete(window_add_bundle);
@@ -1251,7 +1251,7 @@ void Dialog::on_add_to_bundle_button_click()
             found = true;
             medias.push_back(it);
             entry_id_number->set_text("");
-            dialog(it->get_title() + " added to " + entry_name->get_text());
+            dialog("\"" + it->get_title() + "\" added to " + entry_name->get_text() + " Bundle.");
             break;
         }
     }
@@ -1373,7 +1373,7 @@ void Dialog::on_add_book_ok_button_click()
     Book* book = new Book(id_number, call_number, title, genre, author, copyright_year);
     library.create_new_media(book);
     window_add_book->close();
-    dialog(title + " added.");
+    dialog("\"" + title + "\" added.");
     delete(window_add_book);
 }
 void Dialog::on_add_book_cancel_button_click()
@@ -1515,7 +1515,7 @@ void Dialog::on_add_movie_ok_button_click()
     string director = entry_director->get_text();
     Movie* movie = new Movie(id_number, call_number, title, genre, release_year, producer, director, leading_actors);
     library.create_new_media(movie);
-    dialog(title + " added.");
+    dialog("\"" + title + "\" added.");
     leading_actors.clear();
     window_add_movie->close();
     delete(window_add_movie);
@@ -1641,7 +1641,7 @@ void Dialog::on_add_video_game_ok_button_click()
     string studio = entry_studio->get_text();
     Video_Game* video_game = new Video_Game(id_number, call_number, title, genre, release_year, studio);
     library.create_new_media(video_game);
-    dialog(title + " added.");
+    dialog("\"" + title + "\" added.");
     window_add_video_game->close();
     delete(window_add_video_game);
 }
@@ -1773,7 +1773,7 @@ void Dialog::on_add_music_album_ok_button_click()
     string artist = entry_artist->get_text();
     Music_Album* music_album = new Music_Album(id_number, call_number, title, genre, release_year, artist, tracks);
     library.create_new_media(music_album);
-    dialog(title + " added.");
+    dialog("\"" + title + "\" added.");
     tracks.clear();
     window_add_music_album->close();
     delete(window_add_music_album);
@@ -1788,7 +1788,7 @@ void Dialog::on_add_track_button_click()
     string track = entry_track->get_text();
     tracks.push_back(track);
     entry_track->set_text("");
-    dialog(track + " added.");
+    dialog("\"" + track + "\" added.");
 }
 
 // *Add Television Show Season
@@ -1942,7 +1942,7 @@ void Dialog::on_add_television_show_season_ok_button_click()
     season_number_geek >> season_number;
     Television_Show_Season* television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
     library.create_new_media(television_show_season);
-    dialog(title + " added.");
+    dialog("\"" + title + "\" added.");
     voice_actors.clear();
     composers.clear();
     window_add_television_show_season->close();
