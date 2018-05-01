@@ -7,11 +7,8 @@ Dialog::Dialog(Library& l) : library(l)
     Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     add(*vbox);
 
-    Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
-    vbox->add(*hbox1);
-
     Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar());
-    hbox1->pack_start(*menubar, Gtk::PACK_SHRINK, 0);
+    vbox->pack_start(*menubar, Gtk::PACK_SHRINK, 0);
 
     Gtk::MenuItem *menuitem_file = Gtk::manage(new Gtk::MenuItem("_File", true));
     menubar->append(*menuitem_file);
@@ -26,6 +23,9 @@ Dialog::Dialog(Library& l) : library(l)
     Gtk::MenuItem *menuitem_exit = Gtk::manage(new Gtk::MenuItem("_Exit", true));
     menuitem_exit->signal_activate().connect(sigc::mem_fun(*this, &Dialog::on_exit_click));
     filemenu->append(*menuitem_exit);
+
+    Gtk::Box *hbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox1);
 
     Gtk::Box *vbox1 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     hbox1->add(*vbox1);
