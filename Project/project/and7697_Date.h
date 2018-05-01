@@ -1,7 +1,12 @@
 #ifndef AND7697_DATE_H_INCLUDED
 #define AND7697_DATE_H_INCLUDED
 
+
+#include <iostream>
 #include <fstream>
+#include <sstream>
+
+using namespace std;
 
 class Date
 {
@@ -10,7 +15,9 @@ public:
     int get_year();
     int get_month();
     int get_day();
-    // friend ostream& operator<<(ostream& ost, const Date& date_two);
+    string to_string() const;
+    string to_file() const;
+    friend ostream& operator<<(ostream& ost, const Date& date_two);
 private:
     int year;
     int month;

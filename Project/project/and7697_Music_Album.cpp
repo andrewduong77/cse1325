@@ -21,7 +21,7 @@ string Music_Album::get_tracks() const
     }
     for(int i = 0; i < tracks.size(); i++)
     {
-        ost << endl << "    " << i + 1 << " " << tracks[i];
+        ost << endl << "        " << i + 1 << " " << tracks[i];
         out = ost.str();
     }
     return out;

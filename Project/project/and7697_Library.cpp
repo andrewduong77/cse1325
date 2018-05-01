@@ -107,8 +107,10 @@ string Library::print_transactions_to_string()
     string out;
     ostringstream ost;
     for(Transaction* it : transactions)
-        // ost << "Does not work yet!" << endl;
+    {
+        ost << endl;
         ost << it->to_string();
+    }
     out = ost.str();
     return out;
 }
@@ -222,8 +224,8 @@ string Library::to_string() const
     ostringstream ost;
     for(Media* it : this->medias)
         ost << it->to_file();
-    // for(Transaction* it : this->transactions)
-    //     ost << it->to_file();
+    for(Transaction* it : this->transactions)
+        ost << it->to_file();
     for(Customer* it : this->customers)
         ost << it->to_file();
     for(Librarian* it : this->librarians)
@@ -399,10 +401,100 @@ istream& operator>>(istream& ist, Library& library_two)
             Television_Show_Season *television_show_season = new Television_Show_Season(id_number, call_number, title, genre, release_year, producer, voice_actors, composers, season_number);
             library_two.create_new_media(television_show_season);
         }
-        // else if(type == "Transaction")
-        // {
-            
-        // }
+        else if(type == "Transaction")
+        {
+            int year, month, day;
+            int transaction_number;
+            string transaction_number_str;
+            string check_out_date_str;
+            Librarian *librarian;
+            int librarian_id_number;
+            string librarian_id_number_str;
+            Customer *customer;
+            int customer_id_number;
+            string customer_id_number_str;
+            vector<Media*> medias;
+            vector<Bundle*> bundles;
+            string check_in_date_str;
+            string due_date_str;
+            getline(ist2, transaction_number_str, ';');
+            transaction_number = library_two.string_to_int(transaction_number_str);
+            getline(ist2, check_out_date_str, ';');
+            stringstream check_out_date_geek(check_out_date_str);
+            check_out_date_geek >> month;
+            check_out_date_geek >> day;
+            check_out_date_geek >> year;
+            Date *check_out_date = new Date(year, month, day);
+            getline(ist2, librarian_id_number_str, ';');
+            librarian_id_number = library_two.string_to_int(librarian_id_number_str);
+            for(Librarian* it : library_two.librarians)
+            {
+                if(librarian_id_number == it->get_id())
+                {
+                    librarian = it;
+                }
+            }
+            getline(ist2, customer_id_number_str, ';');
+            customer_id_number = library_two.string_to_int(customer_id_number_str);
+            string id_numbers_str;
+            for(Customer* it : library_two.customers)
+            {
+                if(customer_id_number == it->get_id())
+                {
+                    customer = it;
+                }
+            }
+            getline(ist2, id_numbers_str, ';');
+            stringstream id_numbers_geek(id_numbers_str);
+            while(id_numbers_geek)
+            {
+                int id_number;
+                if(getline(id_numbers_geek, id_number_str, ':'))
+                {
+                    id_number = library_two.string_to_int(id_number_str);
+                    for(Media* it : library_two.medias)
+                    {
+                        if(id_number == it->get_id_number())
+                        {
+                            medias.push_back(it);
+                            break;
+                        }
+                    }
+                }
+            }
+            string names_str;
+            getline(ist2, names_str, ';');
+            stringstream names_geek(names_str);
+            while(names_geek)
+            {
+                string name;
+                if(getline(names_geek, name, ':'))
+                {
+                    for(Bundle* it : library_two.bundles)
+                    {
+                        if(name == it->get_name())
+                        {
+                            bundles.push_back(it);
+                            break;
+                        }
+                    }
+                }
+            }
+            getline(ist2, check_in_date_str, ';');
+            stringstream check_in_date_geek(check_in_date_str);
+            check_in_date_geek >> month;
+            check_in_date_geek >> day;
+            check_in_date_geek >> year;
+            Date *check_in_date = new Date(year, month, day);
+            getline(ist2, due_date_str);
+            stringstream due_date_geek(due_date_str);
+            due_date_geek >> month;
+            due_date_geek >> day;
+            due_date_geek >> year;
+            Date *due_date = new Date(year, month, day);
+            Transaction *transaction = new Transaction(transaction_number, *check_out_date, *librarian, *customer, medias, bundles, *check_in_date, *due_date);
+            library_two.create_new_transaction(transaction);
+        }
         else if(type == "Customer")
         {
             string name;

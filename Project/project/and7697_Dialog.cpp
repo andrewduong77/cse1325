@@ -49,17 +49,21 @@ Dialog::Dialog(Library& l) : library(l)
     button_view_checked_out_bundle_list->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_checked_out_bundle_list_button_click));
     grid1->attach(*button_view_checked_out_bundle_list, 0, 3, 1, 1);
 
+    Gtk::Button *button_view_transactions = Gtk::manage(new Gtk::Button("View Transactions"));
+    button_view_transactions->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_transactions_button_click));
+    grid1->attach(*button_view_transactions, 0, 4, 1, 1);
+
     Gtk::Button *button_view_customers = Gtk::manage(new Gtk::Button("View Customers"));
     button_view_customers->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_customers_button_click));
-    grid1->attach(*button_view_customers, 0, 4, 1, 1);
+    grid1->attach(*button_view_customers, 0, 5, 1, 1);
 
     Gtk::Button *button_view_librarians = Gtk::manage(new Gtk::Button("View Librarians"));
     button_view_librarians->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_librarians_button_click));
-    grid1->attach(*button_view_librarians, 0, 5, 1, 1);
+    grid1->attach(*button_view_librarians, 0, 6, 1, 1);
 
     Gtk::Button *button_view_bundles = Gtk::manage(new Gtk::Button("View Bundles"));
     button_view_bundles->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_view_bundles_button_click));
-    grid1->attach(*button_view_bundles, 0, 6, 1, 1);
+    grid1->attach(*button_view_bundles, 0, 7, 1, 1);
 
     Gtk::Box *vbox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
     hbox1->add(*vbox2);
@@ -289,6 +293,45 @@ void Dialog::on_view_checked_out_bundle_list_button_click()
     scrolledwindow->add(*textview);
 
     window_view_checked_out_bundle_list->show_all();
+}
+
+void Dialog::on_view_transactions_button_click()
+{
+    string display;
+
+    if(library.get_transactions().size() <= 0)
+        display = "There are no transactions";
+    else
+        display = library.print_transactions_to_string();
+
+    Gtk::Window *window_browse_catalog = new Gtk::Window();
+    window_browse_catalog->set_default_size(600, 600);
+    window_browse_catalog->set_title("Customers");
+    
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_browse_catalog->add(*vbox);
+
+    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
+    grid->set_border_width(10);
+    vbox->add(*grid);
+
+    Gtk::Label *label = Gtk::manage(new Gtk::Label("Customers"));
+    grid->attach(*label, 0, 0, 1, 1);
+
+    Glib::RefPtr<Gtk::TextBuffer> textbuffer;
+    textbuffer = Gtk::TextBuffer::create();
+    textbuffer->set_text(display);
+    
+    Gtk::ScrolledWindow *scrolledwindow = Gtk::manage(new Gtk::ScrolledWindow());
+    scrolledwindow->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+    vbox->pack_start(*scrolledwindow);
+
+    Gtk::TextView *textview = Gtk::manage(new Gtk::TextView());
+    textview->set_editable(false);
+    textview->set_buffer(textbuffer);
+    scrolledwindow->add(*textview);
+
+    window_browse_catalog->show_all();
 }
 
 void Dialog::on_view_customers_button_click()
@@ -938,47 +981,297 @@ void Dialog::dialog(Glib::ustring msg)
 ***For Add***
 */
 
-void Dialog::on_add_media_button_click()
-{
-    Gtk::Window *window = new Gtk::Window();
-    window->set_title("Add Media");
-
-    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
-    window->add(*vbox);
-
-    Gtk::Grid *grid = Gtk::manage(new Gtk::Grid);
-    grid->set_border_width(10);
-    vbox->add(*grid);
-
-    Gtk::Label *label = Gtk::manage(new Gtk::Label("Add Media"));
-    grid->attach(*label, 0, 0, 1, 1);
-    
-    Gtk::Button *button_add_book = Gtk::manage(new Gtk::Button("Add Book"));
-    button_add_book->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_book_button_click));
-    grid->attach(*button_add_book, 0, 1, 1, 1);
-    
-    Gtk::Button *button_add_movie = Gtk::manage(new Gtk::Button("Add Movie"));
-    button_add_movie->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_movie_button_click));
-    grid->attach(*button_add_movie, 0, 2, 1, 1);
-    
-    Gtk::Button *button_add_video_game = Gtk::manage(new Gtk::Button("Add Video Game"));
-    button_add_video_game->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_video_game_button_click));
-    grid->attach(*button_add_video_game, 0, 3, 1, 1);
-    
-    Gtk::Button *button_add_music_album = Gtk::manage(new Gtk::Button("Add Music Album"));
-    button_add_music_album->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_music_album_button_click));
-    grid->attach(*button_add_music_album, 0, 4, 1, 1);
-    
-    Gtk::Button *button_add_television_show_season = Gtk::manage(new Gtk::Button("Add Television Show Season"));
-    button_add_television_show_season->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_television_show_season_button_click));
-    grid->attach(*button_add_television_show_season, 0, 5, 1, 1);
-
-    window->show_all();
-}
-
+// *Add Transaction*
 void Dialog::on_add_transaction_button_click()
 {
+    window_add_transaction = new Gtk::Window();
+    window_add_transaction->set_title("Add Transaction");
+
+    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 0));
+    window_add_transaction->add(*vbox);
+
+    Gtk::Box *hbox_top = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_top);
+
+    Gtk::Grid *grid1 = Gtk::manage(new Gtk::Grid);
+    grid1->set_border_width(10);
+    hbox_top->add(*grid1);
+
+    // ***For Transaction Number***
+
+    Gtk::Label *transaction_number = Gtk::manage(new Gtk::Label("Transaction Number:"));
+    grid1->attach(*transaction_number, 0, 0, 1, 1);
     
+    entry_transaction_number = Gtk::manage(new Gtk::Entry());
+    entry_transaction_number->set_text("");
+    entry_transaction_number->set_max_length(50);
+    grid1->attach(*entry_transaction_number, 1, 0, 3, 1);
+
+    // ***For Check Out Date***
+
+    Gtk::Label *label_check_out_date = Gtk::manage(new Gtk::Label("Check Out Date: (MM DD YYYY)"));
+    grid1->attach(*label_check_out_date, 0, 1, 1, 1);
+    
+    // For Month
+    entry_check_out_month = Gtk::manage(new Gtk::Entry());
+    entry_check_out_month->set_text("");
+    entry_check_out_month->set_max_length(2);
+    entry_check_out_month->set_width_chars(2);
+    entry_check_out_month->set_max_width_chars(2);
+    grid1->attach(*entry_check_out_month, 1, 1, 1, 1);
+    
+    // For Day
+    entry_check_out_day = Gtk::manage(new Gtk::Entry());
+    entry_check_out_day->set_text("");
+    entry_check_out_day->set_max_length(2);
+    entry_check_out_day->set_width_chars(2);
+    entry_check_out_day->set_max_width_chars(2);
+    grid1->attach(*entry_check_out_day, 2, 1, 1, 1);
+    
+    // For Year
+    entry_check_out_year = Gtk::manage(new Gtk::Entry());
+    entry_check_out_year->set_text("");
+    entry_check_out_year->set_max_length(4);
+    entry_check_out_year->set_width_chars(4);
+    entry_check_out_year->set_max_width_chars(4);
+    grid1->attach(*entry_check_out_year, 3, 1, 1, 1);
+
+    // ***For Librarian***
+
+    Gtk::Label *label_librarian = Gtk::manage(new Gtk::Label("Librarian ID:"));
+    grid1->attach(*label_librarian, 0, 2, 1, 1);
+    
+    entry_librarian = Gtk::manage(new Gtk::Entry());
+    entry_librarian->set_text("");
+    entry_librarian->set_max_length(50);
+    grid1->attach(*entry_librarian, 1, 2, 3, 1);
+
+    // ***For Customer***
+
+    Gtk::Label *label_customer = Gtk::manage(new Gtk::Label("Customer ID:"));
+    grid1->attach(*label_customer, 0, 3, 1, 1);
+    
+    entry_customer = Gtk::manage(new Gtk::Entry());
+    entry_customer->set_text("");
+    entry_customer->set_max_length(50);
+    grid1->attach(*entry_customer, 1, 3, 3, 1);
+
+    // ***For Medias***
+
+    Gtk::Label *label_medias = Gtk::manage(new Gtk::Label("Media(s):"));
+    grid1->attach(*label_medias, 0, 4, 1, 1);
+    
+    entry_media = Gtk::manage(new Gtk::Entry());
+    entry_media->set_text("");
+    entry_media->set_max_length(50);
+    grid1->attach(*entry_media, 1, 4, 3, 1);
+    
+    Gtk::Button *button_add_media = Gtk::manage(new Gtk::Button("Add Media"));
+    button_add_media->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_media_by_id_button_click));
+    grid1->attach(*button_add_media, 5, 4, 1, 1);
+
+    // ***For Bundles***
+
+    Gtk::Label *label_bundles = Gtk::manage(new Gtk::Label("Bundle(s):"));
+    grid1->attach(*label_bundles, 0, 5, 1, 1);
+    
+    entry_bundle = Gtk::manage(new Gtk::Entry());
+    entry_bundle->set_text("");
+    entry_bundle->set_max_length(50);
+    grid1->attach(*entry_bundle, 1, 5, 3, 1);
+    
+    Gtk::Button *button_add_bundle = Gtk::manage(new Gtk::Button("Add Bundle"));
+    button_add_bundle->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_bundle_by_name_button_click));
+    grid1->attach(*button_add_bundle, 5, 5, 1, 1);
+
+    // ***For Check In Date***
+
+    Gtk::Label *label_check_in_date = Gtk::manage(new Gtk::Label("Check In Date: (MM DD YYYY)"));
+    grid1->attach(*label_check_in_date, 0, 6, 1, 1);
+    
+    // For Month
+    entry_check_in_month = Gtk::manage(new Gtk::Entry());
+    entry_check_in_month->set_text("");
+    entry_check_in_month->set_max_length(2);
+    entry_check_in_month->set_width_chars(2);
+    entry_check_in_month->set_max_width_chars(2);
+    grid1->attach(*entry_check_in_month, 1, 6, 1, 1);
+    
+    // For Day
+    entry_check_in_day = Gtk::manage(new Gtk::Entry());
+    entry_check_in_day->set_text("");
+    entry_check_in_day->set_max_length(2);
+    entry_check_in_day->set_width_chars(2);
+    entry_check_in_day->set_max_width_chars(2);
+    grid1->attach(*entry_check_in_day, 2, 6, 1, 1);
+    
+    // For Year
+    entry_check_in_year = Gtk::manage(new Gtk::Entry());
+    entry_check_in_year->set_text("");
+    entry_check_in_year->set_max_length(4);
+    entry_check_in_year->set_width_chars(4);
+    entry_check_in_year->set_max_width_chars(4);
+    grid1->attach(*entry_check_in_year, 3, 6, 1, 1);
+
+    // ***For Due Date***
+
+    Gtk::Label *label_due_date = Gtk::manage(new Gtk::Label("Due Date: (MM DD YYYY)"));
+    grid1->attach(*label_due_date, 0, 7, 1, 1);
+    
+    // For Month
+    entry_due_month = Gtk::manage(new Gtk::Entry());
+    entry_due_month->set_text("");
+    entry_due_month->set_max_length(2);
+    entry_due_month->set_width_chars(2);
+    entry_due_month->set_max_width_chars(2);
+    grid1->attach(*entry_due_month, 1, 7, 1, 1);
+    
+    // For Day
+    entry_due_day = Gtk::manage(new Gtk::Entry());
+    entry_due_day->set_text("");
+    entry_due_day->set_max_length(2);
+    entry_due_day->set_width_chars(2);
+    entry_due_day->set_max_width_chars(2);
+    grid1->attach(*entry_due_day, 2, 7, 1, 1);
+    
+    // For Year
+    entry_due_year = Gtk::manage(new Gtk::Entry());
+    entry_due_year->set_text("");
+    entry_due_year->set_max_length(4);
+    entry_due_year->set_width_chars(4);
+    entry_due_year->set_max_width_chars(4);
+    grid1->attach(*entry_due_year, 3, 7, 1, 1);
+
+    Gtk::Box *hbox_bottom = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 0));
+    vbox->add(*hbox_bottom);
+
+    Gtk::Grid *grid2 = Gtk::manage(new Gtk::Grid);
+    grid2->set_border_width(10);
+    hbox_bottom->add(*grid2);
+    
+    Gtk::Button *button_cancel = Gtk::manage(new Gtk::Button("Cancel"));
+    button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_transaction_cancel_button_click));
+    grid2->attach(*button_cancel, 0, 0, 1, 1);
+    
+    Gtk::Button *button_ok = Gtk::manage(new Gtk::Button("OK"));
+    button_ok->signal_clicked().connect(sigc::mem_fun(*this, &Dialog::on_add_transaction_ok_button_click));
+    grid2->attach(*button_ok, 1, 0, 1, 1);
+   
+    window_add_transaction->show_all();
+}
+void Dialog::on_add_transaction_ok_button_click()
+{
+    // *Transaction Number*
+    string transaction_number_str = entry_transaction_number->get_text();
+    stringstream transaction_number_geek(transaction_number_str);
+    int transaction_number;
+    transaction_number_geek >> transaction_number;
+    int month, day, year;
+    // *Check Out Date*
+    // Month
+    string check_out_month_str = entry_check_out_month->get_text();
+    stringstream check_out_month_geek(check_out_month_str);
+    check_out_month_geek >> month;
+    // Day
+    string check_out_day_str = entry_check_out_day->get_text();
+    stringstream check_out_day_geek(check_out_day_str);
+    check_out_day_geek >> day;
+    // Year
+    string check_out_year_str = entry_check_out_year->get_text();
+    stringstream check_out_year_geek(check_out_year_str);
+    check_out_year_geek >> year;
+    Date *check_out_date = new Date(year, month, day);
+    // *Librarian*
+    Librarian *librarian;
+    string librarian_str = entry_librarian->get_text();
+    stringstream librarian_geek(librarian_str);
+    int librarian_id;
+    librarian_geek >> librarian_id;
+    for(Librarian* it : library.get_librarians())
+        if(librarian_id == it->get_id())
+        {
+            librarian = it;
+            break;
+        }
+    // *Customer*
+    Customer *customer;
+    string customer_str = entry_customer->get_text();
+    stringstream customer_geek(customer_str);
+    int customer_id;
+    customer_geek >> customer_id;
+    for(Customer* it : library.get_customers())
+        if(customer_id == it->get_id())
+        {
+            customer = it;
+            break;
+        }
+    // *Check In Date*
+    // Month
+    string check_in_month_str = entry_check_in_month->get_text();
+    stringstream check_in_month_geek(check_in_month_str);
+    check_in_month_geek >> month;
+    // Day
+    string check_in_day_str = entry_check_in_day->get_text();
+    stringstream check_in_day_geek(check_in_day_str);
+    check_in_day_geek >> day;
+    // Year
+    string check_in_year_str = entry_check_in_year->get_text();
+    stringstream check_in_year_geek(check_in_year_str);
+    check_in_year_geek >> year;
+    Date *check_in_date = new Date(year, month, day);
+    // *Due Date*
+    // Month
+    string due_month_str = entry_due_month->get_text();
+    stringstream due_month_geek(due_month_str);
+    due_month_geek >> month;
+    // Day
+    string due_day_str = entry_due_day->get_text();
+    stringstream due_day_geek(due_day_str);
+    due_day_geek >> day;
+    // Year
+    string due_year_str = entry_due_year->get_text();
+    stringstream due_year_geek(due_year_str);
+    due_year_geek >> year;
+    Date *due_date = new Date(year, month, day);
+    Transaction *transaction = new Transaction(transaction_number, *check_out_date, *librarian, *customer, medias, bundles, *check_in_date, *due_date);
+    library.create_new_transaction(transaction);
+    dialog("Transaction " + transaction_number_str + " added.");
+    medias.clear();
+    bundles.clear();
+    window_add_transaction->close();
+    delete(window_add_transaction);
+}
+void Dialog::on_add_transaction_cancel_button_click()
+{
+    window_add_transaction->close();
+    delete(window_add_transaction);
+}
+void Dialog::on_add_media_by_id_button_click()
+{
+    string id_number_str = entry_id_number->get_text();
+    stringstream id_number_geek(id_number_str);
+    int id_number;
+    id_number_geek >> id_number;
+    for(Media* it : library.get_medias())
+        if(id_number == it->get_id_number())
+        {
+            medias.push_back(it);
+            dialog("\"" + it->get_title() + "\" added.");
+            break;
+        }
+    entry_id_number->set_text("");
+}
+void Dialog::on_add_bundle_by_name_button_click()
+{
+    string name = entry_name->get_text();
+    for(Bundle* it : library.get_bundles())
+        if(to_lower_case(name) == to_lower_case(it->get_name()))
+        {
+            bundles.push_back(it);
+            dialog("\"" + it->get_name() + "\" added.");
+            break;
+        }
+    entry_name->set_text("");
 }
 
 // *Add Customer*
