@@ -527,6 +527,7 @@ void Dialog::on_check_in_ok_button_click()
 void Dialog::on_check_in_cancel_button_click()
 {
     window_check_in->close();
+    delete(window_check_in);
 }
 
 // *Check Out*
@@ -605,6 +606,7 @@ void Dialog::on_check_out_ok_button_click()
 void Dialog::on_check_out_cancel_button_click()
 {
     window_check_out->close();
+    delete(window_check_out);
 }
 
 // *Check In Bundle*
@@ -680,6 +682,7 @@ void Dialog::on_check_in_bundle_ok_button_click()
 void Dialog::on_check_in_bundle_cancel_button_click()
 {
     window_check_in_bundle->close();
+    delete(window_check_in_bundle);
 }
 
 // *Check Out Bundle*
@@ -755,6 +758,7 @@ void Dialog::on_check_out_bundle_ok_button_click()
 void Dialog::on_check_out_bundle_cancel_button_click()
 {
     window_check_out_bundle->close();
+    delete(window_check_out_bundle);
 }
 
 // *Pay Balance*
@@ -841,6 +845,7 @@ void Dialog::on_pay_balance_ok_button_click()
 void Dialog::on_pay_balance_cancel_button_click()
 {
     window_pay_balance->close();
+    delete(window_pay_balance);
 }
 
 // *Save*
@@ -901,6 +906,7 @@ void Dialog::on_save_ok_button_click()
 void Dialog::on_save_cancel_button_click()
 {
     window_save->close();
+    delete(window_save);
 }
 
 // *Load*
@@ -961,6 +967,7 @@ void Dialog::on_load_ok_button_click()
 void Dialog::on_load_cancel_button_click()
 {
     window_load->close();
+    delete(window_load);
 }
 
 void Dialog::on_exit_click()
@@ -1268,7 +1275,7 @@ void Dialog::on_add_bundle_by_name_button_click()
         if(to_lower_case(name) == to_lower_case(it->get_name()))
         {
             bundles.push_back(it);
-            dialog("\"" + it->get_name() + "\" added.");
+            dialog(it->get_name() + " Bundle added.");
             break;
         }
     entry_bundle->set_text("");
@@ -1382,6 +1389,7 @@ void Dialog::on_add_customer_ok_button_click()
 void Dialog::on_add_customer_cancel_button_click()
 {
     window_add_customer->close();
+    delete(window_add_customer);
 }
 
 // *Add Librarian*
@@ -1453,6 +1461,7 @@ void Dialog::on_add_librarian_ok_button_click()
 void Dialog::on_add_librarian_cancel_button_click()
 {
     window_add_librarian->close();
+    delete(window_add_librarian);
 }
 
 // *Add Bundle*
@@ -1528,6 +1537,7 @@ void Dialog::on_add_bundle_ok_button_click()
 void Dialog::on_add_bundle_cancel_button_click()
 {
     window_add_bundle->close();
+    delete(window_add_bundle);
 }
 void Dialog::on_add_to_bundle_button_click()
 {
@@ -1672,6 +1682,7 @@ void Dialog::on_add_book_ok_button_click()
 void Dialog::on_add_book_cancel_button_click()
 {
     window_add_book->close();
+    delete(window_add_book);
 }
 
 // *Add Movie*
@@ -1816,6 +1827,7 @@ void Dialog::on_add_movie_ok_button_click()
 void Dialog::on_add_movie_cancel_button_click()
 {
     window_add_movie->close();
+    delete(window_add_movie);
 }
 void Dialog::on_add_leading_actor_button_click()
 {
@@ -1941,6 +1953,7 @@ void Dialog::on_add_video_game_ok_button_click()
 void Dialog::on_add_video_game_cancel_button_click()
 {
     window_add_video_game->close();
+    delete(window_add_video_game);
 }
 
 // *Add Music Album*
@@ -2075,6 +2088,7 @@ void Dialog::on_add_music_album_ok_button_click()
 void Dialog::on_add_music_album_cancel_button_click()
 {
     window_add_music_album->close();
+    delete(window_add_music_album);
 }
 void Dialog::on_add_track_button_click()
 {
@@ -2244,6 +2258,7 @@ void Dialog::on_add_television_show_season_ok_button_click()
 void Dialog::on_add_television_show_season_cancel_button_click()
 {
     window_add_television_show_season->close();
+    delete(window_add_television_show_season);
 }
 void Dialog::on_add_voice_actor_button_click()
 {
